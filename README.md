@@ -1,8 +1,13 @@
 # Trackbar B2B Landingpage
 
-Das ist die Landingpage für Trackbar B2B, helle Version. Stand 18.11.2026.
+Landingpage für Trackbar B2B in zwei Versionen.
 
-## Ordnerstruktur
+## Versionen
+
+- `hell/`: helle Version mit Lime-Kopfbereich, Stand 18.11.2026
+- `dunkel/`: dunkle Version, aktuell live auf trackbar-b2b.com
+
+Jede Version enthält:
 
 - `index.html`: die Landingpage
 - `assets/`: Bilder und Grafiken
@@ -14,17 +19,18 @@ Das ist die Landingpage für Trackbar B2B, helle Version. Stand 18.11.2026.
 
 ## Lokal ansehen
 
-Starte im Ordner einen statischen Server:
+Starte im Repo-Ordner einen statischen Server:
 
 ```
-npx serve .
+npx serve hell
+npx serve dunkel
 ```
 
 Dann öffnest Du die angezeigte Adresse im Browser.
 
 ## Formular-Funktionen
 
-Die Funktionen unter `netlify/functions` brauchen diese ENV-Variablen. Hier stehen nur die Namen, keine Werte:
+Die Funktionen unter `<version>/netlify/functions` brauchen diese ENV-Variablen. Hier stehen nur die Namen, keine Werte:
 
 - `TB_ALLOWED_HOSTS`
 - `TB_LEAD_NOTIFY_TO`
@@ -40,5 +46,5 @@ Die Funktionen unter `netlify/functions` brauchen diese ENV-Variablen. Hier steh
 ## Deploy auf Netlify
 
 ```
-netlify deploy --dir=. --functions=netlify/functions --site=<eigene Site-ID>
+netlify deploy --dir=<version> --functions=<version>/netlify/functions --site=<eigene Site-ID>
 ```
