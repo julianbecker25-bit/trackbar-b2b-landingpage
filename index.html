@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trackbar für Betreiber · Kraftgeräte digitalisieren</title>
+<meta name="description" content="Trackbar rüstet vorhandene Kraftgeräte mit Display und Sensor nach. Für Fitnessstudios, Physio-Studios und Gerätehersteller.">
+<meta name="theme-color" content="#0A0B0A">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://vz-617e21d0-8be.b-cdn.net">
+<link rel="preload" as="image" href="assets/brag-hero33-800.webp" imagesrcset="assets/brag-hero33-800.webp 800w, assets/brag-hero33-1280.webp 1280w, assets/brag-hero33-1920.webp 1920w" imagesizes="(min-width:1000px) 40vw, 92vw" fetchpriority="high">
+<!-- v9 Gegenentwurf (13.11.2026): heller Hero ohne Hintergrundbild, Key-Faktoren direkt darunter, Benefits hochgezogen, Ablauf als Schrittbuehne.
+     Das Vorschaubild des Hero-Videos ist das groesste Element im ersten Bildschirm und wird deshalb vorgeladen. -->
+<!--
+  Trackbar B2B-Seite. Inhalte je Zielgruppe stehen im Objekt CONTENT im Skript unten.
+  Videos (Bunny-Library 614528, immer mit referrerpolicy="no-referrer"):
+    - Hero je Zielgruppe:   CONTENT.<zg>.brag = '<guid>', Poster CONTENT.<zg>.bragPoster
+    - Fuenf-Fragen-Film:    CONTENT.<zg>.qVideo = '<guid>' (leer = kein Videoplatz)
+    - Interviews:           CONTENT.<zg>.interviews[i].guid, dazu b (Name) und s (Studio, Ort)
+  Formular: FORM_ENDPOINT im Skript setzen, sonst wird nichts gesendet.
+-->
+<style>
+@font-face{font-family:Manrope;src:url(assets/fonts/manrope.woff2) format('woff2');font-weight:200 800;font-style:normal;font-display:swap}
+/* Ersatzschrift mit Manrope-Massen: kein Springen, wenn die Webschrift nachlaedt */
+@font-face{font-family:'Manrope Fallback';src:local('Arial'),local('ArialMT'),local('Helvetica'),local('Roboto');size-adjust:102.92%;ascent-override:103.57%;descent-override:29.15%;line-gap-override:0%}
+:root{
+  --ink:#0A0B0A;
+  --ink-2:#1E1F21;
+  --ink-3:#232426;
+  --paper:#FAFAFA;
+  --white:#FFFFFF;
+  --text:#4A5565;
+  --text-2:#5B6472;
+  --line:#D8D9DB;
+  --line-2:#E8EBED;
+  --smoke:#F3F4F4;
+  --lime:#97D700;
+  --lime-dark:#7AB800;
+  --lime-ink:#4B6B00;
+  --display:#121512;
+  --curve:#4A4A4A;
+  --red:#FB3640;
+  --blue:#1D4F91;
+  --r-sm:8px;--r-md:12px;--r-lg:20px;--r-xl:24px;--r-2xl:32px;--r-pill:9999px;
+  --shadow-md:0 8px 20px rgba(0,0,0,.25);
+  --shell:clamp(1.1rem,4.5vw,4rem);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--paper);color:var(--ink);font-family:Manrope,"Manrope Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:clamp(1rem,0.96rem + 0.2vw,1.08rem);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+a{color:inherit}
+.shell{max-width:1280px;margin-inline:auto;padding-inline:var(--shell)}
+h1,h2,h3{font-weight:800;letter-spacing:-0.01em;text-wrap:balance}
+h2{font-size:clamp(1.85rem,1.15rem + 2.9vw,3.6rem);line-height:1.04;letter-spacing:-0.02em;max-width:20ch}
+h2 .dot,h1 .dot{color:var(--lime)}
+p.lead{font-size:clamp(1.02rem,0.97rem + 0.3vw,1.18rem);color:var(--text);max-width:56ch}
+.sec{padding-block:clamp(3.25rem,7vw,5.75rem)}
+.sec--white{background:var(--white)}
+.sec__head{display:grid;gap:1rem 3rem;grid-template-columns:1fr;align-items:end;margin-bottom:clamp(1.75rem,3.5vw,2.75rem)}
+@media(min-width:900px){.sec__head{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.sec__head p{color:var(--text);max-width:52ch}
+
+.chip{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.68rem;font-weight:700;letter-spacing:0.02em;line-height:1;padding:0.32rem 0.55rem;border-radius:var(--r-pill);white-space:nowrap;border:1px solid transparent}
+
+/* Navigation */
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,11,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid #1d201d}
+.nav .shell{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:0.8rem}
+.nav__logo{display:inline-flex;align-items:center;min-height:44px}
+.nav__logo img{height:22px;width:auto}
+.nav__links{display:flex;gap:1.5rem;align-items:center}
+.nav__links a{color:#C9CDC6;text-decoration:none;font-size:0.88rem;font-weight:600}
+.nav__links a:hover{color:var(--white)}
+.nav__links a.btn--lime,.nav__links a.btn--lime:hover{color:var(--ink)}
+@media(max-width:900px){.nav__links a:not(.btn){display:none}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:var(--r-pill);font:600 16px/1.1 Manrope,"Manrope Fallback",system-ui,sans-serif;letter-spacing:-.005em;cursor:pointer;border:1px solid transparent;text-decoration:none;transition:transform .2s ease,background .2s ease,border-color .2s ease;min-height:44px}
+.btn:hover{transform:translateY(-1px)}
+.btn--lime{background:var(--lime);color:var(--ink)}
+.btn--lime:hover{background:#A6E61A}
+.btn--ink{background:var(--ink);color:var(--white)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn--ghost-dark{background:transparent;color:var(--white);border-color:#3a3f39}
+.btn--ghost-dark:hover{border-color:#6b7168}
+.btn--sm{padding:12px 18px;font-size:14px;min-height:44px}
+.btn svg{width:14px;height:14px;flex:none}
+
+/* Hero */
+.hero{position:relative;background:var(--ink);color:var(--white);overflow:hidden;isolation:isolate}
+.hero__bg{position:absolute;inset:0;z-index:-1}
+.hero__bg img{width:100%;height:100%;object-fit:cover;opacity:.28;transition:opacity .5s var(--ease)}
+.hero__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 18%,rgba(10,11,10,.82) 52%,rgba(10,11,10,.55)),linear-gradient(0deg,var(--ink),transparent 40%)}
+.hero .shell{padding-block:clamp(1.75rem,4vw,2.75rem) clamp(2.75rem,6vw,4.5rem)}
+/* Zielgruppenwahl als eigene Sektion unter Hero und Herstellerleiste: Bild blendet beim Hover ueber, Klick baut die Seite neu auf */
+.pick{position:relative;isolation:isolate;overflow:clip;background:var(--ink);color:var(--white);padding-block:clamp(4.5rem,10vw,8.5rem) clamp(8rem,17vw,14rem)}
+.pick__bg{position:absolute;inset:0;z-index:-2}
+.pick__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1s var(--ease),transform 9s linear}
+.pick__bg img.is-on{opacity:.62;transform:scale(1)}
+.pick::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,11,10,.94) 0%,rgba(10,11,10,.7) 48%,rgba(10,11,10,.36) 100%),linear-gradient(0deg,rgba(10,11,10,.96) 0%,rgba(10,11,10,0) 50%),linear-gradient(180deg,rgba(10,11,10,.75) 0%,rgba(10,11,10,0) 28%)}
+/* Trackbar-Welle (v4): feine Leuchtlinien statt Band, deutlich zurueckgenommen. Zeichnung, Ball und Muenzen
+   haengen an der Scrollposition (geglaettet), die Schienen laufen mit leichter Parallaxe */
+.pick__wave{position:absolute;left:0;bottom:0;width:100%;height:clamp(140px,19vw,260px);z-index:-1;pointer-events:none;opacity:.55}
+.wv-coins circle{fill:#FFC700;opacity:.85;transform-box:fill-box;transform-origin:center;transition:transform .55s var(--ease),opacity .55s var(--ease)}
+.wv-coins circle.is-got{transform:scale(0);opacity:0}
+.pick__h{font-size:clamp(2.2rem,1.1rem + 4.6vw,5rem);line-height:.98;letter-spacing:-0.04em;max-width:14ch}
+.pick__sub{margin-top:1.1rem;color:#C9CDC6;max-width:44ch;font-size:clamp(1rem,0.96rem + 0.35vw,1.22rem)}
+.pick__opts{margin-top:clamp(2.25rem,5vw,3.5rem);display:grid;grid-template-columns:1fr;gap:0.85rem}
+@media(min-width:860px){.pick__opts{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}}
+.pick__opt{appearance:none;font:inherit;color:inherit;text-align:left;cursor:pointer;position:relative;display:grid;align-content:end;gap:0.4rem;min-height:clamp(8.5rem,15vw,13rem);padding:1.35rem 1.35rem 1.25rem;border-radius:var(--r-lg);border:1px solid rgba(255,255,255,.16);background:rgba(16,19,16,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .5s var(--ease),border-color .3s ease,background .3s ease,box-shadow .5s var(--ease)}
+.pick__opts .pick__opt:hover,.pick__opts .pick__opt:focus-visible{transform:translateY(-6px);border-color:rgba(151,215,0,.75);box-shadow:0 34px 70px -34px rgba(151,215,0,.5)}
+.pick__opt:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.pick__opt[aria-checked="true"]{border-color:var(--lime);background:rgba(151,215,0,.13)}
+.pick__top{display:flex;gap:0.6rem;align-items:center}
+.pick__no{font-size:0.78rem;font-weight:800;letter-spacing:0.1em;color:var(--lime)}
+.pick__state{font-size:0.75rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--lime);opacity:0;transition:opacity .3s ease}
+.pick__opt[aria-checked="true"] .pick__state{opacity:1}
+.pick__name{font-size:clamp(1.4rem,1.1rem + 1.1vw,2rem);font-weight:800;line-height:1.04;letter-spacing:-0.025em}
+.pick__line{font-size:0.95rem;color:#C9CDC6;line-height:1.4}
+.pick__go{position:absolute;top:1.15rem;right:1.15rem;width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);transition:background .3s ease,border-color .3s ease,color .3s ease,transform .5s var(--ease)}
+.pick__go svg{width:16px;height:16px}
+.pick__opt:hover .pick__go,.pick__opt:focus-visible .pick__go,.pick__opt[aria-checked="true"] .pick__go{background:var(--lime);border-color:var(--lime);color:var(--ink)}
+.pick__opt:hover .pick__go{transform:rotate(-45deg)}
+.pick .reveal{transition-delay:var(--d,0s)}
+.pick:not(.in) .pick__opt{opacity:0}
+.pick.in .pick__opt{animation:tile-in .9s var(--ease) backwards;animation-delay:var(--d,0s)}
+@keyframes tile-in{from{opacity:0;transform:translateY(28px) scale(.98)}to{opacity:1;transform:none}}
+/* Live-Aufbau nach einer Wahl (Runde v3): Bausteine unter der Auswahl warten unsichtbar und bauen sich
+   gestaffelt auf, sobald sie beim Auto-Scrollen ins Bild kommen */
+.rb-wait .rb-i{opacity:0;transform:translateY(38px);filter:blur(6px)}
+.rb-go .rb-i{animation:rb-in .85s var(--ease) both;animation-delay:calc(var(--k,0) * 110ms)}
+@keyframes rb-in{from{opacity:0;transform:translateY(38px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+/* Benefit-Explosion nach Skill explosionseffekt: Buehne klebt 42vh, Fortschritt --p, das Display faechert in seine Ebenen auf, Benefits rundherum */
+.xh{--navh:68px;--xh-travel:42vh;--p:0;--pinh:calc(100vh - var(--navh));--pinh:calc(100svh - var(--navh));position:relative;background:var(--ink);color:var(--white);overflow:clip;min-height:calc(var(--pinh) + var(--xh-travel))}
+.xh::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 45% at 50% 58%,rgba(151,215,0,.1),transparent 70%);pointer-events:none}
+.xh-pin{position:sticky;top:var(--navh);height:var(--pinh);overflow:hidden}
+.xh-in{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-block:clamp(1.25rem,4vh,2.75rem) clamp(0.9rem,3vh,1.75rem)}
+.xh-h{margin-inline:auto;text-align:center;max-width:22ch;font-size:clamp(1.7rem,1.05rem + 2.4vw,3.2rem)}
+.xh-stage{position:relative;min-height:0;container-type:size}
+.xh-burst{position:absolute;inset:0}
+.xh-stick{position:absolute;inset:0;display:grid;place-items:center}
+.xh-float{position:relative;width:min(44cqw,92cqh);aspect-ratio:1400/980;perspective:2400px;animation:xh-hover 7s ease-in-out infinite;animation-play-state:paused}
+.xh.is-vis .xh-float{animation-play-state:running}
+@keyframes xh-hover{0%,100%{transform:translateY(-1.2%)}50%{transform:translateY(1.2%)}}
+.xh-stack{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(calc(var(--p) * 54deg)) rotateZ(calc(var(--p) * -34deg)) scale(calc(1 - var(--p) * .16))}
+.xp{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;will-change:transform,opacity}
+.xp-base{opacity:calc(1 - min(1, var(--p) * 5));filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+.xp-l{opacity:min(1, var(--p) * 5);transform:translateZ(calc(var(--p) * var(--z) * 1cqw))}
+.xp-edge{filter:drop-shadow(0 0 1.2px rgba(151,215,0,.75)) drop-shadow(0 18px 36px rgba(0,0,0,.55))}
+.xk-list{list-style:none;margin:0;padding:0;position:absolute;inset:0;pointer-events:none}
+.xk{position:absolute;max-width:23ch;display:grid;gap:0.3rem;opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.xk.is-on{opacity:1;transform:none}
+.xk::before{content:'';display:block;width:2.4rem;height:3px;border-radius:3px;background:var(--lime);box-shadow:0 0 16px rgba(151,215,0,.65);margin-bottom:0.35rem}
+.xk b{font-size:clamp(1.05rem,0.92rem + 0.55vw,1.4rem);font-weight:800;line-height:1.1;letter-spacing:-0.015em}
+.xk span{font-size:0.92rem;color:#B9BEB5;line-height:1.45}
+.xk-1{left:0;top:4%}
+.xk-2{right:0;top:4%;text-align:right}
+.xk-3{left:0;bottom:12%}
+.xk-4{right:0;bottom:12%;text-align:right}
+.xk-2::before,.xk-4::before{margin-left:auto}
+.xk-5{left:50%;bottom:0;transform:translate(-50%,12px);text-align:center;max-width:30ch}
+.xk-5.is-on{transform:translate(-50%,0)}
+.xk-5::before{margin-inline:auto}
+.xh-note{margin:0.5rem auto 0;font-size:0.82rem;color:#8E948B;display:flex;gap:0.5rem;justify-content:center;align-items:center;flex-wrap:wrap}
+.xh-note:empty{display:none}
+@media(max-width:900px){
+  .xh{min-height:0}
+  .xh-pin{position:static;height:auto;overflow:visible}
+  .xh-in{display:block;height:auto;padding-block:3.25rem 3rem}
+  .xh-stage{container-type:inline-size}
+  .xh-burst{position:relative;inset:auto;height:calc(min(84vw,470px) + 32vh)}
+  .xh-stick{position:sticky;inset:auto;top:var(--navh);height:min(84vw,470px)}
+  .xh-float{width:min(74cqw,520px)}
+  .xk-list{position:static;display:grid;grid-template-columns:1fr;gap:1.1rem;margin-top:0.25rem}
+  .xk,.xk-5{position:static;max-width:none;text-align:left;transform:translateY(12px)}
+  .xk.is-on,.xk-5.is-on{transform:none}
+  .xk::before,.xk-2::before,.xk-4::before,.xk-5::before{margin-inline:0}
+  .xh-note{justify-content:flex-start}
+}
+@media(min-width:560px) and (max-width:900px){.xk-list{grid-template-columns:1fr 1fr}}
+.hero__grid{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+@media(min-width:1000px){.hero__grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+.hero h1{font-size:clamp(1.75rem,0.9rem + 4.3vw,4.1rem);line-height:0.98;text-transform:uppercase;letter-spacing:-0.015em;overflow-wrap:break-word;max-width:16ch}
+.hero p.lead{color:#C9CDC6;margin-top:1.2rem}
+.checks{list-style:none;margin-top:1.4rem;display:grid;gap:0.55rem}
+.checks li{display:flex;gap:0.7rem;align-items:flex-start;color:#E6E8E3;font-weight:600;font-size:0.98rem}
+.checks li svg{flex:none;width:20px;height:20px;margin-top:0.12rem}
+.hero .cta-row{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:0.75rem}
+.swap{transition:opacity .28s ease,transform .28s ease}
+.swap.is-out{opacity:0;transform:translateY(6px)}
+
+/* Video-Platzhalter */
+.vph{position:relative;border-radius:var(--r-xl);overflow:hidden;background:var(--display);border:1px solid #2a2e29;aspect-ratio:16/9;box-shadow:0 40px 80px -40px #000}
+.vph__curve{position:absolute;inset:0;width:100%;height:100%}
+.vph__in{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(0.9rem,2.2vw,1.5rem);background:linear-gradient(180deg,rgba(18,21,18,.25),rgba(18,21,18,.82))}
+.vph__top{display:flex;justify-content:space-between;gap:0.75rem;align-items:flex-start}
+.vph__play{flex:none;width:clamp(48px,6vw,72px);height:clamp(48px,6vw,72px);border-radius:50%;background:var(--lime);display:grid;place-items:center;align-self:center;box-shadow:0 0 0 10px rgba(151,215,0,.15)}
+.vcap{margin-top:0.75rem;font-size:0.9rem;color:#AEB3AB;max-width:62ch}
+.vcap--light{color:var(--text)}
+@media(max-width:560px){.vph__plan{display:none}.vph__title{font-size:0.98rem}}
+.vph__play svg{width:38%;height:38%;margin-left:6%}
+.vph__title{font-size:clamp(1rem,0.9rem + 0.7vw,1.45rem);font-weight:800;line-height:1.15;color:var(--white);max-width:26ch}
+.vph__sub{margin-top:0.35rem;font-size:clamp(0.78rem,0.74rem + 0.2vw,0.9rem);color:#AEB3AB;max-width:52ch}
+.vph__plan{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.7rem}
+.vph__plan span{font-size:0.7rem;font-weight:700;color:#D7DBD3;border:1px solid #3a3f39;border-radius:var(--r-pill);padding:0.25rem 0.55rem;background:rgba(10,11,10,.5)}
+.vph__plan span b{color:var(--lime)}
+.vph--frame{aspect-ratio:auto}
+.vph iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vmeta{margin-top:0.85rem;display:flex;flex-wrap:wrap;gap:0.5rem 1rem;align-items:center;font-size:0.84rem;color:#AEB3AB}
+.vmeta--light{color:var(--text)}
+.toggles{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.7rem}
+.tbtn{appearance:none;background:transparent;border:1px solid #3a3f39;color:#D7DBD3;border-radius:var(--r-pill);padding:0.5rem 0.9rem;font-size:0.82rem;font-weight:700;cursor:pointer;min-height:40px}
+.tbtn:hover{border-color:#6b7168;color:var(--white)}
+.tbtn[aria-expanded="true"]{background:#1d201d;border-color:var(--lime);color:var(--white)}
+.panel{margin-top:0.8rem;border:1px solid #2a2e29;border-radius:var(--r-lg);background:#121512;padding:1rem}
+.panel[hidden]{display:none}
+.panel h4{font-size:0.92rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap}
+.panel p{font-size:0.86rem;color:#AEB3AB}
+.script{list-style:none;margin-top:0.4rem}
+.script li{display:grid;grid-template-columns:8.5rem 1fr;gap:0.15rem 0.9rem;padding-block:0.5rem;border-bottom:1px solid #232623;font-size:0.9rem}
+.script li:last-child{border-bottom:0}
+.script li span{font-size:0.72rem;font-weight:800;color:#8D9389;text-transform:uppercase;letter-spacing:0.04em;padding-top:0.15rem}
+.script li.cut span{color:var(--lime)}
+.script li q{color:#E6E8E3;quotes:"\201E" "\201C"}
+@media(max-width:560px){.script li{grid-template-columns:1fr}}
+.refbox{position:relative;margin-top:0.7rem;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/9;background:#000;border:1px dashed #6b7168}
+.refbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.panel a.out{color:var(--lime);font-weight:700;font-size:0.86rem}
+
+/* Vertrauen */
+.trust{background:var(--white);border-bottom:1px solid var(--line-2)}
+.trust .shell{display:grid;grid-template-columns:1fr;gap:1rem 3rem;padding-block:1.4rem;align-items:center}
+@media(min-width:900px){.trust .shell{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.trust__k{font-size:0.78rem;font-weight:800;color:var(--text-2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.45rem;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap}
+.brands{display:flex;flex-wrap:wrap;gap:0.4rem 1.4rem;font-weight:800;font-size:clamp(0.95rem,0.9rem + 0.35vw,1.2rem);color:var(--ink);letter-spacing:-0.01em}
+.brands span{white-space:nowrap}
+.eco{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.eco img{height:26px;width:auto}
+
+/* Business Case */
+.case{display:block}
+.benefits{list-style:none;display:grid;grid-template-columns:1fr;gap:1rem}
+@media(min-width:680px){.benefits{grid-template-columns:1fr 1fr}}
+.benefit{background:var(--white);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:1.25rem 1.25rem 1.15rem;display:flex;flex-direction:column;gap:0.5rem}
+.sec--white .benefit{background:var(--paper)}
+.benefit h3{font-size:1.12rem;line-height:1.2;letter-spacing:-0.01em}
+.benefit p{font-size:0.94rem;color:var(--text);line-height:1.5}
+.benefit .gone{font-size:0.86rem;color:var(--text-2);border-top:1px solid var(--line-2);padding-top:0.5rem;margin-top:auto}
+.benefit .chip{align-self:flex-start}
+/* Business Case als Bento (v4): erste Kachel traegt das Zielgruppenbild, die breite Kachel ist dunkel */
+.bento{list-style:none;display:grid;grid-template-columns:1fr;gap:1rem}
+@media(min-width:700px){.bento{grid-template-columns:1fr 1fr}.bento>.benefit--img{grid-column:1 / -1}}
+@media(min-width:700px) and (max-width:999px){.bento>li:nth-child(4){grid-column:1 / -1}}
+@media(min-width:1000px){.bento{grid-template-columns:1.15fr 1fr}.bento>.benefit--img{grid-column:1;grid-row:1 / span 3;min-height:0}}
+.bento .benefit{position:relative;padding:1.5rem 1.5rem 1.35rem;gap:.55rem;border-radius:var(--r-xl);transition:transform .5s var(--ease),border-color .3s ease,box-shadow .5s var(--ease)}
+.bento .benefit:hover{transform:translateY(-4px);border-color:rgba(151,215,0,.65);box-shadow:0 26px 50px -30px rgba(10,11,10,.35)}
+.benefit__no{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--lime-ink)}
+.bento .benefit h3{font-size:clamp(1.15rem,1.05rem + .45vw,1.4rem);line-height:1.15;letter-spacing:-.015em}
+.bento .benefit--img{min-height:clamp(360px,40vw,520px);padding:0;overflow:hidden;color:var(--white);background:var(--display);border-color:transparent;justify-content:flex-end}
+.benefit--img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.benefit--img:hover img{transform:scale(1.04)}
+.benefit--img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,10,0) 28%,rgba(10,11,10,.9) 100%)}
+.benefit__in{position:relative;z-index:1;padding:1.6rem;display:flex;flex-direction:column;gap:.55rem}
+.bento .benefit--img h3,.bento>li:nth-child(4) h3{color:var(--white)}
+.benefit--img p{color:#D6DAD2}
+.benefit--img .benefit__no,.bento>li:nth-child(4) .benefit__no{color:var(--lime)}
+.bento>li:nth-child(4){background:var(--ink);border-color:var(--ink);color:var(--white)}
+.bento>li:nth-child(4) p{color:#C9CDC6}
+.bento .benefit[data-no]{overflow:hidden}
+.bento .benefit[data-no]::after{content:attr(data-no);position:absolute;right:.15rem;bottom:-.18em;font-size:clamp(5rem,3.6rem + 4vw,8.5rem);font-weight:800;line-height:1;letter-spacing:-.06em;color:rgba(151,215,0,.14);pointer-events:none}
+.bento>li:nth-child(4)[data-no]::after{color:rgba(151,215,0,.2)}
+.bento .benefit .chip{margin-top:auto;position:relative;z-index:1}
+.note{margin-top:1.1rem;border:1.5px dashed var(--line);border-radius:var(--r-md);padding:0.85rem 1rem;font-size:0.88rem;color:var(--text);display:flex;gap:0.75rem;align-items:flex-start;flex-wrap:wrap;background:rgba(255,255,255,.6)}
+.note b{color:var(--ink)}
+.note[hidden]{display:none}
+.note--toggle{display:block}
+.note--toggle summary{cursor:pointer;list-style:none;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap}
+.note--toggle summary::-webkit-details-marker{display:none}
+.note--toggle summary::after{content:'+';margin-left:auto;font-weight:800;color:var(--ink)}
+.note--toggle[open] summary::after{content:'\2212'}
+.cta-line{margin-top:clamp(1.75rem,3.5vw,2.5rem);display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;align-items:center}
+.cta-line span{color:var(--text);font-size:0.94rem}
+
+/* So funktioniert es + Demo */
+/* So funktioniert es (v4): vier Schritte auf einer Linie, die sich beim Erscheinen in Lime fuellt */
+.steps{list-style:none;position:relative;display:grid;grid-template-columns:1fr;gap:1.6rem;counter-reset:st;padding-left:3.2rem}
+.steps::before,.steps::after{content:'';position:absolute;z-index:0;left:1.05rem;top:.4rem;bottom:.4rem;width:2px;border-radius:2px;background:var(--line)}
+.steps::after{background:linear-gradient(180deg,var(--lime),var(--lime-dark));transform:scaleY(0);transform-origin:top;transition:transform 1.4s var(--ease) .2s}
+.steps.in::after{transform:none}
+.steps li{position:relative;counter-increment:st}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;z-index:1;left:-3.2rem;top:-.1rem;width:2.2rem;height:2.2rem;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--lime);font-size:.78rem;font-weight:800;box-shadow:0 0 0 5px var(--white)}
+.steps h3{font-size:1.12rem;margin-bottom:.2rem;letter-spacing:-.01em}
+.step__img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-lg);margin-bottom:.9rem;background:var(--display);transition:transform .6s var(--ease)}
+.steps li:hover .step__img{transform:translateY(-3px)}
+.steps p{font-size:.94rem;color:var(--text);line-height:1.5;max-width:30ch}
+@media(min-width:760px){
+  .steps{grid-template-columns:repeat(4,1fr);gap:1.5rem;padding-left:0;padding-top:3.4rem}
+  .steps::before,.steps::after{left:1.1rem;right:1.1rem;top:1.05rem;bottom:auto;width:auto;height:2px}
+  .steps::after{background:linear-gradient(90deg,var(--lime),var(--lime-dark));transform:scaleX(0);transform-origin:left}
+  .steps.in::after{transform:none}
+  .steps li::before{left:0;top:-3.4rem}
+}
+@media(prefers-reduced-motion:reduce){.steps::after{transform:none!important;transition:none}}
+.demo{margin-top:clamp(2rem,4vw,3rem);display:grid;grid-template-columns:1fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:center}
+@media(min-width:1000px){.demo{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}}
+.demo__stage{position:relative;aspect-ratio:2770/1818;border-radius:var(--r-xl);overflow:hidden;background:#0e100e;border:1px solid var(--line-2)}
+.demo__stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0e100e}
+.demo__stage.is-live,.demo__stage.is-live iframe{background:var(--smoke)}
+.demo__gate{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:1.25rem;background:radial-gradient(120% 90% at 50% 40%,#1a1e1a 0%,#0b0c0b 70%)}
+.demo__gate .inner{max-width:30rem;display:grid;gap:0.85rem;justify-items:center}
+.demo__gate h3{color:var(--white);font-size:clamp(1.1rem,1rem + 0.6vw,1.5rem)}
+.demo__gate p{color:#AEB3AB;font-size:0.88rem}
+.demo__gate svg.mini{width:min(280px,70%);height:auto}
+.demo__loading{position:absolute;inset:auto 0 0 0;padding:0.6rem 0.9rem;font-size:0.8rem;color:#AEB3AB;background:linear-gradient(0deg,rgba(10,11,10,.9),transparent)}
+.demo__side h3{font-size:clamp(1.25rem,1.05rem + 0.9vw,1.75rem);line-height:1.15}
+.demo__side p{color:var(--text);margin-top:0.7rem;font-size:0.97rem}
+.demo__side .vmeta{color:var(--text)}
+
+/* Fragen */
+.faqwrap{display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,4vw,3rem);align-items:start}
+@media(min-width:1000px){.faqwrap{grid-template-columns:minmax(0,6fr) minmax(0,6fr)}}
+.vph--light{border-color:var(--line-2)}
+.vph__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
+.chapters{list-style:none;margin-top:0.9rem;display:grid;gap:0.35rem}
+.chapters li{display:grid;grid-template-columns:auto 1fr;gap:0.75rem;font-size:0.88rem;color:var(--text)}
+.chapters li b{font-size:0.75rem;color:var(--lime-ink);background:#EEF7D6;border-radius:var(--r-pill);padding:0.15rem 0.5rem;height:max-content}
+.faq{list-style:none;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2rem 1fr auto;gap:0.75rem;align-items:center;padding-block:1rem;font-weight:800;font-size:clamp(1rem,0.96rem + 0.25vw,1.12rem);line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .n{font-size:0.8rem;color:var(--lime-ink)}
+.faq summary .pm{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .25s ease}
+.faq details[open] summary .pm{transform:rotate(45deg);background:var(--lime);border-color:var(--lime)}
+.faq .a{padding:0 0 1.1rem 2.75rem;color:var(--text);font-size:0.95rem;display:grid;gap:0.55rem}
+.faq .a .chip{justify-self:start}
+.seqmini{display:flex;flex-wrap:wrap;gap:0.35rem;align-items:center;font-size:0.78rem;color:var(--text-2)}
+.seqmini b{color:var(--ink);font-weight:700}
+
+/* Partner */
+.partner{background:var(--ink);color:var(--white)}
+.partner h2{color:var(--white)}
+.partner p{color:#C9CDC6}
+.pgrid{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+@media(min-width:960px){.pgrid{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}}
+.psteps{list-style:none;margin-top:1.5rem;display:grid;gap:0;border-top:1px solid #2a2e29;counter-reset:ps}
+.psteps li{counter-increment:ps;display:grid;grid-template-columns:2.4rem 1fr;gap:0.2rem 0.9rem;padding-block:1rem;border-bottom:1px solid #2a2e29}
+.psteps li::before{content:counter(ps);width:30px;height:30px;border-radius:50%;background:var(--lime);color:var(--ink);font-weight:800;font-size:0.9rem;display:grid;place-items:center}
+.psteps b{color:var(--white);font-size:1.02rem;display:block}
+.psteps span{color:#AEB3AB;font-size:0.92rem;grid-column:2}
+.pimg{border-radius:var(--r-xl);overflow:hidden;border:1px solid #2a2e29}
+.pimg img{width:100%;height:auto}
+.partner .note{border-color:#3a3f39;background:rgba(255,255,255,.03);color:#AEB3AB}
+.partner .note b{color:var(--white)}
+.teaser{background:var(--ink);color:var(--white)}
+.teaser .shell{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;padding-block:clamp(1.6rem,3.5vw,2.25rem)}
+.teaser b{font-size:clamp(1.1rem,1rem + 0.6vw,1.45rem);font-weight:800}
+.teaser span{display:block;color:#AEB3AB;font-size:0.94rem;margin-top:0.2rem}
+[hidden]{display:none!important}
+
+/* Funnel */
+.fun{display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,4vw,3rem);align-items:start}
+@media(min-width:960px){.fun{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.fun__aside .chip{margin-top:1rem}
+.fun__box{background:var(--white);border:1px solid var(--line-2);border-radius:var(--r-2xl);padding:clamp(1.1rem,3vw,2rem);box-shadow:0 30px 60px -45px rgba(10,11,10,.45)}
+.fun__top{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:0.6rem;font-size:0.84rem;color:var(--text-2);font-weight:700}
+.bar{height:6px;border-radius:var(--r-pill);background:var(--line-2);overflow:hidden;margin-bottom:1.4rem}
+.bar i{display:block;height:100%;width:0;background:var(--lime);border-radius:inherit;transition:width .45s var(--ease)}
+.fstep h3{font-size:clamp(1.2rem,1.05rem + 0.7vw,1.6rem);line-height:1.2;margin-bottom:0.3rem}
+.fstep .hint{font-size:0.86rem;color:var(--text-2);margin-bottom:1rem}
+.opts{display:grid;grid-template-columns:1fr;gap:0.55rem}
+@media(min-width:560px){.opts{grid-template-columns:1fr 1fr}}
+.opt{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:1.5px solid var(--line);border-radius:var(--r-md);cursor:pointer;font-weight:700;font-size:0.95rem;background:var(--white);transition:border-color .2s ease,background .2s ease;min-height:52px;text-align:left}
+.opt:hover{border-color:#b9bdb6}
+.opt .bx{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center}
+.opt.multi .bx{border-radius:5px}
+.opt[aria-checked="true"]{border-color:var(--lime-dark);background:#F6FBEA}
+.opt[aria-checked="true"] .bx{border-color:var(--lime-dark);background:var(--lime)}
+.opt[aria-checked="true"] .bx::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.opt.multi[aria-checked="true"] .bx::after{width:9px;height:5px;border-radius:0;background:none;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(-45deg) translate(1px,-1px)}
+.opt:focus-visible{outline:2px solid var(--lime-dark);outline-offset:2px}
+.err{color:#C2152A;font-size:0.86rem;font-weight:700;margin-top:0.7rem;min-height:1.2em}
+.fields{display:grid;grid-template-columns:1fr;gap:0.8rem}
+@media(min-width:560px){.fields{grid-template-columns:1fr 1fr}.fields .full{grid-column:1/-1}}
+.field label{display:block;font-size:0.82rem;font-weight:800;margin-bottom:0.3rem}
+.field label small{font-weight:600;color:var(--text-2)}
+.field input{width:100%;font:inherit;font-size:1rem;padding:0.8rem 0.9rem;border:1.5px solid var(--line);border-radius:var(--r-md);background:var(--white);color:var(--ink);min-height:48px}
+.field input:focus{outline:none;border-color:var(--lime-dark);box-shadow:0 0 0 3px rgba(151,215,0,.25)}
+.field.bad input{border-color:#E0465A;background:#FFF6F7}
+.field .fe{font-size:0.8rem;color:#C2152A;font-weight:700;margin-top:0.25rem;min-height:1em}
+.reach{display:flex;flex-wrap:wrap;gap:0.45rem;margin-top:0.3rem}
+.reach .opt{min-height:44px;padding:0.55rem 0.85rem;font-size:0.9rem}
+.consent{display:flex;gap:0.7rem;align-items:flex-start;font-size:0.86rem;color:var(--text);margin-top:0.2rem}
+.field label.consent{display:flex;font-size:0.86rem;font-weight:600;margin-bottom:0;cursor:pointer}
+.consent span{flex:1;min-width:0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.consent a{color:var(--ink)}
+.consent input{width:20px;height:20px;margin-top:0.15rem;accent-color:var(--lime-dark);flex:none}
+.fnav{display:flex;justify-content:space-between;align-items:center;gap:0.75rem;margin-top:1.4rem;flex-wrap:wrap}
+.linkbtn{appearance:none;background:none;border:0;font-weight:700;color:var(--text);cursor:pointer;padding:0.6rem 0;min-height:44px;display:inline-flex;align-items:center;gap:0.4rem}
+.linkbtn:hover{color:var(--ink)}
+.linkbtn[disabled]{opacity:.35;cursor:default}
+.done{text-align:left}
+.done .big{width:56px;height:56px;border-radius:50%;background:var(--lime);display:grid;place-items:center;margin-bottom:1rem}
+.done h3{font-size:clamp(1.3rem,1.1rem + 0.8vw,1.8rem)}
+.done .demo-note{margin-top:1rem;border:1.5px dashed #F0D58A;background:#FFFBEE;border-radius:var(--r-md);padding:0.85rem 1rem;font-size:0.9rem;color:#5c4300}
+.done dl{margin-top:1rem;display:grid;grid-template-columns:auto 1fr;gap:0.35rem 1rem;font-size:0.9rem}
+.done dt{color:var(--text-2);font-weight:700}
+.done dd{color:var(--ink)}
+
+/* Abschluss und Footer */
+.final{background:var(--ink);color:var(--white);text-align:left;position:relative;isolation:isolate;overflow:hidden}
+.final__bg{position:absolute;inset:0;z-index:-1}
+.final__bg img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.final__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,11,10,.95) 0%,rgba(10,11,10,.78) 50%,rgba(10,11,10,.45) 100%)}
+.final h2{color:var(--white);max-width:22ch}
+.final p{color:#C9CDC6;margin-top:0.9rem;max-width:52ch}
+.final .cta-line span{color:#AEB3AB}
+.final .cta-line span a{display:inline-block;padding-block:12px}
+footer{background:#050605;color:#8D9389;font-size:0.84rem}
+footer img{height:18px;width:auto;opacity:.85}
+footer a{color:#C9CDC6}
+
+/* v5: Hero-Video als Klick-Fassade (Poster lokal, Player erst nach Klick) */
+.hv{position:relative;border-radius:var(--r-xl);overflow:hidden;background:var(--display);border:1px solid #2a2e29;aspect-ratio:16/9;box-shadow:0 40px 80px -40px #000}
+.hv__btn{appearance:none;border:0;padding:0;margin:0;position:absolute;inset:0;width:100%;height:100%;cursor:pointer;background:none;display:block;color:var(--white)}
+.hv__btn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.hv__btn:hover img{transform:scale(1.025)}
+.hv__btn::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,11,10,.55),rgba(10,11,10,0) 45%)}
+.hv__play{position:absolute;left:50%;top:50%;z-index:1;width:clamp(58px,7vw,82px);height:clamp(58px,7vw,82px);margin:calc(clamp(58px,7vw,82px)/-2) 0 0 calc(clamp(58px,7vw,82px)/-2);border-radius:50%;background:var(--lime);display:grid;place-items:center;box-shadow:0 0 0 10px rgba(151,215,0,.18);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+/* Play-Knopf neben die Poster-Headline legen, damit er keine Schrift verdeckt */
+.hv[data-aud=fitness] .hv__play,.hv[data-aud=physio] .hv__play{left:74%}
+.hv[data-aud=partner] .hv__play{top:38%}
+.hv__btn:hover .hv__play,.hv__btn:focus-visible .hv__play{transform:scale(1.07);box-shadow:0 0 0 14px rgba(151,215,0,.22)}
+.hv__btn:focus-visible{outline:2px solid var(--lime);outline-offset:-4px}
+.hv__play svg{width:36%;height:36%;margin-left:6%}
+.hv__len{position:absolute;right:clamp(.7rem,1.8vw,1.1rem);top:clamp(.7rem,1.8vw,1.1rem);z-index:1;font-size:.8rem;font-weight:700;letter-spacing:.02em;color:var(--white);background:rgba(10,11,10,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:var(--r-pill);padding:.4rem .75rem}
+.hv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media(prefers-reduced-motion:reduce){.hv__btn img,.hv__play{transition:none}.hv__btn:hover img{transform:none}}
+
+/* v5: Herstellerleiste mit Matrix-Partnerschaft */
+.trust__grid{display:grid;grid-template-columns:1fr;gap:1.25rem 3rem;padding-block:clamp(1.4rem,3vw,2rem);align-items:center}
+@media(min-width:980px){.trust__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.brands{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem 1.35rem;font-weight:800;font-size:clamp(.98rem,.92rem + .35vw,1.2rem);color:var(--ink);letter-spacing:-0.01em}
+.brands li{white-space:nowrap}
+.trust__side{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:560px) and (max-width:979px){.trust__side{grid-template-columns:1fr 1fr;align-items:center}}
+.mx{display:flex;gap:.8rem;align-items:center;padding:.8rem 1rem;border-radius:var(--r-lg);background:var(--ink);color:var(--white)}
+.mx__ic{flex:none;width:34px;height:34px;border-radius:50%;background:var(--lime);display:grid;place-items:center}
+.mx__ic svg{width:16px;height:16px}
+.mx b{display:block;font-size:1rem;line-height:1.2}
+.mx small{display:block;font-size:.82rem;color:#AEB3AB;line-height:1.35;margin-top:.1rem}
+.eco{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;min-height:28px}
+
+/* v5: Schritte mobil als 2x2-Raster statt langer Bildstrecke */
+.step__img{object-position:var(--op,50% 50%)}
+@media(max-width:759px){
+  .steps{grid-template-columns:1fr 1fr;gap:1.4rem .85rem;padding-left:0}
+  .steps::before,.steps::after{display:none}
+  .steps li::before{left:.55rem;top:.55rem;width:2rem;height:2rem;font-size:.72rem;box-shadow:none}
+  .step__img{aspect-ratio:1/1;margin-bottom:.65rem;border-radius:var(--r-md)}
+  .steps h3{font-size:1rem}
+  .steps p{font-size:.88rem;line-height:1.45}
+}
+
+/* v5: Fragen ohne Videoplatz, Ueberschrift klebt am Desktop */
+.faqwrap{grid-template-columns:1fr}
+@media(min-width:1000px){.faqwrap{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4rem}.faq__aside{position:sticky;top:110px}}
+.faq__aside h2{font-size:clamp(1.85rem,1.2rem + 2.5vw,3.1rem)}
+.faq__aside .lead{margin-top:1rem}
+.faq__aside .cta-line{margin-top:1.5rem}
+@media(max-width:999px){.faq__aside .cta-line{display:none}}
+.faq__vid{margin-top:1.5rem;position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:var(--display)}
+.faq__vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.faq summary{min-height:56px}
+
+/* v5: Interviews als ruhige Kacheln; mobil Wischreihe, Desktop Raster je nach Anzahl */
+.ivgrid{display:grid;gap:1rem;grid-auto-flow:column;grid-auto-columns:min(78%,320px);overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--shell) * -1);padding:0 var(--shell) .5rem;scroll-padding-inline:var(--shell);scrollbar-width:none;overscroll-behavior-x:contain}
+.ivgrid::-webkit-scrollbar{display:none}
+@media(min-width:760px){.ivgrid{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));overflow:visible;margin-inline:0;padding:0}}
+@media(min-width:760px) and (max-width:1099px){.ivgrid[data-n="4"]{--n:2}}
+.iv{position:relative;scroll-snap-align:start;border-radius:var(--r-xl);overflow:hidden;background:var(--display);border:0;display:block;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.iv:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(10,11,10,.45)}
+.iv__media{position:relative;aspect-ratio:4/5;display:block;overflow:hidden}
+.ivgrid[data-n="2"] .iv__media{aspect-ratio:4/5}
+@media(min-width:760px){.ivgrid[data-n="2"]{grid-template-columns:repeat(2,minmax(0,340px))}.ivgrid[data-n="4"] .iv__media{aspect-ratio:4/5}}
+.iv__media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,10,.15) 0%,rgba(10,11,10,0) 35%,rgba(10,11,10,.88) 100%);pointer-events:none}
+.iv__ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%);filter:saturate(.9);transition:transform 1s var(--ease)}
+.iv:hover .iv__ph{transform:scale(1.04)}
+.iv__tag{position:absolute;left:.9rem;top:.9rem;z-index:1;font-size:.72rem;font-weight:800;letter-spacing:.04em;color:var(--white);background:rgba(10,11,10,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:var(--r-pill);padding:.35rem .7rem}
+.iv__media .ic{position:absolute;left:50%;top:44%;z-index:1;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:rgba(10,11,10,.45);border:1.5px solid rgba(151,215,0,.85);display:grid;place-items:center;transition:background .3s ease}
+.iv:hover .iv__media .ic{background:var(--lime)}
+.iv:hover .iv__media .ic svg path{fill:var(--ink)}
+.iv__media .ic svg{width:20px;height:20px;margin-left:3px}
+.iv__cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:1rem 1.1rem 1.1rem;display:grid;gap:.15rem;color:var(--white)}
+.iv__cap b{font-size:1.05rem;line-height:1.2}
+.iv__cap span{font-size:.84rem;color:#C9CDC6}
+.iv--video .iv__media{aspect-ratio:16/9}
+.iv--video .iv__media::after{display:none}
+.iv--video .iv__cap{position:static;background:var(--ink)}
+.iv__media iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.iv__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.iv__media.is-playing::after{display:none}
+@media(prefers-reduced-motion:reduce){.iv,.iv__ph{transition:none}.iv:hover,.iv:hover .iv__ph{transform:none}}
+
+/* v6: Studio-Stimmen als Hochformat-Videos */
+.iv--clip .iv__media{aspect-ratio:9/16}
+.iv--clip .iv__media .ic{left:auto;right:.9rem;top:.9rem;transform:none;width:50px;height:50px}
+.iv--clip .iv__play:hover .ic,.iv--clip .iv__play:focus-visible .ic{transform:scale(1.06)}
+.ivgrid[data-clips] {grid-auto-columns:min(70%,280px)}
+.iv__play{appearance:none;border:0;padding:0;margin:0;background:none;color:inherit;position:absolute;inset:0;width:100%;height:100%;cursor:pointer;display:block;text-align:left}
+.iv__play:focus-visible{outline:2px solid var(--lime);outline-offset:-3px}
+.iv__play .ic{transition:background .3s ease,transform .4s var(--ease)}
+.iv__play:hover .ic,.iv__play:focus-visible .ic{background:var(--lime);transform:translate(-50%,-50%) scale(1.06)}
+.iv__play:hover .ic svg path,.iv__play:focus-visible .ic svg path{fill:var(--ink)}
+.iv--clip .iv__media iframe{background:#000}
+picture{display:contents}
+/* v7: Studio-Stimmen 16:9, 2x2-Raster */
+.ivgrid[data-wide]{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:1fr;overflow:visible;margin-inline:0;padding:0;gap:1rem}
+@media(min-width:760px){.ivgrid[data-wide]{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}}
+.ivgrid[data-wide] .iv--wide .iv__media{aspect-ratio:16/9}
+.iv--wide .iv__media::after{background:linear-gradient(180deg,rgba(10,11,10,0) 45%,rgba(10,11,10,.82) 100%)}
+.iv--wide .iv__ph{filter:none}
+.iv--wide .iv__media .ic{width:58px;height:58px;left:auto;top:auto;right:1rem;bottom:1rem;transform:none}
+.iv--wide .iv__play:hover .ic,.iv--wide .iv__play:focus-visible .ic{transform:scale(1.06)}
+.iv--wide .iv__cap b{font-size:1.15rem}
+.iv--wide .iv__media iframe{background:#000}
+
+
+/* v5: Footer mit Rechtlichem */
+.foot{display:flex;flex-wrap:wrap;gap:.9rem 2rem;align-items:center;justify-content:space-between;padding-block:1.6rem 2rem}
+.foot nav{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem}
+.foot nav a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:#C9CDC6}
+.foot nav a:hover{color:var(--white)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.swap{transition:none}html{scroll-behavior:auto}.btn,.bar i{transition:none}}
+@media(prefers-reduced-motion:reduce){
+  .xh{--p:1!important;min-height:0}
+  .xh-pin{position:static;height:auto}
+  .xh-float{animation:none}
+  .xk{opacity:1;transform:none;transition:none}
+  .xk-5{transform:translateX(-50%)}
+  .pick__bg img{transition:none;transform:none}
+  .wv-coins circle{transition:none}
+  .bento .benefit,.benefit--img img,.step__img{transition:none}
+  .bento .benefit:hover,.steps li:hover .step__img,.benefit--img:hover img{transform:none}
+  .btn:hover,.pick__opts .pick__opt:hover,.pick__opts .pick__opt:focus-visible,.pick__opt:hover .pick__go{transform:none}
+  .pick__opt,.pick__go{transition:none}
+  .pick .pick__opt,.pick:not(.in) .pick__opt{animation:none;opacity:1}
+  .rb-wait .rb-i,.rb-go .rb-i{opacity:1;transform:none;filter:none;animation:none}
+}
+@media(prefers-reduced-motion:reduce) and (min-width:901px){.xh-in{height:auto}.xh-stage{height:min(72vh,640px)}}
+@media(prefers-reduced-motion:reduce) and (max-width:900px){.xh-burst{height:auto}.xh-stick{position:relative;top:auto}.xk-5{transform:none}}
+.btn{text-align:center;justify-content:center;text-wrap:balance}
+@media(min-width:901px){.nav__links a:not(.btn){display:inline-flex;align-items:center;min-height:44px}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ===================== v8 Designsprache (15.10.2026) =====================
+   Eine Schrift (Manrope), zwei Flaechen (Tinte, Papier), eine Akzentfarbe (Lime nur fuer Handlung und Auswahl),
+   ein Radius (12 px fuer Medien und Felder, Pille nur fuer Knoepfe), keine Glows, kein Glas, keine Nummern-Labels,
+   keine Hover-Spruenge. Hierarchie ueber Groesse und Gewicht. */
+:root{--r:12px;--paper:#F6F7F4;--line:#DADDD6;--line-2:#E6E8E3;--on-dark:#E8EAE5;--on-dark-2:#A7ADA3;--text:#4C544A;--text-2:#5E665B}
+h1,h2,h3{letter-spacing:-0.025em}
+h2,.xh-h,.faq__aside h2{font-size:clamp(1.9rem,1.2rem + 2.6vw,3.3rem);line-height:1.05;letter-spacing:-0.03em;max-width:20ch}
+.btn{border-radius:var(--r-pill);font-weight:700}
+.btn:hover{transform:none}
+.btn--sm{font-size:14px}
+.tlink{font-weight:700;color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;display:inline-flex;align-items:center;min-height:44px}
+.tlink:hover{text-decoration-color:var(--lime-dark)}
+.tlink--dark{color:var(--white)}
+.tlink--dark:hover{text-decoration-color:var(--lime)}
+.kicker{font-size:.86rem;font-weight:600;color:var(--on-dark-2);margin-bottom:.5rem}
+
+/* Hero */
+.hero h1{text-transform:none;font-size:clamp(2.3rem,1.1rem + 4.4vw,4.6rem);line-height:1;letter-spacing:-0.035em;max-width:12ch}
+.hero p.lead{color:var(--on-dark)}
+.checks{gap:.45rem}
+.checks li{font-weight:600;color:var(--on-dark)}
+.checks li svg{width:18px;height:18px;margin-top:.2rem}
+.hero .cta-row{align-items:center;gap:.5rem 1.5rem}
+.hv{border-radius:var(--r);border:0;box-shadow:none}
+.hv__play{box-shadow:none}
+.hv__btn:hover .hv__play,.hv__btn:focus-visible .hv__play{box-shadow:none;transform:scale(1.04)}
+.hv__btn:hover img{transform:none}
+.hv__cap{margin-top:.75rem;font-size:.9rem;color:var(--on-dark-2)}
+.hero__trust{margin-top:clamp(2.5rem,5vw,4rem);padding-top:clamp(1.5rem,3vw,2rem);border-top:1px solid #262a25;display:grid;grid-template-columns:1fr;gap:1.5rem 3rem}
+@media(min-width:980px){.hero__trust{grid-template-columns:minmax(0,6fr) minmax(0,3fr) minmax(0,3fr)}}
+.hero__trust .brands{color:var(--white);gap:.3rem 1.25rem;font-size:clamp(.98rem,.94rem + .25vw,1.12rem);font-weight:700}
+.hero__trust .eco{gap:1.5rem}
+.hero__trust .eco img{height:20px;width:auto}
+.hero__trust-p{color:var(--on-dark);font-size:.95rem;line-height:1.45}
+
+/* Nutzen-Explosion: ohne Leuchten */
+.xh::before{display:none}
+.xk::before{box-shadow:none;height:2px;width:2rem}
+.xk span{color:var(--on-dark-2)}
+
+/* Flaechen: alle hellen Abschnitte gleich, getrennt durch eine feine Linie */
+.sec--white{background:var(--paper)}
+.sec{background:var(--paper)}
+.final.sec,.partner.sec{background:var(--ink)}
+#demo,#interviews,#anfrage{border-top:1px solid var(--line-2)}
+.sec__head{margin-bottom:clamp(1.5rem,3vw,2.25rem)}
+
+/* Business Case: Bild links, drei Aussagen als Liste mit Linien statt Kacheln */
+.bento{gap:0 clamp(1.5rem,3vw,3rem)}
+.bento .benefit,.sec--white .benefit{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:1.4rem 0 1.5rem;transition:none}
+.bento .benefit:hover{transform:none;box-shadow:none;border-color:var(--line)}
+.bento>li:nth-child(4){background:none;border-color:var(--line);color:var(--ink)}
+.bento>li:nth-child(4) h3{color:var(--ink)}
+.bento>li:nth-child(4) p{color:var(--text)}
+.bento .benefit--img{border:0;border-radius:var(--r);padding:0;margin-bottom:1.5rem}
+@media(min-width:1000px){.bento .benefit--img{margin-bottom:0}}
+.benefit--img:hover img{transform:none}
+.bento .benefit h3{font-size:clamp(1.15rem,1.05rem + .4vw,1.35rem)}
+
+/* Schritte: Bild, Titel, Satz. Keine Zaehler, keine Fortschrittslinie */
+.steps,.steps.in{padding:0}
+.steps::before,.steps::after{display:none}
+.steps li::before{display:none}
+@media(min-width:760px){.steps{padding-top:0}}
+.step__img{border-radius:var(--r)}
+.steps li:hover .step__img{transform:none}
+
+/* Demo */
+.demo__stage{border-radius:var(--r);border:0}
+.demo__gate{background:#0e100e}
+.demo__gate p{color:var(--on-dark-2)}
+.demo__out{margin-top:.5rem}
+
+/* Stimmen: gleicher Play-Knopf wie im Hero, keine Spruenge */
+.iv{border-radius:var(--r)}
+.iv:hover{transform:none;box-shadow:none}
+.iv:hover .iv__ph{transform:none}
+.iv__media .ic,.iv--wide .iv__media .ic{background:var(--lime);border:0;width:52px;height:52px}
+.iv__media .ic svg path{fill:var(--ink)}
+.iv__play:hover .ic,.iv__play:focus-visible .ic,.iv--wide .iv__play:hover .ic{transform:scale(1.04)}
+
+/* Partner-Hinweis: helle Zeile statt dunklem Band */
+.teaser{background:var(--paper);color:var(--ink);border-top:1px solid var(--line-2)}
+.teaser span{color:var(--text)}
+.teaser .btn--ghost-dark{color:var(--ink);border-color:var(--line)}
+.teaser .btn--ghost-dark:hover{border-color:var(--ink)}
+
+/* Formular */
+.fun__box{border-radius:var(--r);box-shadow:none;border-color:var(--line)}
+.opt{border-radius:var(--r);border-width:1px}
+.field input{border-radius:var(--r);border-width:1px}
+.bar{height:4px}
+
+/* Abschluss */
+.final__bg img{opacity:.45}
+
+/* Fragen: keine Nummern, schlichtes Plus */
+.faq summary{grid-template-columns:1fr auto}
+.faq summary .pm{border:0;width:24px;height:24px}
+.faq details[open] summary .pm{background:none;transform:rotate(45deg)}
+.faq .a{padding-left:0}
+
+/* v8 R2: Startbild der Software-Demo als 3D-Display mit Trainingsplan statt leerer Flaeche */
+.demo__gate{place-items:start start;padding:clamp(1.1rem,3vw,2rem);background:#0b0d0a;overflow:hidden}
+.demo__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:20% 55%}
+.demo__gate::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,7,.78) 0%,rgba(8,10,7,.3) 30%,rgba(8,10,7,0) 50%)}
+.demo__gate .inner{position:relative;z-index:1;justify-items:start;text-align:left;max-width:none;gap:.9rem}
+.demo__gate h3{font-size:clamp(1.15rem,1rem + .7vw,1.6rem)}
+@media (max-width:700px){.demo__gate{padding:.9rem}.demo__gate h3{display:none}.demo__gate .btn{min-height:40px;padding:.5rem 1rem;font-size:.88rem}}
+
+
+/* v8 R4: Navigation mit WhatsApp und Instagram */
+.nav__social{display:inline-flex;gap:.35rem;align-items:center}
+.nav__links a.nav__ic{display:inline-grid;place-items:center;width:40px;height:40px;min-height:40px;border-radius:50%;color:var(--on-dark);border:1px solid #2c312b;transition:border-color .2s ease,color .2s ease}
+.nav__links a.nav__ic:hover{border-color:var(--lime);color:var(--lime)}
+.nav__ic svg{width:18px;height:18px}
+@media(max-width:900px){.nav__links{gap:.5rem}.nav__links .nav__social a.nav__ic{display:inline-grid}}
+@media(max-width:420px){.nav .shell{gap:.5rem}.nav__logo img{height:20px;width:auto}.nav__links a.nav__ic{width:36px;height:36px;min-height:36px}.nav__links .btn--sm{padding-inline:.85rem;font-size:.82rem}}
+/* v8 R4: Hero-Untertitel deutlich sichtbar */
+.hv__cap{display:flex;align-items:center;gap:.55rem;margin-top:.9rem;font-size:1rem;font-weight:600;color:var(--on-dark)}
+.hv__cap svg{width:16px;height:16px;flex:none}
+/* v8 R4: Matrix-Partner mit Logo */
+.partner-mx{display:grid;gap:.6rem;justify-items:start}
+.partner-mx img{height:20px;width:auto}
+.partner-mx span{color:var(--on-dark-2);font-size:.9rem;line-height:1.45}
+/* v8 R4: Nutzen als vier USPs neben dem Bild */
+.usp{display:grid;grid-template-columns:1fr;gap:clamp(1.5rem,3vw,3rem);align-items:stretch}
+@media(min-width:1000px){.usp{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.usp__img{margin:0;border-radius:var(--r);overflow:hidden;background:var(--display);aspect-ratio:4/3}
+@media(min-width:1000px){.usp__img{aspect-ratio:auto;min-height:100%}}
+.usp__img img{width:100%;height:100%;object-fit:cover;display:block}
+.usp__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:640px){.usp__list{grid-template-columns:1fr 1fr;column-gap:clamp(1.5rem,3vw,2.5rem)}}
+.usp__item{display:grid;gap:.9rem;align-content:start;padding:1.6rem 0 1.7rem;border-top:1px solid var(--line)}
+.usp__ic{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:var(--ink);color:var(--lime)}
+.usp__ic svg{width:24px;height:24px}
+.usp__item h3{font-size:clamp(1.15rem,1.05rem + .4vw,1.35rem);line-height:1.2;letter-spacing:-.015em}
+.usp__item p{margin-top:.4rem;color:var(--text);font-size:.97rem;line-height:1.55;max-width:38ch}
+/* v8 R4: Demo mit echtem Foto, Knopf unten links */
+.demo__gate{place-items:end start}
+.demo__gate::after{background:linear-gradient(0deg,rgba(8,10,7,.72) 0%,rgba(8,10,7,.18) 34%,rgba(8,10,7,0) 55%)}
+.demo__poster{object-position:50% 40%}
+@media(max-width:700px){.demo__gate .btn{min-height:44px}}
+/* v8 R4: Scroll-Hinweis neben der Explosion, verschwindet beim Auffaechern */
+.xh-cue{position:absolute;right:max(0px,calc(50% - 24cqw - 9rem));top:50%;transform:translateY(-50%);display:grid;justify-items:center;gap:.6rem;color:var(--lime);opacity:calc(1 - var(--p,0) * 6);pointer-events:none;z-index:2}
+.xh-cue span{font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark)}
+.xh-cue svg{width:22px;height:40px;animation:xh-cue 1.6s var(--ease) infinite}
+@keyframes xh-cue{0%{transform:translateY(-6px);opacity:.35}50%{transform:translateY(6px);opacity:1}100%{transform:translateY(-6px);opacity:.35}}
+@media(max-width:900px){.xh-cue{top:auto;bottom:1.25rem;right:0;transform:none}}
+@media(prefers-reduced-motion:reduce){.xh-cue{display:none}}
+/* v8 R4: Footer */
+.ft{background:#050605;color:var(--on-dark-2);font-size:.92rem}
+.ft__grid{display:grid;grid-template-columns:1fr;gap:2.25rem;padding-block:clamp(3rem,6vw,4.5rem) 2.5rem}
+@media(min-width:700px){.ft__grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.ft__grid{grid-template-columns:minmax(0,5fr) repeat(3,minmax(0,2.4fr))}}
+.ft__brand img{height:22px;width:auto}
+.ft__brand p{margin-top:1rem;max-width:34ch;line-height:1.55}
+.ft__social{display:flex;gap:.5rem;margin-top:1.25rem}
+.ft__social a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid #2c312b;color:var(--on-dark);transition:border-color .2s ease,color .2s ease}
+.ft__social a:hover{border-color:var(--lime);color:var(--lime)}
+.ft__social svg{width:18px;height:18px}
+.ft__col{display:grid;align-content:start;gap:.1rem}
+.ft__col h2{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--white);margin-bottom:.5rem}
+.ft__col a{display:inline-flex;align-items:center;min-height:40px;color:var(--on-dark-2);text-decoration:none}
+.ft__col a:hover{color:var(--white)}
+.ft__bottom{display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-between;padding-block:1.4rem 2rem;border-top:1px solid #1d201d;font-size:.84rem}
+/* v8 R4b: Explosion bekommt mehr Scrollweg (vorher 42vh bzw. 32vh, lief in 300 px durch), Scroll-Hinweis bleibt laenger */
+.xh{--xh-travel:110vh}
+@media(max-width:900px){.xh-burst{height:calc(min(84vw,470px) + 62vh)}}
+.xh-cue{opacity:calc(1 - var(--p,0) * 3)}
+/* v8 R4c: Scroll-Hinweis groesser, sitzt in der klebenden Buehne; mobile Navigation einzeilig */
+.xh-cue{gap:.7rem}
+.xh-cue span{font-size:.95rem;letter-spacing:.12em}
+.xh-cue svg{width:30px;height:54px}
+@media(max-width:900px){.xh-cue{top:auto;bottom:.25rem;right:auto;left:50%;transform:translateX(-50%);grid-auto-flow:column;align-items:center}.xh-cue svg{width:22px;height:38px}}
+@media(max-width:480px){.nav .shell{gap:.4rem}.nav__logo img{height:18px;width:auto}.nav__links{gap:.35rem}.nav__social{gap:.3rem}.nav__links a.nav__ic{width:34px;height:34px;min-height:34px}.nav__ic svg{width:16px;height:16px}.nav__links .btn--sm{white-space:nowrap;padding:.55rem .8rem;font-size:.78rem}}
+/* v8 R4d: Explosion ohne Klebeweg (Scrollen laeuft frei), leichte Animationen */
+.xh{min-height:0}
+.xh-pin{position:relative;top:auto}
+@media(max-width:900px){.xh-burst{height:auto}.xh-stick{position:relative;top:auto}}
+.xh-cue{opacity:calc(1 - var(--p,0) * 2.2)}
+.usp__ic{transition:background .35s var(--ease),color .35s var(--ease),transform .5s var(--ease)}
+.usp__item h3{transition:color .3s ease}
+.usp__ic svg *{stroke-dasharray:1;stroke-dashoffset:1}
+.usp__list.is-in .usp__ic svg *{animation:usp-draw 1.1s var(--ease) forwards}
+.usp__list.is-in .usp__item:nth-child(2) .usp__ic svg *{animation-delay:.15s}
+.usp__list.is-in .usp__item:nth-child(3) .usp__ic svg *{animation-delay:.3s}
+.usp__list.is-in .usp__item:nth-child(4) .usp__ic svg *{animation-delay:.45s}
+@keyframes usp-draw{to{stroke-dashoffset:0}}
+.usp__item{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.usp__list.is-in .usp__item{opacity:1;transform:none}
+.usp__list.is-in .usp__item:nth-child(2){transition-delay:.1s}
+.usp__list.is-in .usp__item:nth-child(3){transition-delay:.2s}
+.usp__list.is-in .usp__item:nth-child(4){transition-delay:.3s}
+.usp__img img{transition:transform 1.2s var(--ease)}
+.usp__img:hover img{transform:scale(1.045)}
+.step__fig{display:block;overflow:hidden;border-radius:var(--r);margin-bottom:.9rem}
+.step__fig .step__img{margin-bottom:0;transition:transform 1s var(--ease)}
+.steps li:hover .step__fig .step__img{transform:scale(1.06)}
+.iv:hover .iv__ph{transform:scale(1.045)}
+.demo__poster{transition:transform 1.2s var(--ease)}
+.demo__gate:hover .demo__poster{transform:scale(1.035)}
+.pimg{overflow:hidden}.pimg img{transition:transform 1.2s var(--ease)}.pimg:hover img{transform:scale(1.04)}
+@media(prefers-reduced-motion:reduce){.usp__item{opacity:1;transform:none}.usp__ic svg *{stroke-dasharray:none;animation:none!important}.usp__img img,.step__fig .step__img,.iv__ph,.demo__poster,.pimg img{transition:none;transform:none!important}}
+/* v8 R5: Icon-Neuaufbau beim Hover, Prozess-Schiene fuer 'So funktioniert es', Abstaende */
+.usp__list.is-in .usp__item.rd .usp__ic svg *{animation:usp-draw-re .9s var(--ease) forwards;animation-delay:0s}
+@keyframes usp-draw-re{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.xh-in{padding-bottom:clamp(2.5rem,6vh,4.5rem)}
+.demo{margin-top:clamp(3rem,6vw,5rem)}
+/* Schritte: Schiene zeichnet sich, Knoten leuchten nacheinander auf */
+.steps{counter-reset:st}
+.steps li{counter-increment:st;position:relative}
+.steps li::before{content:counter(st);display:grid!important;place-items:center;position:absolute;z-index:2;width:2.4rem;height:2.4rem;border-radius:50%;font-weight:800;font-size:.95rem;background:var(--paper);color:var(--text);border:2px solid var(--line);transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease),transform .5s var(--ease)}
+.steps.in li::before{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.steps.in li:nth-child(1)::before{transition-delay:.15s}.steps.in li:nth-child(2)::before{transition-delay:.55s}.steps.in li:nth-child(3)::before{transition-delay:.95s}.steps.in li:nth-child(4)::before{transition-delay:1.35s}
+.steps li:hover::before{transform:scale(1.1)}
+.steps h3{margin-top:.1rem}
+@media(min-width:760px){
+  .steps,.steps.in{padding-top:3.6rem}
+  .steps::before,.steps::after{display:block!important;content:'';position:absolute;left:1.2rem;right:1.2rem;top:1.15rem;height:2px;border-radius:2px;background:var(--line)}
+  .steps::after{background:linear-gradient(90deg,var(--lime),var(--lime-dark));transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--ease) .1s}
+  .steps.in::after{transform:none}
+  .steps li::before{left:0;top:-3.6rem}
+}
+@media(max-width:759px){
+  .steps li::before{left:.55rem;top:.55rem;width:2.1rem;height:2.1rem;font-size:.85rem;border-color:rgba(255,255,255,.6)}
+}
+@media(prefers-reduced-motion:reduce){.steps::after{transform:none!important;transition:none}.steps li::before{transition:none}}
+/* v8 R5b: Demo-Vorschau mit Text im Bild, daher volle Breite ohne doppelte Ueberschrift */
+.demo{grid-template-columns:1fr!important}
+.demo__side{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.demo__stage{aspect-ratio:1344/752}
+.demo__gate::after{background:linear-gradient(0deg,rgba(8,10,7,.55) 0%,rgba(8,10,7,0) 30%)}
+.demo__gate{padding:clamp(1.2rem,3.2vw,2.6rem)}
+.demo__poster{object-position:50% 50%}
+@media(max-width:700px){.demo__stage{aspect-ratio:4/3}.demo__poster{object-position:0% 50%}}
+.demo__stage.is-live{aspect-ratio:2770/1818!important;max-width:1100px;margin-inline:auto;width:100%}
+/* v8 R5c: Luecke Bereichswahl -> Explosion kleiner (Welle bleibt im unteren Rand sichtbar) */
+.pick{padding-bottom:clamp(7rem,10vw,9.5rem)}
+.xh-in{padding-top:clamp(.5rem,2vh,1.5rem)}
+
+/* v8 R6: Hero (vor allem mobil), Video-Fassade, heller Partner-Streifen */
+.hv video{position:absolute;inset:0;width:100%;height:100%;background:#000;object-fit:contain}
+.hv__play{left:auto!important;top:auto!important;margin:0!important;position:relative;width:52px!important;height:52px!important;flex:none}
+.hv__play svg{width:20px;height:20px}
+.hv__bar{position:absolute;left:clamp(.75rem,2vw,1.25rem);bottom:clamp(.75rem,2vw,1.25rem);z-index:2;display:flex;align-items:center;gap:.75rem}
+.hv__lbl{display:grid;line-height:1.15;font-weight:800;font-size:1rem;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.hv__lbl small{font-weight:600;font-size:.8rem;color:var(--on-dark-2)}
+.hv__btn::after{background:linear-gradient(0deg,rgba(10,11,10,.7),rgba(10,11,10,0) 42%)}
+.btn--line{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.4)}
+.btn--line:hover{border-color:var(--lime);color:var(--lime)}
+.trustband{background:var(--paper);color:var(--ink);border-bottom:1px solid var(--line-2)}
+.trust{display:grid;grid-template-columns:1fr;gap:1.4rem 3rem;padding-block:clamp(1.6rem,3.5vw,2.4rem)}
+@media(min-width:980px){.trust{grid-template-columns:minmax(0,6fr) minmax(0,3fr) minmax(0,3fr);align-items:start}}
+.trust .kicker{color:var(--text-2);margin-bottom:.6rem}
+.trust .brands{color:var(--ink);gap:.25rem 1.1rem;font-size:clamp(.95rem,.92rem + .2vw,1.08rem);font-weight:700}
+.trust .brands .brands__more{font-weight:500;color:var(--text-2)}
+.trust .eco{gap:1.4rem;min-height:0}
+.trust .eco img{height:18px;width:auto}
+.trust .partner-mx img{height:15px;width:auto}
+.trust .partner-mx span{color:var(--text);font-size:.88rem}
+@media(max-width:979px){.trust > div + div{padding-top:1.2rem;border-top:1px solid var(--line)}}
+@media(max-width:999px){
+  .hero .shell{padding-block:1.25rem 2.25rem}
+  .hero__bg img{opacity:.14}
+  .hero__grid{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .hero__grid > .swap{display:contents}
+  .hero h1{order:1;font-size:clamp(2.25rem,9.5vw,3rem);max-width:none}
+  .hero p.lead{order:2;font-size:1rem;margin-top:.8rem}
+  .hero__grid > div:last-child{order:3;margin-top:1.1rem}
+  .hero .checks{order:4;margin-top:1rem;gap:.3rem}
+  .hero .checks li{font-size:.92rem;line-height:1.35}
+  .hero .cta-row{order:5;margin-top:1.3rem;flex-direction:column;align-items:stretch;gap:.6rem}
+  .hero .cta-row .btn{justify-content:center;width:100%;white-space:nowrap;font-size:.98rem;padding-inline:1rem;min-height:52px}
+  .hv__cap{display:none}
+  .hv{border-radius:14px}
+}
+.hv__lbl{justify-items:start}
+@media(max-width:999px){.hv__play{width:42px!important;height:42px!important}.hv__play svg{width:16px;height:16px}.hv__bar{left:.6rem;bottom:.6rem;gap:.55rem}.hv__lbl{font-size:.88rem}.hv__lbl small{font-size:.72rem}}
+.trustband .trust{background:transparent;border:0;box-shadow:none;border-radius:0}
+/* Low-End (17.10.): Abschnitte unterhalb der Explosion rendert der Browser erst, wenn sie in die Naehe kommen.
+   Sieht gleich aus, spart beim Laden Layout und Zeichnen auf schwachen Handys */
+@supports (content-visibility:auto){#case,#interviews,#demo,#partner,#fragen,.final{content-visibility:auto;contain-intrinsic-size:auto 900px}html.cv-off #case,html.cv-off #interviews,html.cv-off #demo,html.cv-off #partner,html.cv-off #fragen,html.cv-off .final{content-visibility:visible}}
+
+/* ===== v9 Gegenentwurf (13.11.2026) =====
+   Heller Einstieg statt dunkler Buehne: Lime traegt die Flaeche, Schwarz die Schrift und den Button.
+   Reihenfolge mobil: Headline, Nutzen, Button, Kundenzeile, Video, drei Key-Faktoren. */
+.h9{position:relative;background:linear-gradient(180deg,#E3F0B0 0%,#EDF5D2 60%,#F3F7E4 100%);color:var(--ink);overflow:hidden}
+.h9 .shell{padding-block:clamp(1.4rem,3.6vw,3.25rem) clamp(1.75rem,3.5vw,3rem)}
+.h9__grid{display:grid;grid-template-columns:1fr;gap:1.6rem;align-items:center}
+@media(min-width:1000px){.h9__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(2rem,3.5vw,3.5rem)}}
+.h9 h1{font-size:clamp(1.9rem,8.4vw,2.7rem);line-height:1.07;letter-spacing:-.035em;text-wrap:balance}
+@media(min-width:700px){.h9 h1{font-size:clamp(2.4rem,5.2vw,3rem);line-height:1.06}}
+/* Desktop: jeder der drei Saetze steht in einer eigenen Zeile */
+@media(min-width:1000px){.h9 h1{font-size:clamp(1.9rem,2.95vw,2.45rem);line-height:1.12;letter-spacing:-.038em}.h9 h1 span{white-space:nowrap}}
+.h9 h1 span{display:block}
+/* Hervorhebung des dritten Satzes: ein Lime-Band je Zeile, genau so hoch wie die Schrift (1,02em),
+   damit kein Band die Unterlaengen der Zeile darueber verdeckt */
+.h9 h1 em{font-style:normal;padding:0 .17em;margin:0 -.17em;-webkit-box-decoration-break:clone;box-decoration-break:clone;background:linear-gradient(var(--lime),var(--lime)) no-repeat 0 93%/100% 1.08em}
+.h9 h1 span:last-child:not(:first-child){margin-top:.05em}
+.h9 p.lead{margin-top:1rem;color:#39412F;max-width:46ch;font-size:clamp(1rem,.95rem + .32vw,1.2rem);line-height:1.5}
+.h9__cta{margin-top:1.4rem;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.6rem}
+.h9__cta .btn{min-height:54px;padding-inline:1.7rem;font-size:1rem}
+.h9__cta .btn--ink:hover{background:#20241D}
+.h9__link{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:.95rem;color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.28em;text-decoration-color:var(--lime-dark)}
+.h9__link:hover{text-decoration-color:var(--ink)}
+.h9__proof{margin-top:1.15rem;display:flex;align-items:center;gap:.8rem;text-decoration:none;color:#39412F;font-size:.9rem;font-weight:600;line-height:1.35;max-width:46ch}
+.h9__proof:hover span[data-k]{text-decoration:underline;text-underline-offset:.2em}
+/* vier Gesichter als EIN Bild (ein Abruf statt vier), Ring in der Flaechenfarbe ist eingerechnet */
+.h9__faces{display:block;flex:none}
+.h9__faces img{width:127px;height:40px}
+.h9__media,.h9__frame{position:relative}
+.h9__frame::before{content:'';position:absolute;z-index:0;right:-1.1rem;bottom:-1.1rem;width:64%;height:72%;background:var(--lime);border-radius:20px}
+.h9 .hv{position:relative;z-index:1;border-radius:16px}
+.h9__cap{margin-top:1.9rem;font-size:.95rem;font-weight:600;color:#39412F}
+.h9 a:focus-visible,.kf a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+@media(max-width:999px){
+  .h9__cap{display:none}
+  .h9__media{margin:.2rem .65rem .65rem 0}
+  .h9__frame::before{right:-.65rem;bottom:-.65rem;border-radius:16px}
+  .h9__grid{grid-template-columns:minmax(0,1fr)}
+  .h9__cta{flex-direction:column;align-items:stretch;gap:.2rem}
+  .h9__cta .btn{width:100%;white-space:nowrap;padding-inline:.7rem;font-size:clamp(.88rem,calc((100vw - 60px)/21.4),.98rem)}
+  .h9__link{justify-content:center}
+  .h9__proof{margin-top:.6rem}
+}
+@media(max-width:345px){.h9__cta .btn{white-space:normal;padding-block:.55rem}}
+.h9__proof .nb{white-space:nowrap}
+.h9__proof span[data-k]{text-wrap:pretty}
+@media(min-width:561px){.h9__proof{max-width:37rem}}
+@media(max-width:560px){
+  .h9__proof{flex-direction:column;align-items:flex-start;gap:.5rem;max-width:none}
+  .h9__proof span[data-k]{text-wrap:balance}
+}
+/* Drei Key-Faktoren direkt unter dem Einstieg: eine Flaeche, drei Spalten, kein Kachelraster */
+.kf{background:#F3F7E4;padding-block:0 clamp(2.25rem,4.5vw,3.5rem)}
+.kf__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;background:var(--white);border:1px solid #DCE4C2;border-radius:18px;overflow:hidden}
+.kf__list li{padding:1.3rem 1.25rem 1.4rem;border-top:1px solid #E5EAD6}
+.kf__list li:first-child{border-top:0}
+.kf__list li::before{content:'';display:block;width:2.4rem;height:4px;border-radius:4px;background:var(--lime);margin-bottom:.85rem}
+.kf__list h3{font-size:clamp(1.12rem,1rem + .55vw,1.42rem);line-height:1.18;letter-spacing:-.02em}
+.kf__list p{margin-top:.55rem;color:var(--text);font-size:.96rem;line-height:1.55;max-width:46ch}
+@media(min-width:860px){
+  .kf__list{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kf__list li{padding:1.8rem 1.8rem 1.95rem;border-top:0;border-left:1px solid #E5EAD6}
+  .kf__list li:first-child{border-left:0}
+}
+/* Bereichswahl: echte Fotos sind heller als die alten Bilder, deshalb etwas staerker abgedunkelt */
+.pick__bg img.is-on{opacity:.5}
+@media(max-width:700px){.pick__bg img.is-on{opacity:.74}}
+/* So funktioniert es: Schrittbuehne. Oben vier benannte Abschnitte mit Fortschritt, darunter grosses Foto und Text.
+   Mobil wischt man durch die Karten, am Desktop laeuft die Buehne von selbst weiter, bis jemand eingreift. */
+.flow{position:relative}
+.flow__tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}
+.flow__tab{appearance:none;background:none;border:0;margin:0;padding:0 0 .35rem;text-align:left;cursor:pointer;display:grid;gap:.6rem;align-content:start;min-height:48px;color:var(--text-2);transition:color .3s ease}
+.flow__tab:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:4px}
+.flow__bar{display:block;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+.flow__bar i{display:block;height:100%;background:var(--lime-dark);transform:scaleX(0);transform-origin:left}
+.flow__name{font-weight:800;font-size:clamp(.78rem,.55rem + 1vw,1.08rem);letter-spacing:-.01em;line-height:1.2;overflow-wrap:anywhere}
+.flow__tab[aria-current="true"],.flow__tab.is-done{color:var(--ink)}
+.flow__tab[aria-current="true"] .flow__bar i,.flow__tab.is-done .flow__bar i{transform:none}
+.flow.is-auto .flow__tab[aria-current="true"] .flow__bar i{animation:flow-fill 7s linear forwards}
+.flow.is-auto:hover .flow__tab[aria-current="true"] .flow__bar i{animation-play-state:paused}
+@keyframes flow-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.flow__track{position:relative;list-style:none;margin:1.15rem 0 0;padding:0;display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.flow__track::-webkit-scrollbar{display:none}
+.flow__panel{flex:0 0 86%;scroll-snap-align:start;display:grid;grid-template-columns:1fr;gap:1.05rem;align-content:start}
+.flow__panel:last-child{flex-basis:100%}
+.flow__fig{margin:0;border-radius:var(--r);overflow:hidden;background:var(--display);aspect-ratio:4/3}
+.flow__fig img{width:100%;height:100%;object-fit:cover}
+.flow__txt h3{font-size:clamp(1.25rem,1rem + 1.15vw,2.05rem);line-height:1.12;letter-spacing:-.025em}
+.flow__txt p{margin-top:.7rem;color:var(--text);font-size:.98rem;line-height:1.55;max-width:46ch}
+.flow__facts{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.5rem}
+.flow__facts li{display:flex;gap:.6rem;align-items:flex-start;font-weight:700;font-size:.94rem;line-height:1.35}
+.flow__facts svg{flex:none;width:18px;height:18px;margin-top:.08rem}
+@media(min-width:900px){
+  .flow__tabs{gap:1rem}
+  .flow__track{gap:0;overflow:hidden;margin-top:2rem}
+  .flow__panel,.flow__panel:last-child{flex:0 0 100%;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(2rem,4vw,4.5rem);align-items:center}
+}
+@media(prefers-reduced-motion:reduce){.flow.is-auto .flow__tab[aria-current="true"] .flow__bar i{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="shell">
+    <a class="nav__logo" href="#top" aria-label="Trackbar, zum Seitenanfang"><img src="assets/trackbar-logo-white-s.webp" alt="Trackbar" width="225" height="48"></a>
+    <nav class="nav__links" aria-label="Seitenabschnitte">
+      <a href="#case">Nutzen</a>
+      <a href="#interviews" data-iv-link>Stimmen</a>
+      <a href="#demo">So funktioniert es</a>
+      <a href="#fragen">Fragen</a>
+      <a href="#software">Demo</a>
+      <span class="nav__social"><a class="nav__ic" href="https://wa.me/491788630670?text=Hallo%20Trackbar%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Demo." target="_blank" rel="noopener" aria-label="WhatsApp an Trackbar"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg></a><a class="nav__ic" href="https://www.instagram.com/trackbar_sports/" target="_blank" rel="noopener" aria-label="Trackbar auf Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a></span>
+      <a class="btn btn--lime btn--sm" href="#anfrage" data-k="ctaShort">Kostenlose Demo sichern</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="h9" aria-labelledby="h1">
+  <div class="shell">
+    <div class="h9__grid">
+      <div class="h9__txt swap" data-swap>
+        <h1 id="h1" data-k="h1"><span>Digitalisiere deinen Gerätepark.</span> <span>Geführtes Training für alle.</span> <span><em>Unabhängig vom Personalmangel.</em></span></h1>
+        <p class="lead" data-k="lead">Trackbar rüstet deine Kraftgeräte mit Display und Sensor nach. Deine Mitglieder trainieren geführt, dein Team gewinnt Zeit für echte Betreuung.</p>
+        <div class="h9__cta">
+          <a class="btn btn--ink" href="#anfrage" data-k="cta">Kostenlose Demo an deinen Geräten sichern</a>
+          <a class="h9__link" href="#software">Software selbst ausprobieren</a>
+        </div>
+        <a class="h9__proof" href="#interviews">
+          <span class="h9__faces" aria-hidden="true"><img src="assets/faces-4-v2.webp" alt="" width="127" height="40" loading="lazy" decoding="async"></span>
+          <span data-k="proof">Im Einsatz bei aquaFit, FUNatic Fitness, LIFE fit &amp; vital, Fitness Nöllen und vielen weiteren <span class="nb">Partner-Studios</span></span>
+        </a>
+      </div>
+
+      <div class="h9__media">
+        <div class="h9__frame">
+        <div class="hv" data-hero-video data-aud="fitness">
+          <button type="button" class="hv__btn" data-hv-play aria-label="Video ansehen 56 s: Trackbar in 60 Sekunden">
+            <img data-hv-poster src="assets/brag-hero33-800.webp" srcset="assets/brag-hero33-800.webp 800w, assets/brag-hero33-1280.webp 1280w, assets/brag-hero33-1920.webp 1920w" sizes="(min-width:1000px) 40vw, 92vw" width="1280" height="720" alt="" fetchpriority="high">
+            <span class="hv__bar" aria-hidden="true"><span class="hv__play"><svg viewBox="0 0 24 24"><path d="M5 3l15 9-15 9z" fill="#0A0B0A"/></svg></span><span class="hv__lbl">Video ansehen <small>56 s</small></span></span>
+          </button>
+        </div>
+        </div>
+        <p class="h9__cap" data-k="heroCap">In 60 Sekunden: so arbeitet Trackbar in deinem Studio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kf" aria-labelledby="kf-h">
+  <div class="shell">
+    <h2 id="kf-h" class="sr-only">Warum Betreiber auf Trackbar setzen</h2>
+    <ul class="kf__list swap" data-swap data-list="keys"><li><h3>Die neue Lösung für den Fachkräftemangel in der Fitnessbranche</h3><p>Gute Trainer sind schwer zu finden, die Fläche muss trotzdem betreut sein. Trackbar führt am Gerät durch jede Übung, auch wenn gerade niemand danebensteht.</p></li><li><h3>Schnelle Trainingserfolge, die deine Mitglieder motivieren</h3><p>Plan per Armband, Live-Kurve bei jeder Wiederholung, Auswertung nach dem Satz. Deine Mitglieder sehen ihren Fortschritt direkt am Gerät.</p></li><li><h3>Digitale Steuerung für bestehenden und neuen Gerätepark</h3><p>Sensor und Display kommen an deine Kraftgeräte, unabhängig vom Hersteller und ohne Gerätewechsel. Neue Geräte lassen sich genauso ausstatten.</p></li></ul>
+  </div>
+</section>
+
+<section class="trustband" aria-label="Hersteller und Partner">
+  <div class="shell">
+    <div class="trust">
+      <div>
+        <p class="kicker">Nachrüstbar an allen Geräten von</p>
+        <ul class="brands"><li>Life Fitness</li><li>Matrix</li><li>Technogym</li><li>Gym80</li><li>MedX</li><li>Precor</li><li>Hammer Strength</li><li>Nautilus</li><li>Panatta</li><li class="brands__more">und viele mehr</li></ul>
+      </div>
+      <div>
+        <p class="kicker">Angebunden an</p>
+        <div class="eco"><img src="assets/logo-egym-dark-s.webp" alt="EGYM" width="262" height="44" loading="lazy"><img src="assets/logo-actinate-dark-s.webp" alt="Actinate" width="393" height="44" loading="lazy"></div>
+      </div>
+      <div>
+        <p class="kicker">Vertriebspartner</p>
+        <div class="partner-mx"><img src="assets/logo-matrix-dark.svg" alt="Matrix Fitness" width="248" height="20" loading="lazy"><span>In Benelux exklusiv über Matrix Fitness Benelux</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pick" id="bereich" aria-labelledby="pick-h">
+  <div class="pick__bg" aria-hidden="true">
+    <!-- v9: echte Fotos aus den Drehs (Fitness Nöllen, Dr.-Wolff-Fläche, aquaFit) statt generierter Bilder -->
+    <picture><source media="(max-width:700px)" srcset="assets/pick9-fitness-m.webp"><img data-pick-bg="fitness" class="is-on" src="assets/pick9-fitness-960.webp" srcset="assets/pick9-fitness-960.webp 960w, assets/pick9-fitness.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" decoding="async" loading="lazy"></picture>
+    <picture><source media="(max-width:700px)" srcset="assets/pick9-physio-m.webp"><img data-pick-bg="physio" src="assets/pick9-physio-960.webp" srcset="assets/pick9-physio-960.webp 960w, assets/pick9-physio.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" decoding="async" loading="lazy"></picture>
+    <picture><source media="(max-width:700px)" srcset="assets/pick9-partner-m.webp"><img data-pick-bg="partner" src="assets/pick9-partner-960.webp" srcset="assets/pick9-partner-960.webp 960w, assets/pick9-partner.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" decoding="async" loading="lazy"></picture>
+  </div>
+  <svg class="pick__wave" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <path id="wv-path" d="M-40 252 C 150 150, 330 132, 480 196 S 770 284, 940 196 S 1240 112, 1400 168 S 1600 244, 1660 216"/>
+      <linearGradient id="wv-line" x1="0" y1="0" x2="1600" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#97D700" stop-opacity="0"/><stop offset=".14" stop-color="#97D700" stop-opacity=".95"/><stop offset=".86" stop-color="#C6F06A" stop-opacity=".95"/><stop offset="1" stop-color="#97D700" stop-opacity="0"/></linearGradient>
+      <linearGradient id="wv-rail" x1="0" y1="0" x2="1600" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#97D700" stop-opacity="0"/><stop offset=".3" stop-color="#97D700" stop-opacity=".3"/><stop offset=".7" stop-color="#97D700" stop-opacity=".3"/><stop offset="1" stop-color="#97D700" stop-opacity="0"/></linearGradient>
+      <radialGradient id="wv-halo"><stop offset="0" stop-color="#97D700" stop-opacity=".6"/><stop offset=".45" stop-color="#97D700" stop-opacity=".16"/><stop offset="1" stop-color="#97D700" stop-opacity="0"/></radialGradient>
+      <filter id="wv-blur" x="-10%" y="-100%" width="120%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <g class="wv-rails">
+      <use href="#wv-path" fill="none" stroke="url(#wv-rail)" stroke-width="1" transform="translate(0 -30)"/>
+      <use href="#wv-path" fill="none" stroke="url(#wv-rail)" stroke-width="1" transform="translate(0 26)"/>
+      <use href="#wv-path" fill="none" stroke="url(#wv-rail)" stroke-width="1" transform="translate(0 52)" opacity=".6"/>
+    </g>
+    <g class="wv-main">
+      <use class="wv-draw" href="#wv-path" fill="none" stroke="#97D700" stroke-opacity=".35" stroke-width="14" filter="url(#wv-blur)"/>
+      <use class="wv-draw" href="#wv-path" fill="none" stroke="url(#wv-line)" stroke-width="2.4" stroke-linecap="round"/>
+      <g class="wv-coins"></g>
+      <g class="wv-dot"><circle r="30" fill="url(#wv-halo)"/><circle r="7" fill="#97D700"/><circle r="2.6" fill="#F2FFD9"/></g>
+    </g>
+  </svg>
+  <div class="shell">
+    <h2 id="pick-h" class="pick__h reveal">Für welchen Bereich interessierst du dich<span class="dot">?</span></h2>
+    <p class="pick__sub reveal" style="--d:.12s">Wähl deinen Bereich. Die Seite baut sich danach passend für dich neu auf.</p>
+    <div class="pick__opts" role="radiogroup" aria-labelledby="pick-h">
+      <button class="aud__opt pick__opt" style="--d:.22s" role="radio" aria-checked="true" data-aud="fitness">
+        <span class="pick__top"><span class="pick__state">Gewählt</span></span>
+        <span class="pick__name">Fitnessstudio</span>
+        <span class="pick__line">Geführtes Training an jedem Gerät</span>
+        <span class="pick__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg></span>
+      </button>
+      <button class="aud__opt pick__opt" style="--d:.32s" role="radio" aria-checked="false" data-aud="physio" tabindex="-1">
+        <span class="pick__top"><span class="pick__state">Gewählt</span></span>
+        <span class="pick__name">Physio-Studio</span>
+        <span class="pick__line">Deine Trainingsfläche, angeleitet</span>
+        <span class="pick__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg></span>
+      </button>
+      <button class="aud__opt pick__opt" style="--d:.42s" role="radio" aria-checked="false" data-aud="partner" tabindex="-1">
+        <span class="pick__top"><span class="pick__state">Gewählt</span></span>
+        <span class="pick__name">Gerätehersteller / Partner</span>
+        <span class="pick__line">Trackbar im eigenen Sortiment</span>
+        <span class="pick__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- v9: die vier Benefits stehen jetzt direkt nach der Bereichswahl, vor der Explosionsgrafik -->
+<section class="sec" id="case" aria-labelledby="case-h">
+  <div class="shell">
+    <div class="sec__head reveal">
+      <h2 id="case-h" class="swap" data-swap data-k="bcH2">Mehr Betreuung auf der Fläche, ohne mehr Personal.</h2>
+    </div>
+    <div class="case usp">
+      <figure class="usp__img swap" data-swap><img data-case-img src="assets/case-fitness-880.webp" srcset="assets/case-fitness-640.webp 640w, assets/case-fitness-880.webp 880w, assets/case-fitness-1200.webp 1200w" sizes="(min-width:1000px) 40vw, 92vw" alt="" width="1200" height="1500" loading="lazy"></figure>
+      <ul class="usp__list swap" data-swap data-list="benefits"></ul>
+      <div class="note" data-k-note="bcNote" hidden></div>
+    </div>
+    <div class="cta-line reveal">
+      <a class="btn btn--ink" href="#anfrage" data-k="cta">Kostenlose Demo an deinen Geräten sichern</a>
+    </div>
+  </div>
+</section>
+
+<section class="xh" id="nutzen" aria-labelledby="nutzen-h">
+  <div class="xh-pin">
+    <div class="shell xh-in">
+      <h2 id="nutzen-h" class="xh-h swap" data-swap data-k="burstH2">Was Trackbar auf deiner Fläche verändert.</h2>
+      <div class="xh-stage">
+        <div class="xh-burst" aria-hidden="true">
+          <div class="xh-stick">
+            <div class="xh-float">
+              <div class="xh-stack">
+                <img class="xp xp-base" src="assets/dev-base-1400.webp" srcset="assets/dev-base-560.webp 560w, assets/dev-base-760.webp 760w, assets/dev-base-1400.webp 1400w" sizes="(max-width:900px) 74vw, 44vw" width="1400" height="980" alt="" decoding="async" loading="lazy">
+                <img class="xp xp-l xp-edge" style="--z:0" src="assets/dev-frame-1400.webp" srcset="assets/dev-frame-560.webp 560w, assets/dev-frame-760.webp 760w, assets/dev-frame-1400.webp 1400w" sizes="(max-width:900px) 74vw, 44vw" width="1400" height="980" alt="" decoding="async" loading="lazy">
+                <img class="xp xp-l xp-edge" style="--z:6" src="assets/dev-screen-1400.webp" srcset="assets/dev-screen-560.webp 560w, assets/dev-screen-760.webp 760w, assets/dev-screen-1400.webp 1400w" sizes="(max-width:900px) 74vw, 44vw" width="1400" height="980" alt="" decoding="async" loading="lazy">
+                <img class="xp xp-l" style="--z:9" src="assets/dev-logo-1400.webp" srcset="assets/dev-logo-560.webp 560w, assets/dev-logo-760.webp 760w, assets/dev-logo-1400.webp 1400w" sizes="(max-width:900px) 74vw, 44vw" width="1400" height="980" alt="" decoding="async" loading="lazy">
+                <img class="xp xp-l" style="--z:11" src="assets/dev-curve-1400.webp" srcset="assets/dev-curve-560.webp 560w, assets/dev-curve-760.webp 760w, assets/dev-curve-1400.webp 1400w" sizes="(max-width:900px) 74vw, 44vw" width="1400" height="980" alt="" decoding="async" loading="lazy">
+                <img class="xp xp-l" style="--z:17" src="assets/dev-coins-1400.webp" srcset="assets/dev-coins-560.webp 560w, assets/dev-coins-760.webp 760w, assets/dev-coins-1400.webp 1400w" sizes="(max-width:900px) 74vw, 44vw" width="1400" height="980" alt="" decoding="async" loading="lazy">
+              </div>
+            </div>
+            <div class="xh-cue" aria-hidden="true"><span>Scrollen</span><svg viewBox="0 0 24 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v32M5 28l7 7 7-7"/></svg></div>
+          </div>
+        </div>
+        <ul class="xk-list" data-list="burst"></ul>
+      </div>
+      <p class="xh-note" data-k-html="burstNote"></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--white" id="interviews" aria-labelledby="iv-h">
+  <div class="shell">
+    <div class="sec__head reveal">
+      <h2 id="iv-h" class="swap" data-swap data-k="ivTitle">Inhaber erzählen, wie es bei ihnen läuft</h2>
+      <p class="swap" data-swap data-k="ivIntro"></p>
+    </div>
+    <div class="ivgrid swap" data-swap data-list="interviews"></div>
+  </div>
+</section>
+
+<section class="sec sec--white" id="demo" aria-labelledby="demo-h">
+  <div class="shell">
+    <div class="sec__head reveal">
+      <h2 id="demo-h">So funktioniert es</h2>
+      <p>Vom Nachrüsten bis zur Auswertung: vier Schritte, die an deinen vorhandenen Geräten laufen.</p>
+    </div>
+    <div class="flow reveal" data-flow>
+      <div class="flow__tabs" role="group" aria-label="Schritt auswählen">
+        <button type="button" class="flow__tab" aria-current="true"><span class="flow__bar" aria-hidden="true"><i></i></span><span class="flow__name">Nachrüsten</span></button>
+        <button type="button" class="flow__tab" aria-current="false"><span class="flow__bar" aria-hidden="true"><i></i></span><span class="flow__name">Anmelden</span></button>
+        <button type="button" class="flow__tab" aria-current="false"><span class="flow__bar" aria-hidden="true"><i></i></span><span class="flow__name">Trainieren</span></button>
+        <button type="button" class="flow__tab" aria-current="false"><span class="flow__bar" aria-hidden="true"><i></i></span><span class="flow__name">Daten nutzen</span></button>
+      </div>
+      <ol class="flow__track" tabindex="0" aria-label="Ablauf in vier Schritten">
+        <li class="flow__panel">
+          <figure class="flow__fig"><img src="assets/flow-1-720.webp" srcset="assets/flow-1-720.webp 720w, assets/flow-1.webp 1200w" sizes="(min-width:900px) 52vw, 80vw" alt="Trackbar-Display und Sensor, nachgerüstet an einem vorhandenen Kraftgerät" width="1200" height="900" loading="lazy" decoding="async"></figure>
+          <div class="flow__txt">
+            <h3>Sensor und Display kommen an dein vorhandenes Gerät</h3>
+            <p>Der Sensor sitzt am Gewichtsblock, das Display an einem Arm direkt am Gerät. Das passt an Kraftgeräte mit Steckgewichten von Life Fitness, Matrix, Technogym, Gym80 und vielen weiteren Herstellern.</p>
+            <ul class="flow__facts"><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#4B6B00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Kein Gerätewechsel, keine zusätzliche Fläche</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#4B6B00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Installation mit möglichst geringer Ausfallzeit</span></li></ul>
+          </div>
+        </li>
+        <li class="flow__panel">
+          <figure class="flow__fig"><img src="assets/flow-2-720.webp" srcset="assets/flow-2-720.webp 720w, assets/flow-2.webp 1200w" sizes="(min-width:900px) 52vw, 80vw" alt="Trackbar-Display mit der Aufforderung, sich per RFID am Leser anzumelden" width="1200" height="900" loading="lazy" decoding="async"></figure>
+          <div class="flow__txt">
+            <h3>Armband an den Lesepunkt, der Plan ist da</h3>
+            <p>Wer trainiert, meldet sich per RFID-Armband direkt am Gerät an. Übung, Gewicht und Einstellung stehen sofort auf dem Display. Die Pläne kommen aus deinem bestehenden System.</p>
+            <ul class="flow__facts"><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#4B6B00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Keine zusätzliche App</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#4B6B00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Kein Zettel, kein Papierkram</span></li></ul>
+          </div>
+        </li>
+        <li class="flow__panel">
+          <figure class="flow__fig"><img src="assets/flow-3-720.webp" srcset="assets/flow-3-720.webp 720w, assets/flow-3.webp 1200w" sizes="(min-width:900px) 52vw, 80vw" alt="Training am Kraftgerät, die Live-Kurve läuft auf dem Trackbar-Display mit" width="1200" height="900" loading="lazy" decoding="async"></figure>
+          <div class="flow__txt">
+            <h3>Die Live-Kurve führt durch jede Wiederholung</h3>
+            <p>Das Display zeigt die Bewegung in Echtzeit und gibt bei jeder Wiederholung Feedback. Gewicht und Wiederholungen schreibt das Gerät automatisch mit, nach dem Satz steht die Auswertung da.</p>
+            <ul class="flow__facts"><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#4B6B00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Geführtes Training, auch wenn kein Trainer danebensteht</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#4B6B00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sichtbarer Fortschritt dank der Trackbar-Kurve</span></li></ul>
+          </div>
+        </li>
+        <li class="flow__panel">
+          <figure class="flow__fig"><img src="assets/flow-4-720.webp" srcset="assets/flow-4-720.webp 720w, assets/flow-4.webp 1200w" sizes="(min-width:900px) 52vw, 80vw" alt="Trackbar-Display im Zirkelmodus mit Dauer, Wiederholungen und Gewicht aus dem letzten Training" width="1200" height="900" loading="lazy" decoding="async"></figure>
+          <div class="flow__txt">
+            <h3>Jede Einheit landet bei deinem Team</h3>
+            <p>Trackbar überträgt die Trainingsdaten in Echtzeit an EGYM und Actinate. Darüber sind etwa Magicline, Aidoo und CenterCom angebunden. Dein Team sieht, wie sich jemand entwickelt, und kann gezielt betreuen.</p>
+            <ul class="flow__facts"><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#4B6B00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Zusammenfassungen in EGYM oder der Actinate Studio-App</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#4B6B00" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Zahlen vom letzten Training direkt am Gerät</span></li></ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="demo" id="software">
+      <div class="demo__side reveal">
+        <h3>Probier die Software aus</h3>
+        <p class="swap" data-swap data-k="demoIntro"></p>
+      </div>
+      <div class="demo__stage reveal" data-demo>
+        <div class="demo__gate" data-demo-gate>
+          <img class="demo__poster" src="assets/demo-thumb2-1344.webp" srcset="assets/demo-thumb2-800.webp 800w, assets/demo-thumb2-1344.webp 1344w" sizes="(min-width:1000px) 1200px, 92vw" alt="Probier die Software aus: Trackbar-Display mit Live-Kurve" width="1344" height="752" loading="lazy" decoding="async">
+          <div class="inner">
+            <button class="btn btn--lime" data-demo-load>Software starten</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partner sec" id="partner" aria-labelledby="partner-h" data-partner-full hidden>
+  <div class="shell pgrid">
+    <div class="reveal">
+      <h2 id="partner-h">So wirst du Partner</h2>
+      <p class="lead" style="color:#C9CDC6;margin-top:1rem">Ob du Trackbar ins eigene Angebot aufnimmst oder einzelne Abschlüsse vermittelst: Der Weg ist kurz, die Konditionen werden individuell vereinbart.</p>
+      <ol class="psteps">
+        <li><b>Kennenlernen</b><span>Sortiment, Märkte und Kunden, und welches Modell zu dir passt.</span></li>
+        <li><b>Pilot</b><span>Eine Installation bei einem deiner Kunden, gemeinsam geplant.</span></li>
+        <li><b>Vereinbarung</b><span>Reseller-Modell oder Vermittlung mit Beteiligung am Abschluss.</span></li>
+      </ol>
+      <div class="cta-line"><a class="btn btn--lime" href="#anfrage">Partnerschaft besprechen</a></div>
+    </div>
+    <figure class="pimg reveal"><img loading="lazy" src="assets/partner-reihe.webp" alt="Mehrere Geräte verschiedener Hersteller mit nachgerüstetem Trackbar-Display" width="1400" height="786"></figure>
+  </div>
+</section>
+
+<section class="sec" id="anfrage" aria-labelledby="fun-h">
+  <div class="shell fun">
+    <div class="fun__aside reveal">
+      <h2 id="fun-h" class="swap" data-swap data-k="funTitle">In drei Klicks zur kostenlosen Demo in deinem Studio.</h2>
+      <p class="lead swap" data-swap data-k="funIntro" style="margin-top:1rem"></p>
+    </div>
+    <div class="fun__box reveal" data-funnel aria-live="polite">
+      <div class="fun__top"><span data-fun-step>Schritt 1 von 4</span><span data-fun-aud>Fitnessstudio</span></div>
+      <div class="bar" aria-hidden="true"><i data-fun-bar></i></div>
+      <div data-fun-body></div>
+      <div class="err" data-fun-err role="alert"></div>
+      <div class="fnav" data-fun-nav>
+        <button class="linkbtn" data-fun-back>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2"/></svg> Zurück
+        </button>
+        <button class="btn btn--lime" data-fun-next>Weiter</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final sec" aria-labelledby="final-h">
+  <div class="final__bg" aria-hidden="true"><picture><source media="(max-width:700px)" data-img-m="finalBg" srcset="assets/final-fitness-m.webp"><img data-img="finalBg" src="assets/final-fitness-1400.webp" srcset="assets/final-fitness-1400.webp 1400w, assets/final-fitness-2400.webp 2400w" sizes="100vw" alt="" width="2400" height="900" loading="lazy"></picture></div>
+  <div class="shell">
+    <h2 id="final-h" class="swap" data-swap data-k="finalH2">Sichere dir eine kostenlose Demo an deinen Geräten.</h2>
+    <p class="swap" data-swap data-k="finalP"></p>
+    <div class="cta-line">
+      <a class="btn btn--lime" href="#anfrage" data-k="cta">Kostenlose Demo an deinen Geräten sichern</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--white" id="fragen" aria-labelledby="fragen-h">
+  <div class="shell faqwrap">
+    <div class="faq__aside reveal">
+      <h2 id="fragen-h" class="swap" data-swap data-k="qTitle">Was Studio-Betreiber vor dem Start fragen.</h2>
+      <p class="lead swap" data-swap data-k="qIntro"></p>
+      <div class="faq__vid" data-fragen-video hidden></div>
+    </div>
+    <div class="reveal">
+      <ul class="faq swap" data-swap data-list="questions"></ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="shell">
+    <div class="ft__grid">
+      <div class="ft__brand">
+        <img src="assets/trackbar-logo-white-s.webp" alt="Trackbar" width="225" height="48" loading="lazy">
+        <p>Digitale Trainingsbetreuung an jedem Kraftgerät. Nachgerüstet an deinem Bestand, angebunden an EGYM und Actinate.</p>
+        <div class="ft__social">
+          <a href="https://wa.me/491788630670?text=Hallo%20Trackbar%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Demo." target="_blank" rel="noopener" aria-label="WhatsApp an Trackbar"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg></a>
+          <a href="https://www.instagram.com/trackbar_sports/" target="_blank" rel="noopener" aria-label="Trackbar auf Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <nav class="ft__col" aria-label="Seite">
+        <h2>Seite</h2>
+        <a href="#case">Nutzen</a>
+        <a href="#interviews" data-iv-link>Stimmen</a>
+        <a href="#demo">So funktioniert es</a>
+        <a href="#fragen">Fragen</a>
+        <a href="#partner" data-partner-link>Für Hersteller und Partner</a>
+      </nav>
+      <div class="ft__col">
+        <h2>Kontakt</h2>
+        <a href="#anfrage">Kostenlose Demo anfragen</a>
+        <a href="https://wa.me/491788630670?text=Hallo%20Trackbar%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Demo." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.instagram.com/trackbar_sports/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.trackbar.com/" target="_blank" rel="noopener">trackbar.com</a>
+      </div>
+      <nav class="ft__col" aria-label="Rechtliches">
+        <h2>Rechtliches</h2>
+        <a href="https://www.trackbar.com/impressum/" target="_blank" rel="noopener">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+      </nav>
+    </div>
+    <div class="ft__bottom"><span>© 2026 Trackbar, SKAIN GmbH</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+var CHECK='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="#97D700" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z" fill="#97D700"/></svg>';
+var OK='',VS='',FOK='';
+var IC=function(d){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+d.replace(/<(path|circle|rect) /g,'<$1 pathLength="1" ')+'</svg>'};
+var ICONS={
+  kurve:IC('<path d="M3 15c2.2 0 2.2-6 4.5-6S9.7 15 12 15s2.2-6 4.5-6S18.8 15 21 15"/>'),
+  plan:IC('<rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 8.5h6M9 12h6M9 15.5h4"/>'),
+  team:IC('<circle cx="9" cy="8" r="3"/><path d="M3.5 19c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/><path d="M15.5 5.2a3 3 0 010 5.6M17.5 14.8c1.5.6 2.6 2 3 4.2"/>'),
+  bestand:IC('<path d="M20 12a8 8 0 01-14.3 4.9M4 12a8 8 0 0114.3-4.9"/><path d="M18.5 3v4.2h-4.2M5.5 21v-4.2h4.2"/>'),
+  verlauf:IC('<path d="M4 20V4M4 20h16"/><path d="M7.5 15l3.5-4 3 2.5L19 8"/>'),
+  marken:IC('<path d="M12 3l8.5 4.5L12 12 3.5 7.5z"/><path d="M3.5 12L12 16.5 20.5 12M3.5 16.5L12 21l8.5-4.5"/>'),
+  upgrade:IC('<path d="M12 20V6M6.5 11.5L12 6l5.5 5.5"/><path d="M5 3.5h14"/>'),
+  deal:IC('<path d="M3 11.5l4-4 3.5 1.5 3-1.5 3.5 2 4 2.5"/><path d="M7 14.5l2.5 2.5a1.6 1.6 0 002.2 0l4.8-4.8M3 11.5v3l3 2.5"/>'),
+  check:IC('<circle cx="12" cy="12" r="8.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/>')
+};
+/* Fertige Filme: Bunny-GUID aus Library 614528. Der Hero-Film je Zielgruppe steht in CONTENT.<zg>.brag. */
+var VIDEOS={fragen:''};
+/* Ziel fuer Anfragen (z. B. Webhook oder Formular-Endpunkt). Leer = es wird nichts gesendet. Vor Kampagnenstart setzen. */
+var FORM_ENDPOINT='/.netlify/functions/lead';
+var START=['So bald wie möglich','In den nächsten drei Monaten','In drei bis sechs Monaten','Ich informiere mich erst'];
+
+/* Inhalte je Zielgruppe */
+var CONTENT={
+  fitness:{
+    label:'Fitnessstudio',
+    /* v9 Headline (Julian 13.11.): drei Sätze, der letzte ist hervorgehoben.
+       Alternativen für die Mitte: 'Betreutes Training für alle.' / 'Geführtes Training an jedem Gerät.' */
+    h1:['Digitalisiere deinen Gerätepark.','Geführtes Training für alle.','Unabhängig vom Personalmangel.'],
+    lead:'Trackbar rüstet deine Kraftgeräte mit Display und Sensor nach. Deine Mitglieder trainieren geführt, dein Team gewinnt Zeit für echte Betreuung.',
+    proof:'Im Einsatz bei aquaFit, FUNatic Fitness, LIFE fit & vital, Fitness Nöllen und vielen weiteren Partner-Studios',
+    keys:[
+      {t:'Die neue Lösung für den Fachkräftemangel in der Fitnessbranche',p:'Gute Trainer sind schwer zu finden, die Fläche muss trotzdem betreut sein. Trackbar führt am Gerät durch jede Übung, auch wenn gerade niemand danebensteht.'},
+      {t:'Schnelle Trainingserfolge, die deine Mitglieder motivieren',p:'Plan per Armband, Live-Kurve bei jeder Wiederholung, Auswertung nach dem Satz. Deine Mitglieder sehen ihren Fortschritt direkt am Gerät.'},
+      {t:'Digitale Steuerung für bestehenden und neuen Gerätepark',p:'Sensor und Display kommen an deine Kraftgeräte, unabhängig vom Hersteller und ohne Gerätewechsel. Neue Geräte lassen sich genauso ausstatten.'}
+    ],
+    checks:['Nachrüstung an deinen bestehenden Geräten','Ohne zusätzliche Fläche, ohne Gerätewechsel','Trainingsdaten fließen in EGYM oder Actinate'],
+    cta:'Kostenlose Demo an deinen Geräten sichern', ctaShort:'Kostenlose Demo sichern',
+    brag:'ccd21de0-e512-4ff7-a81c-c7de77ffb3e1', bragPoster:'assets/brag-hero33',
+    heroCap:'In 60 Sekunden: so arbeitet Trackbar in deinem Studio.',
+    heroBg:{s:'assets/poster-fitness-800.webp',sw:800,l:'assets/poster-fitness.webp',lw:1600,m:'assets/herobg-fitness-m.webp'}, caseImg:'assets/case-fitness', qPoster:'assets/mat-geraet-hell.webp', finalBg:{s:'assets/final-fitness-1400.webp',sw:1400,l:'assets/final-fitness-2400.webp',lw:2400,m:'assets/final-fitness-m.webp'}, ivImgs:[], caseAlt:'Mitglied trainiert an einem Kraftgerät mit Trackbar-Display',
+    bcH2:'Mehr Betreuung auf der Fläche, ohne mehr Personal.',
+    bcIntro:'',
+    benefits:[
+      {i:'kurve',t:'Jedes Mitglied trainiert angeleitet',p:'Plan per Armband, Live-Kurve bei jeder Wiederholung, Auswertung nach dem Satz.',g:'',c:FOK},
+      {i:'plan',t:'Pläne laufen wirklich',p:'Pläne kommen aus deinem System ans Gerät, Gewicht und Wiederholungen werden mitgeschrieben.',g:'',c:FOK},
+      {i:'team',t:'Trainer sehen die Sessions',p:'Zusammenfassungen landen in EGYM oder in der Actinate Studio-App.',g:'',c:FOK},
+      {i:'bestand',t:'Bestand statt Neukauf',p:'Nachrüsten statt neu kaufen, ohne zusätzliche Fläche.',g:'',c:FOK}
+    ],
+    bcNote:'',
+    demoIntro:'Probier selbst, was deine Mitglieder am Gerät sehen.',
+    qTitle:'Was Studio-Betreiber vor dem Start fragen.',
+    qIntro:'Kurz beantwortet. Alles Weitere klären wir im Gespräch.',
+    qVideo:'',
+    questions:[
+      {q:'Passt Trackbar zu meinen Geräten?',a:'Trackbar passt grundsätzlich zu allen gängigen Kraftgeräten, etwa von Life Fitness, Matrix, Technogym, Gym80, MedX und Precor. Die Details zu deinen Geräten klären wir gern im Beratungsgespräch.',c:OK},
+      {q:'Was kostet Trackbar für mein Studio?',a:'1.649 € je Gerät einmalig plus 4,99 € je Gerät und Monat, dazu eine Installationspauschale ab 1.499 €, jeweils zzgl. USt. Ab 5 Geräten gibt es Rabatt. Den genauen Umfang klären wir im Beratungsgespräch.',c:OK},
+      {q:'Wie viel Platz und Ausfallzeit bedeutet der Umbau?',a:'Keine zusätzliche Fläche, kein Gerätewechsel: Sensor und Display kommen ans vorhandene Gerät. Die Installation wird mit möglichst geringer Ausfallzeit geplant, Updates laufen außerhalb der Stoßzeiten.',c:OK},
+      {q:'Brauchen meine Mitglieder eine zusätzliche App?',a:'Nein. Mitglieder melden sich per RFID-Armband direkt am Gerät an und sehen dort Plan, Einstellungen und Live-Feedback. Die Pläne kommen aus deinem bestehenden System.',c:OK},
+      {q:'Läuft das mit meiner Studio-Software?',a:'Ja. Trackbar überträgt Trainingsdaten in Echtzeit an EGYM und Actinate, darüber sind etwa Magicline, Aidoo und CenterCom angebunden. Fehlt deine Plattform, sprich das Team an.',c:OK}
+    ],
+    ivTitle:'Stimmen aus den Studios.',
+    ivIntro:'Echte Anwendungsfälle und Erfahrungen von Studio-Besitzern.',
+    interviews:[
+      {b:'aquaFit',s:'Laatzen',guid:'6e91b664-09dd-4c7e-8a1e-db03701791f3',thumb:'assets/sv-aquafit'},
+      {b:'FUNatic Fitness',s:'Burgebrach',guid:'b8505aab-d6b9-45cd-b580-7e86d0784b19',thumb:'assets/sv-funatic'},
+      {b:'LIFE fit & vital',s:'Ludwigsburg',guid:'0e6f9a06-6cb2-4e72-9869-a59601282520',thumb:'assets/sv-lifefit'},
+      {b:'Fitness Nöllen',s:'Altstätten',guid:'c78f8ccc-eaf1-42e2-9e7e-4408aafd3b14',thumb:'assets/sv-noellen'}
+    ],
+    funTitle:'In drei Klicks zur kostenlosen Demo in deinem Studio.',
+    funIntro:'Drei Fragen, dann deine Kontaktdaten und wann wir dich gut erreichen.',
+    org:'Name des Studios', extra:{k:'ort',l:'PLZ und Ort',opt:true},
+    steps:[
+      {k:'art',q:'Welche Art von Studio betreibst du?',o:['Inhabergeführtes Studio','Kette mit mehreren Standorten','Gesundheits- oder Präventionsstudio','Verein, Hotel oder Firmenfitness']},
+      {k:'geraete',q:'Wie viele Geräte möchtest du digitalisieren?',o:['1 bis 5','6 bis 10','11 bis 20','Mehr als 20','Einen kompletten Zirkel']},
+      {k:'start',q:'Wann möchtest du starten?',o:START}
+    ],
+    submit:'Kostenlose Demo sichern',
+    finalH2:'Sichere dir eine kostenlose Demo an deinen Geräten.',
+    finalP:'Drei Klicks, dann meldet sich das Team zu der Zeit, die dir passt.',
+    burstH2:'Was Trackbar auf deiner Fläche verändert.', burstNote:'',
+    burst:[{t:'Mehr Trainerkapazität',s:'Das Gerät führt, dein Team hat Zeit für Betreuung.'},{t:'Kein Zettel, kein Papierkram',s:'Der Plan lädt per Armband direkt am Gerät.'},{t:'Bessere Mitgliederbindung',s:'Sichtbarer Fortschritt dank der Trackbar-Kurve.'},{t:'Bessere Trainingsausführung',s:'Die Live-Kurve gibt bei jeder Wiederholung Feedback.'},{t:'Geführtes Training',s:'An jedem Gerät, auch wenn gerade kein Trainer daneben steht.'}]
+  },
+  physio:{
+    label:'Physio-Studio',
+    h1:['Digitalisiere deine Trainingsfläche.','Angeleitetes Training für alle.','Unabhängig vom Personalmangel.'],
+    lead:'Trackbar leitet am Gerät jede Wiederholung an und erfasst den Verlauf automatisch. Aufsicht und fachliche Entscheidungen bleiben bei deinem Team.',
+    proof:'Im Einsatz bei aquaFit, FUNatic Fitness, LIFE fit & vital, Fitness Nöllen und vielen weiteren Partner-Studios',
+    keys:[
+      {t:'Die neue Lösung für den Fachkräftemangel auf der Trainingsfläche',p:'Dein Team kann nicht an jedem Gerät gleichzeitig stehen. Das Display zeigt Übung, Gewicht und Einstellung und führt durch jede Wiederholung.'},
+      {t:'Angeleitetes Training, das Patienten motiviert',p:'Die Live-Kurve gibt bei jeder Wiederholung Rückmeldung. Wer trainiert, sieht den eigenen Verlauf direkt am Gerät.'},
+      {t:'Digitale Steuerung für bestehenden und neuen Gerätepark',p:'Deine vorhandenen Geräte bekommen Sensor und Display. Du brauchst weder neue Geräte noch zusätzliche Fläche.'}
+    ],
+    checks:['Anleitung bei jeder Wiederholung','Trainingsdaten werden automatisch gespeichert','Nachrüstung an vorhandenen Geräten'],
+    cta:'Kostenlose Demo an deinen Geräten sichern', ctaShort:'Kostenlose Demo sichern',
+    brag:'ccd21de0-e512-4ff7-a81c-c7de77ffb3e1', bragPoster:'assets/brag-hero33',
+    heroCap:'In 60 Sekunden: so arbeitet Trackbar auf deiner Trainingsfläche.',
+    heroBg:{s:'assets/poster-physio-800.webp',sw:800,l:'assets/poster-physio.webp',lw:1600,m:'assets/herobg-physio-m.webp'}, caseImg:'assets/case-physio', qPoster:'assets/physio-auswertung.webp', finalBg:{s:'assets/final-physio-1400.webp',sw:1400,l:'assets/final-physio-2400.webp',lw:2400,m:'assets/final-physio-m.webp'}, ivImgs:['assets/ivph-physio-1','assets/ivph-physio-2','assets/ivph-physio-3','assets/ivph-physio-4'], caseAlt:'Therapiegerät aus Holz mit nachgerüstetem Trackbar-Display',
+    bcH2:'Die Fläche läuft mit dem Team, das du hast.',
+    bcIntro:'',
+    benefits:[
+      {i:'kurve',t:'Anleitung an jedem Gerät',p:'Das Display zeigt Übung, Gewicht und Einstellung und führt durch jede Wiederholung.',g:'',c:FOK},
+      {i:'verlauf',t:'Trainingsdaten ohne Zettel',p:'Gewicht und Wiederholungen speichert das Gerät automatisch. Nach dem Training muss niemand etwas aufschreiben.',g:'',c:FOK},
+      {i:'bestand',t:'Vorhandene Geräte nachrüsten',p:'Deine Geräte bekommen Sensor und Display. Du brauchst weder neue Geräte noch zusätzliche Fläche.',g:'',c:FOK},
+      {i:'team',t:'Fortschritt für dein Team sichtbar',p:'Jede Einheit landet im Profil, in der Actinate Studio-App oder in EGYM. So sieht dein Team, wie sich jemand entwickelt.',g:'',c:FOK}
+    ],
+    bcNote:'',
+    demoIntro:'Probier selbst, was Patientinnen und Patienten am Gerät sehen.',
+    qTitle:'Häufige Fragen aus Physio-Studios.',
+    qIntro:'Kurz beantwortet. Alles Weitere klären wir im Gespräch.',
+    qVideo:'',
+    questions:[
+      {q:'Ersetzt Trackbar die Betreuung durch Therapeuten?',a:'Nein. Das Display zeigt Plan, Geräteeinstellungen und Live-Feedback direkt am Gerät. Aufsicht und fachliche Entscheidungen bleiben bei deinem Team.',c:OK},
+      {q:'Passt das zu unseren Geräten, und wie läuft der Einbau?',a:'Trackbar passt an Kraftgeräte mit Steckgewichten, also mit Gewichtsblock und Steckstift, von verschiedenen Herstellern und Baujahren. Die Details zu deinen Geräten klären wir gern im Beratungsgespräch. Die Installation wird mit möglichst geringer Ausfallzeit geplant.',c:OK},
+      {q:'Was heißt das für Medizinprodukte und Leistungen auf Rezept?',a:'Das hängt von deinem Gerät und deinem Einsatz ab. Sprich das Team vor deiner Entscheidung darauf an, dann wird es im Gespräch geklärt.',c:OK},
+      {q:'Wohin gehen die Trainingsdaten, und wie ist der Datenschutz?',a:'Trainingsdaten gehen in Echtzeit an EGYM, Zusammenfassungen und Fortschritt in die Actinate Studio-App. Datenschutz und Auftragsverarbeitung klärst du im Gespräch, bevor du bestellst.',c:OK},
+      {q:'Brauchen Patientinnen und Patienten eine App?',a:'Nein. Die Anmeldung läuft per RFID-Armband direkt am Gerät, dort stehen Plan, Einstellungen und Live-Feedback. Wie das aussieht, zeigt dir die Demo weiter oben.',c:OK}
+    ],
+    ivTitle:'Stimmen aus den Studios.',
+    ivIntro:'Echte Anwendungsfälle und Erfahrungen von Studio-Besitzern.',
+    interviews:[
+      {b:'aquaFit',s:'Laatzen',guid:'6e91b664-09dd-4c7e-8a1e-db03701791f3',thumb:'assets/sv-aquafit'},
+      {b:'FUNatic Fitness',s:'Burgebrach',guid:'b8505aab-d6b9-45cd-b580-7e86d0784b19',thumb:'assets/sv-funatic'},
+      {b:'LIFE fit & vital',s:'Ludwigsburg',guid:'0e6f9a06-6cb2-4e72-9869-a59601282520',thumb:'assets/sv-lifefit'},
+      {b:'Fitness Nöllen',s:'Altstätten',guid:'c78f8ccc-eaf1-42e2-9e7e-4408aafd3b14',thumb:'assets/sv-noellen'}
+    ],
+    funTitle:'In drei Klicks zur kostenlosen Demo in deinem Physio-Studio.',
+    funIntro:'Drei Fragen zu deiner Fläche, dann deine Kontaktdaten.',
+    org:'Name des Physio-Studios oder der Einrichtung', extra:{k:'ort',l:'PLZ und Ort',opt:true},
+    steps:[
+      {k:'art',q:'Welche Art von Einrichtung betreibst du?',o:['Physio-Studio mit Trainingsfläche','Physiotherapiepraxis ohne eigene Fläche','Reha- oder Gesundheitszentrum','Andere Gesundheitseinrichtung']},
+      {k:'geraete',q:'Wie viele Kraftgeräte stehen auf deiner Fläche?',o:['1 bis 5','6 bis 10','11 bis 20','Mehr als 20','Noch keine, wir planen eine Fläche']},
+      {k:'start',q:'Wann möchtest du starten?',o:START}
+    ],
+    submit:'Kostenlose Demo sichern',
+    finalH2:'Sichere dir eine kostenlose Demo auf deiner Trainingsfläche.',
+    finalP:'Drei Klicks, dann meldet sich das Team zu der Zeit, die dir passt.',
+    burstH2:'Was Trackbar in deinem Physio-Studio verändert.', burstNote:'',
+    burst:[{t:'Anleitung an jedem Gerät',s:'Übung, Gewicht und Einstellung stehen am Display.'},{t:'Saubere Ausführung',s:'Die Live-Kurve gibt bei jeder Wiederholung Feedback.'},{t:'Kein Aufschreiben mehr',s:'Gewicht und Wiederholungen speichert das Gerät automatisch.'},{t:'Mehr Zeit fürs Team',s:'Das Display übernimmt die Standardanleitung.'},{t:'Vorhandene Geräte nutzen',s:'Nachrüsten statt neue Fläche planen.'}]
+  },
+  partner:{
+    label:'Hersteller / Partner',
+    h1:['Digitalisiere dein Sortiment.','Geführtes Training an jedem Gerät.','Unabhängig vom Hersteller.'],
+    lead:'Trackbar wird an Geräten verschiedener Hersteller nachgerüstet. Eine digitale Ergänzung für dein Sortiment und ein starkes Argument im Vertrieb.',
+    proof:'Studios wie aquaFit, FUNatic Fitness, LIFE fit & vital und Fitness Nöllen trainieren schon damit',
+    keys:[
+      {t:'Die Antwort deiner Kunden auf den Fachkräftemangel',p:'Studios suchen Betreuung, die ohne zusätzliches Personal funktioniert. Mit Trackbar lieferst du sie direkt am Gerät mit.'},
+      {t:'Ein digitales Upgrade für jedes Gerät',p:'Dieselbe Bar und derselbe Sensor an Geräten vieler Hersteller, nachgerüstet ohne Umbau am Gerät.'},
+      {t:'Ein Vertriebsmodell, das schon läuft',p:'In Benelux vertreibt Matrix Fitness Benelux Trackbar exklusiv, mit Installation und Support.'}
+    ],
+    checks:['Herstellerunabhängig: gleiche Bar, gleicher Sensor','Nachrüstung ohne Umbau am Gerät','In Benelux bereits über einen exklusiven Reseller'],
+    cta:'Partnerschaft besprechen', ctaShort:'Partnerschaft besprechen',
+    brag:'ccd21de0-e512-4ff7-a81c-c7de77ffb3e1', bragPoster:'assets/brag-hero33',
+    heroCap:'In 60 Sekunden: was Trackbar für dein Sortiment bedeutet.',
+    heroBg:{s:'assets/poster-partner-800.webp',sw:800,l:'assets/poster-partner.webp',lw:1600,m:'assets/herobg-partner-m.webp'}, caseImg:'assets/case-partner', qPoster:'assets/mat-c7-front.webp', finalBg:{s:'assets/final-partner-1400.webp',sw:1400,l:'assets/final-partner-2400.webp',lw:2400,m:'assets/final-partner-m.webp'}, ivImgs:['assets/ivph-partner-1','assets/ivph-partner-2'], caseAlt:'Trackbar-Display an einem Kraftgerät nachgerüstet',
+    bcH2:'Eine digitale Ergänzung für deine Geräte.',
+    bcIntro:'',
+    benefits:[
+      {i:'marken',t:'Herstellerunabhängig',p:'Dieselbe Bar und derselbe Sensor an Geräten von Life Fitness, Matrix, Technogym, Gym80, Precor und weiteren.',g:'',c:FOK},
+      {i:'upgrade',t:'Ein Upgrade für deinen Bestand',p:'Eine digitale Erweiterung für Geräte, die bei deinen Kunden schon stehen.',g:'',c:VS},
+      {i:'deal',t:'Eine zusätzliche Geschäftschance',p:'Trackbar selbst vertreiben oder Abschlüsse vermitteln und am Deal beteiligt werden.',g:'',c:VS},
+      {i:'check',t:'Ein Modell, das schon läuft',p:'In Benelux vertreibt Matrix Fitness Benelux Trackbar exklusiv, mit Installation und Support.',g:'',c:OK}
+    ],
+    bcNote:'',
+    demoIntro:'So sieht die Software aus, die auf deinen Geräten laufen würde.',
+    qTitle:'Fragen von Herstellern und Händlern.',
+    qIntro:'Kurz beantwortet. Konditionen besprechen wir persönlich.',
+    qVideo:'',
+    questions:[
+      {q:'An welchen Geräten und Systemen läuft Trackbar?',a:'An Kraftgeräten mit Steckgewichten von vielen Herstellern, etwa Life Fitness, Matrix, Technogym, Gym80, MedX und Precor, mit derselben Bar und demselben Sensor. Daten gehen an EGYM und Actinate, der Zirkel-Modus läuft auch ohne Partnersystem.',c:OK},
+      {q:'Wie funktioniert die Zusammenarbeit im Vertrieb?',a:'In Benelux vertreibt Matrix Fitness Benelux Trackbar exklusiv. Für DACH und weitere Märkte besprichst du Modell, Gebiet und Konditionen direkt mit Trackbar.',c:OK},
+      {q:'Wer installiert und betreut die Geräte vor Ort?',a:'In Benelux übernimmt der Reseller Installation und Support. Sonst plant Trackbar die Installation direkt mit dir. Den Support in deinem Markt klärst du im Gespräch.',c:OK},
+      {q:'Wie sind Garantie und Haftung am Gerät geregelt?',a:'Dazu gibt es keine pauschale Aussage. Leistungsumfang, Installationsvoraussetzungen und Service-Level bestätigt Trackbar nach Prüfung. Garantie und Haftung am Bestandsgerät klärst du vorab direkt mit Trackbar.',c:OK},
+      {q:'Was kostet Trackbar, und was gilt für Partner?',a:'Für Studios: 1.649 € je Gerät einmalig plus 4,99 € je Gerät und Monat, Installation ab 1.499 €, jeweils zzgl. USt. Partnerkonditionen besprichst du direkt mit Trackbar.',c:OK}
+    ],
+    ivTitle:'Stimmen aus Vertrieb und Partnerschaft.',
+    ivIntro:'Echte Anwendungsfälle und Erfahrungen von Studio-Besitzern.',
+    interviews:[
+      {b:'Vertriebspartner',s:'Interview 01',guid:''},
+      {b:'Studio, das über einen Partner kam',s:'Interview 02',guid:''}
+    ],
+    funTitle:'Erzähl uns in drei Klicks, was du vorhast.',
+    funIntro:'Drei Fragen zu deinem Unternehmen, dann deine Kontaktdaten.',
+    org:'Unternehmen', extra:{k:'position',l:'Position',opt:true},
+    steps:[
+      {k:'art',q:'Was beschreibt dein Unternehmen am besten?',o:['Gerätehersteller','Händler oder Vertrieb','Studioausstatter oder Planer','Etwas anderes']},
+      {k:'interesse',q:'Woran bist du interessiert?',o:['Trackbar ins eigene Angebot aufnehmen','Abschlüsse vermitteln und beteiligt werden','Technische Integration','Erst einmal informieren']},
+      {k:'markt',q:'In welchen Märkten bist du aktiv?',o:['Deutschland','Österreich','Schweiz','Weitere Länder'],multi:true}
+    ],
+    submit:'Gespräch anfragen',
+    finalH2:'Lass uns über eine Partnerschaft sprechen.',
+    finalP:'Drei Klicks, dann meldet sich das Team zu der Zeit, die dir passt.',
+    burstH2:'Was Trackbar für dein Sortiment bedeutet.', burstNote:'',
+    burst:[{t:'Herstellerunabhängig',s:'Gleiche Bar, gleicher Sensor an vielen Marken.'},{t:'Upgrade für deinen Bestand',s:'Ein Anlass für neue Gespräche mit Kunden.'},{t:'Zusätzliche Geschäftschance',s:'Selbst vertreiben oder Abschlüsse vermitteln.'},{t:'Nachrüstung ohne Umbau',s:'Sensor und Display kommen ans vorhandene Gerät.'},{t:'Ein Modell, das schon läuft',s:'In Benelux exklusiv über Matrix Fitness Benelux.'}]
+  }
+};
+
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+var current='fitness';
+/* kleine Bildvarianten fuer mobile Bildschirme */
+
+var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Hero: Poster der Zielgruppe als Klick-Fassade, der Bunny-Player laedt erst nach dem Klick (spart Ladezeit mobil) */
+var heroBox=$('[data-hero-video]'), fraBox=$('[data-fragen-video]');
+function heroFacade(C){
+  if(!heroBox) return;
+  var pb=C.bragPoster;
+  /* Perf 12.11.: steht das passende Poster schon da (statisches HTML beim Start), nichts neu aufbauen */
+  var cur=heroBox.querySelector('[data-hv-poster]');
+  if(cur&&!heroBox.querySelector('iframe,video')&&(cur.getAttribute('src')||'').indexOf(pb+'-800.webp')===0){ heroBox.setAttribute('data-aud',current); heroBox.removeAttribute('data-guid'); return; }
+  heroBox.innerHTML='<button type="button" class="hv__btn" data-hv-play aria-label="Video ansehen 56 s: Trackbar in 60 Sekunden">'+
+    '<img data-hv-poster src="'+pb+'-800.webp" srcset="'+pb+'-800.webp 800w, '+pb+'-1280.webp 1280w, '+pb+'-1920.webp 1920w" sizes="(min-width:1000px) 54vw, 92vw" width="1280" height="720" alt="">'+
+    '<span class="hv__bar" aria-hidden="true"><span class="hv__play"><svg viewBox="0 0 24 24"><path d="M5 3l15 9-15 9z" fill="#0A0B0A"/></svg></span><span class="hv__lbl">Video ansehen <small>56 s</small></span></span></button>';
+  heroBox.setAttribute('data-aud',current);
+  heroBox.removeAttribute('data-guid');
+}
+/* Studio-Stimmen (17.10.2026, Julian: Klick muss sofort abspielen): natives Video direkt als MP4 von Bunny statt
+   iframe-Player. Der Player zeigte erst sein eigenes Vorschaubild, mobil blockte der Browser das Autoplay mit Ton,
+   dann brauchte es einen zweiten Klick. play() im Klick selbst darf mit Ton starten. Klappt die MP4 nicht: iframe. */
+/* Sprunglinks (#…): Die unteren Abschnitte rendert der Browser erst bei Bedarf (content-visibility), ihre Hoehe ist bis
+   dahin geschaetzt und ein weicher Sprung landete bis zu 180 px daneben. Vor dem Sprung einmal alles ausmessen
+   (die Hoehen merkt sich der Browser danach), dann springen und am Ende auf den Pixel nachfuehren. */
+document.addEventListener('click',function(e){
+  if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey) return;
+  var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a) return;
+  var id=decodeURIComponent(a.getAttribute('href').slice(1)), t=id&&document.getElementById(id); if(!t) return;
+  e.preventDefault();
+  var h=document.documentElement; h.classList.add('cv-off'); void h.offsetHeight; h.classList.remove('cv-off'); void h.offsetHeight;
+  t.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});
+  var pad=parseFloat(getComputedStyle(h).scrollPaddingTop)||0, done=false;
+  function fix(){ if(done) return; done=true; var d=t.getBoundingClientRect().top-pad; if(Math.abs(d)>3) window.scrollBy({top:d,behavior:'auto'}); }
+  /* greift der Nutzer selbst ein (Wischen, Mausrad, Taste), wird nicht nachgefuehrt */
+  function stop(){done=true;} ['wheel','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,stop,{once:true,passive:true});});
+  if('onscrollend' in window) window.addEventListener('scrollend',fix,{once:true});
+  setTimeout(fix,1600);
+});
+var BCDN='https://vz-617e21d0-8be.b-cdn.net/';
+/* langsames Netz oder Datensparmodus: 480p, sonst 720p */
+var IVQ=(function(){try{var c=navigator.connection;if(c&&(c.saveData||/(^|-)(2g|3g)$/.test(c.effectiveType||'')))return '480p';}catch(e){}return '720p';})();
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('[data-iv-play]'); if(!b) return;
+  var box=b.parentNode, guid=b.getAttribute('data-iv-play'), title=b.getAttribute('data-title'), ph=b.querySelector('.iv__ph');
+  var v=document.createElement('video');
+  v.src=BCDN+guid+'/play_'+IVQ+'.mp4';
+  if(ph) v.poster=ph.currentSrc||ph.src;
+  v.controls=true; v.autoplay=true; v.playsInline=true; v.preload='auto'; v.setAttribute('title',title);
+  v.addEventListener('error',function(){box.classList.remove('is-playing');box.innerHTML=bunny(guid,title,true);},{once:true});
+  /* immer nur ein Testimonial gleichzeitig */
+  v.addEventListener('play',function(){$$('.iv__media video').forEach(function(o){if(o!==v&&!o.paused)o.pause();});});
+  box.classList.add('is-playing'); box.innerHTML=''; box.appendChild(v);
+  var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
+});
+/* Vorwaermen: naehert sich der Abschnitt, laedt der Browser je Testimonial nur den Kopf der MP4 (Metadaten, wenige KB).
+   Das holt die Datei auf den Bunny-Knoten in der Naehe, der Start nach dem Klick dauert dann keine Sekunden mehr. */
+(function(){
+  var sec=document.getElementById('interviews'); if(!sec||!('IntersectionObserver' in window)) return;
+  var warm={};
+  function run(){$$('[data-iv-play]',sec).forEach(function(b){
+    var g=b.getAttribute('data-iv-play'); if(!g||warm[g]) return;
+    var w=document.createElement('video'); w.muted=true; w.preload='metadata'; warm[g]=w;
+    w.addEventListener('loadedmetadata',function(){warm[g]=1;},{once:true});
+    w.src=BCDN+g+'/play_'+IVQ+'.mp4';
+  });}
+  new IntersectionObserver(function(es){if(es.some(function(x){return x.isIntersecting})) run();},{rootMargin:'900px 0px'}).observe(sec);
+})();
+if(heroBox) heroBox.addEventListener('click',function(e){
+  if(!e.target.closest('[data-hv-play]')) return;
+  var C=CONTENT[current]; if(!C.brag) return;
+  /* v8 R6: natives Video statt Bunny-iframe (Start in unter 1 s statt ~5 s). MP4-Fallback der Library, ohne Referrer abrufbar. */
+  var q=(window.innerWidth*(window.devicePixelRatio||1)>1400)?'1080p':'720p';
+  var v=document.createElement('video');
+  v.src='https://vz-617e21d0-8be.b-cdn.net/'+C.brag+'/play_'+q+'.mp4';
+  v.poster=C.bragPoster+'-1280.webp'; v.controls=true; v.autoplay=true; v.playsInline=true; v.preload='auto';
+  v.setAttribute('title','Trackbar in 60 Sekunden: '+C.label);
+  v.addEventListener('error',function(){heroBox.innerHTML=bunny(C.brag,'Trackbar in 60 Sekunden: '+C.label,true);},{once:true});
+  heroBox.innerHTML=''; heroBox.appendChild(v); var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
+  heroBox.setAttribute('data-guid',C.brag);
+});
+function setFragen(guid){
+  if(!fraBox) return;
+  if(guid){ if(fraBox.getAttribute('data-guid')!==guid){fraBox.innerHTML=bunny(guid,'Die häufigsten Fragen zu Trackbar');fraBox.setAttribute('data-guid',guid);} fraBox.hidden=false; }
+  else { fraBox.innerHTML=''; fraBox.removeAttribute('data-guid'); fraBox.hidden=true; }
+}
+
+function bunny(guid,title,auto){
+  return '<iframe src="https://iframe.mediadelivery.net/embed/614528/'+encodeURIComponent(guid)+'?autoplay='+(auto?'true':'false')+'&loop=false&muted=false&preload='+(auto?'true':'false')+'&responsive=true" title="'+esc(title)+'" loading="'+(auto?'eager':'lazy')+'" referrerpolicy="no-referrer" allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;autoplay" allowfullscreen></iframe>';
+}
+
+function render(aud,animate){
+  var C=CONTENT[aud]; if(!C) return;
+  current=aud;
+  var swaps=$$('[data-swap]');
+  if(animate){swaps.forEach(function(s){s.classList.add('is-out')});}
+  /* ohne Animation sofort schreiben: spart beim Laden einen Task und ein Layout */
+  (animate?function(f){setTimeout(f,180)}:function(f){f()})(function(){
+    if(!heroBox||heroBox.getAttribute('data-aud')!==aud||heroBox.hasAttribute('data-guid')) heroFacade(C);
+    setFragen(aud==='fitness'?(VIDEOS.fragen||C.qVideo):(C.qVideo||''));
+    $$('[data-k]').forEach(function(el){
+      var k=el.getAttribute('data-k');
+      /* v9: Headline aus drei Sätzen, je Satz eine Zeile, der letzte hervorgehoben */
+      if(k==='h1'){el.innerHTML=[].concat(C.h1).map(function(t,i,a){return '<span>'+(i===a.length-1&&a.length>1?'<em>'+esc(t)+'</em>':esc(t))+'</span>'}).join(' ');return;}
+      /* Kundenzeile: „Partner-Studios" nie am Bindestrich umbrechen */
+      if(k==='proof'){el.innerHTML=esc(C.proof||'').replace('Partner-Studios','<span class="nb">Partner-Studios</span>');return;}
+      if(C[k]!==undefined) el.textContent=(el.tagName==='H2'?String(C[k]).replace(/\.$/,''):C[k]);
+    });
+    $$('[data-k-html]').forEach(function(el){el.innerHTML=C[el.getAttribute('data-k-html')]||''});
+    $$('[data-k-note]').forEach(function(el){var v=C[el.getAttribute('data-k-note')];el.innerHTML=v||'';el.hidden=!v;});
+    /* Bilder je Zielgruppe: Desktop klein/gross per srcset, mobil eigene Hochkant-Fassung */
+    $$('[data-img]').forEach(function(img){var v=C[img.getAttribute('data-img')];if(!v||!v.s) return;img.srcset=v.s+' '+v.sw+'w, '+v.l+' '+v.lw+'w';img.src=v.s;});
+    $$('[data-img-m]').forEach(function(src){var v=C[src.getAttribute('data-img-m')];if(v&&v.m) src.srcset=v.m;});
+    var ck=$('[data-list="checks"]'); if(ck) ck.innerHTML=C.checks.map(function(c){return '<li>'+CHECK+'<span>'+esc(c)+'</span></li>'}).join('');
+    /* v9: drei Key-Faktoren je Zielgruppe direkt unter dem Einstieg */
+    var kl=$('[data-list="keys"]'); if(kl) kl.innerHTML=(C.keys||[]).map(function(x){return '<li><h3>'+esc(x.t)+'</h3><p>'+esc(x.p)+'</p></li>'}).join('');
+    var pl=$('[data-list="plan"]'); if(pl) pl.innerHTML=(C.plan||[]).map(function(x,i){return '<span><b>'+(i+1)+'</b> '+esc(x)+'</span>'}).join('');
+    var ci=$('[data-case-img]'); if(ci){ci.src=C.caseImg+'-880.webp';ci.srcset=C.caseImg+'-640.webp 640w, '+C.caseImg+'-880.webp 880w, '+C.caseImg+'-1200.webp 1200w';ci.alt=C.caseAlt||'';}
+    $('[data-list="benefits"]').innerHTML=C.benefits.map(function(b){
+      return '<li class="usp__item"><span class="usp__ic" aria-hidden="true">'+(ICONS[b.i]||ICONS.check)+'</span><div><h3>'+esc(b.t)+'</h3><p>'+esc(b.p)+'</p></div></li>';
+    }).join('');
+    $('[data-list="questions"]').innerHTML=C.questions.map(function(q,i){
+      return '<li><details'+(i===0?' open':'')+'><summary><span>'+esc(q.q)+'</span><span class="pm" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2"/></svg></span></summary><div class="a"><p>'+esc(q.a)+'</p>'+q.c+'</div></details></li>';
+    }).join('');
+    var ivg=$('[data-list="interviews"]'); ivg.setAttribute('data-n',C.interviews.length); ivg.style.setProperty('--n',Math.min(4,C.interviews.length));
+    var clips=C.interviews.some(function(v){return v.poster}); ivg.toggleAttribute('data-clips',clips); ivg.toggleAttribute('data-wide',C.interviews.some(function(v){return v.thumb}));
+    ivg.innerHTML=C.interviews.map(function(v,i){
+      var cap='<div class="iv__cap"><b>'+esc(v.b)+'</b><span>'+esc(v.s)+'</span></div>';
+      /* v7: Studio-Stimmen 16:9 als Klick-Fassade im 2x2-Raster */
+      if(v.guid&&v.thumb) return '<article class="iv iv--wide" data-slot="interview-'+(i+1)+'"><div class="iv__media"><button type="button" class="iv__play" data-iv-play="'+esc(v.guid)+'" data-title="'+esc(v.b)+'" ">'+
+        '<img class="iv__ph" src="'+esc(v.thumb)+'-800.webp" srcset="'+esc(v.thumb)+'-480.webp 480w, '+esc(v.thumb)+'-800.webp 800w, '+esc(v.thumb)+'-1280.webp 1280w" sizes="(min-width:1100px) 560px, (min-width:760px) 46vw, 92vw" alt="" width="1280" height="720" loading="lazy" decoding="async">'+
+        '<span class="ic" aria-hidden="true">'+PLAY+'</span>'+cap+'<span class="sr-only"> Video abspielen</span></button></div></article>';
+      /* Video mit Poster: Klick-Fassade im Hochformat, der Player laedt erst nach dem Klick */
+      if(v.guid&&v.poster) return '<article class="iv iv--clip" data-slot="interview-'+(i+1)+'"><div class="iv__media"><button type="button" class="iv__play" data-iv-play="'+esc(v.guid)+'" data-title="'+esc(v.b)+'" aria-label="Video abspielen: '+esc(v.b)+'">'+
+        '<img class="iv__ph" src="'+esc(v.poster)+'-480.webp" srcset="'+esc(v.poster)+'-480.webp 480w, '+esc(v.poster)+'-720.webp 720w, '+esc(v.poster)+'-1080.webp 1080w" sizes="(min-width:1100px) 22vw, (min-width:760px) 44vw, 70vw" alt="" width="720" height="1280" loading="lazy" decoding="async">'+
+        '<span class="ic" aria-hidden="true">'+PLAY+'</span>'+cap+'</button></div></article>';
+      if(v.guid) return '<article class="iv iv--video" data-slot="interview-'+(i+1)+'"><div class="iv__media">'+bunny(v.guid,v.b)+'</div>'+cap+'</article>';
+      var b=C.ivImgs&&C.ivImgs[i], ph=b?'<img class="iv__ph" src="'+esc(b)+'-480.webp" srcset="'+esc(b)+'-480.webp 480w, '+esc(b)+'-800.webp 800w" sizes="(min-width:1100px) 22vw, (min-width:760px) 44vw, 78vw" alt="" width="800" height="1000" loading="lazy" decoding="async">':'';
+      return '<article class="iv" data-slot="interview-'+(i+1)+'"><div class="iv__media">'+ph+'<span class="iv__tag">Video folgt</span><span class="ic" aria-hidden="true">'+PLAY+'</span>'+cap+'</div></article>';
+    }).join('');
+    $('[data-partner-full]').hidden=(aud!=='partner');
+    $$('.aud__opt').forEach(function(b){var on=b.getAttribute('data-aud')===aud;b.setAttribute('aria-checked',on?'true':'false');b.tabIndex=on?0:-1;});
+    document.documentElement.setAttribute('data-aud',aud);
+    var bl=$('[data-list="burst"]'); if(bl) bl.innerHTML=(C.burst||[]).map(function(x,i){return '<li class="xk xk-'+(i+1)+'"><b>'+esc(x.t)+'</b><span>'+esc(x.s)+'</span></li>'}).join('');
+    showPickBg(aud);
+    swaps.forEach(function(s){s.classList.remove('is-out')});
+    funnelReset();
+    if(window.__xhRefresh) window.__xhRefresh();
+  });
+  /* Nur bei echtem Wechsel die Adresse anpassen, sonst gingen Sprunglinks wie #demo verloren */
+  if(animate){try{history.replaceState(null,'','#zg-'+aud);}catch(e){}}
+}
+
+/* Zielgruppenwahl: Hover blendet das Bild der Zielgruppe ein, Klick scrollt weich nach unten und baut die Seite live auf.
+   Pfeiltasten wechseln wie in einer Radiogruppe, ohne zu springen. */
+function showPickBg(aud){$$('[data-pick-bg]').forEach(function(im){im.classList.toggle('is-on',im.getAttribute('data-pick-bg')===aud)})}
+var navEl=$('.nav');
+function absTop(el){var y=0;while(el){y+=el.offsetTop;el=el.offsetParent;}return y;}
+function toNutzen(instant){
+  var t=document.getElementById('nutzen'); if(!t) return;
+  var y=absTop(t)-(navEl?navEl.offsetHeight:0);
+  if(instant){var h=document.documentElement,sb=h.style.scrollBehavior;h.style.scrollBehavior='auto';window.scrollTo(0,y);h.style.scrollBehavior=sb;}
+  else window.scrollTo({top:y,behavior:'smooth'});
+}
+/* Wahl per Klick (Runde v3): kein Vorhang mehr. Die Inhalte wechseln, die Abschnitte darunter gehen in
+   Wartestellung und bauen sich gestaffelt auf, sobald sie ins Bild kommen. Ein weiches Auto-Scrollen fuehrt bis
+   ans Ende der Benefit-Explosion, die unterwegs mit den Benefits der gewaehlten Zielgruppe abspielt.
+   Mausrad, Wischen, Taste oder fremdes Scrollen stoppen das Auto-Scrollen sofort. */
+var autoRaf=null, autoStop=null;
+function easeIO(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+function easeSine(t){return -(Math.cos(Math.PI*t)-1)/2}
+/* Mehrere Abschnitte nacheinander: [{y, dur, ease}] */
+function autoScroll(segs){
+  if(autoStop) autoStop();
+  var h=document.documentElement, sb=h.style.scrollBehavior, i=0, t0=null, from=window.scrollY, last=from;
+  h.style.scrollBehavior='auto';
+  function end(){
+    cancelAnimationFrame(autoRaf); autoRaf=null; h.style.scrollBehavior=sb; autoStop=null;
+    ['wheel','touchstart','keydown'].forEach(function(ev){window.removeEventListener(ev,end)});
+  }
+  function step(ts){
+    if(t0===null) t0=ts;
+    if(Math.abs(window.scrollY-last)>40){end();return;}
+    var sg=segs[i], t=Math.min(1,(ts-t0)/sg.dur);
+    last=Math.round(from+(sg.y-from)*sg.ease(t)); window.scrollTo(0,last);
+    if(t>=1){ i++; if(i>=segs.length){end();return;} from=sg.y; t0=ts; }
+    autoRaf=requestAnimationFrame(step);
+  }
+  ['wheel','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,end,{passive:true})});
+  autoStop=end;
+  autoRaf=requestAnimationFrame(step);
+}
+/* Anfang und Ende des Klebewegs der Explosion (Desktop: ganze Buehne, mobil: nur das Display) */
+function nutzenPath(){
+  var t=document.getElementById('nutzen'), nav=navEl?navEl.offsetHeight:0, a, b;
+  /* R4d: ohne Klebeweg: erst bis kurz vor die Sektion, dann ruhig hindurch, bis sie oben anliegt */
+  if(window.matchMedia('(max-width: 900px)').matches){var bu=$('.xh-burst',t);b=absTop(bu)-window.innerHeight*0.10;a=b-window.innerHeight*0.75;}
+  else {b=absTop(t)+window.innerHeight*0.05;a=b-window.innerHeight*0.8;}
+  return {start:a,end:b};
+}
+/* Phase 1 zuegig bis an die Explosion, Phase 2 ruhig hindurch: das Display faechert sichtbar auf,
+   die Benefits der Zielgruppe erscheinen waehrend der Fahrt */
+function scrollThroughNutzen(){
+  var pth=nutzenPath(), y0=window.scrollY;
+  if(y0<pth.start-20){
+    autoScroll([{y:pth.start,dur:Math.min(1400,Math.max(650,500+(pth.start-y0)*0.45)),ease:easeIO},
+                {y:pth.end,dur:1600,ease:easeSine}]);
+  } else {
+    autoScroll([{y:pth.end,dur:Math.min(2200,Math.max(900,600+Math.abs(pth.end-y0)*0.5)),ease:easeIO}]);
+  }
+}
+var rbObs=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting&&e.target.classList.contains('rb-wait')){e.target.classList.remove('rb-wait');e.target.classList.add('rb-go');rbObs.unobserve(e.target);}
+})},{rootMargin:'0px 0px -12% 0px',threshold:0.05}):null;
+function buildBelow(){
+  if(reduceMotion||!rbObs) return;
+  $$('#bereich ~ section').forEach(function(sec){sec.classList.remove('rb-go');sec.classList.add('rb-wait');rbObs.observe(sec);});
+}
+function choose(aud,go){
+  if(!CONTENT[aud]) return;
+  var same=(aud===current);
+  if(!go){ if(!same) render(aud,true); return; }
+  if(!same) render(aud,false);
+  try{history.replaceState(null,'','#zg-'+aud);}catch(e){}
+  /* v9: nach der Wahl geht es zu den vier Benefits, die jetzt direkt unter der Bereichswahl stehen.
+     Die Explosionsgrafik folgt danach und spielt wie bisher beim Scrollen ab. */
+  setTimeout(function(){
+    if(window.__xhRefresh) window.__xhRefresh();
+    var t=document.getElementById('case'); if(!t) return;
+    var y=absTop(t)-(navEl?navEl.offsetHeight:0);
+    if(reduceMotion){ var h=document.documentElement,sb=h.style.scrollBehavior;h.style.scrollBehavior='auto';window.scrollTo(0,y);h.style.scrollBehavior=sb; return; }
+    buildBelow();
+    autoScroll([{y:y,dur:Math.min(1300,Math.max(650,450+Math.abs(y-window.scrollY)*0.5)),ease:easeIO}]);
+  },0);
+}
+$$('.aud__opt').forEach(function(b,i,all){
+  b.addEventListener('click',function(){choose(b.getAttribute('data-aud'),true)});
+  b.addEventListener('mouseenter',function(){showPickBg(b.getAttribute('data-aud'))});
+  b.addEventListener('focus',function(){showPickBg(b.getAttribute('data-aud'))});
+  b.addEventListener('keydown',function(e){
+    var d=(e.key==='ArrowRight'||e.key==='ArrowDown')?1:(e.key==='ArrowLeft'||e.key==='ArrowUp')?-1:0;
+    if(!d) return; e.preventDefault();
+    var n=all[(i+d+all.length)%all.length]; n.focus(); choose(n.getAttribute('data-aud'),false);
+  });
+});
+var po=$('.pick__opts');
+if(po){
+  po.addEventListener('mouseleave',function(){showPickBg(current)});
+  po.addEventListener('focusout',function(e){if(!po.contains(e.relatedTarget)) showPickBg(current)});
+}
+$$('[data-goto]').forEach(function(b){b.addEventListener('click',function(){choose(b.getAttribute('data-goto'),true)})});
+/* R4d: USP-Liste startet ihre Animation, sobald sie ins Bild kommt */
+(function(){var l=$('.usp__list'); if(!l) return; if(!('IntersectionObserver' in window)||reduceMotion){l.classList.add('is-in');return;}
+  var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.classList.add('is-in');o.disconnect();}})},{threshold:.25}); o.observe(l);})();
+/* R5: Beim Drueberfahren baut sich das Symbol neu auf (nur der Strich, keine Bewegung) */
+(function(){var l=$('.usp__list'); if(!l||reduceMotion) return;
+  l.addEventListener('mouseover',function(e){var it=e.target.closest('.usp__item'); if(!it||it.contains(e.relatedTarget)) return; it.classList.remove('rd'); void it.offsetWidth; it.classList.add('rd');});})();
+/* Nav und Footer 'Partner': ausserhalb der Partner-Ansicht direkt in die Partner-Ansicht wechseln */
+$$('[data-partner-link]').forEach(function(a){a.addEventListener('click',function(e){if(document.documentElement.getAttribute('data-aud')!=='partner'){e.preventDefault();choose('partner',true);}})});
+/* Abschnitte nach der Wahl fuer den gestaffelten Neuaufbau nummerieren */
+var RB_SEL='.sec__head,.case > *,.flow,.demo > *,.faqwrap > *,.ivgrid,.cta-line,.pgrid > *,.teaser .shell > *,.fun > *,.final .shell > *,.xh-h,.xh-note';
+$$('#bereich ~ section').forEach(function(sec){
+  var k=0;
+  $$(RB_SEL,sec).forEach(function(el){
+    if(el.parentElement&&el.parentElement.closest('.rb-i')) return;
+    el.classList.add('rb-i'); el.style.setProperty('--k',Math.min(k++,6));
+  });
+});
+/* Auswahl-Sektion: Kurve und Kacheln starten, sobald sie ins Bild kommt */
+(function(){
+  var p=$('#bereich'); if(!p) return;
+  if(reduceMotion||!('IntersectionObserver' in window)){p.classList.add('in');return;}
+  var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){p.classList.add('in');o.disconnect();}})},{threshold:0.2});
+  o.observe(p);
+})();
+
+/* Trackbar-Welle (v4): Fortschritt aus der Lage der Sektion im Bild, zeitbasiert geglaettet. Die Linie zeichnet
+   sich bis zum Ball, der Ball sammelt die Muenzen ein, rueckwaerts kommen sie zurueck. Ohne Bewegung: fester Zustand. */
+/* Perf 12.11.: Kurven-Tabelle kostete beim Laden ~230 ms (4x CPU), daher erst im Leerlauf des Browsers */
+(function(){var s0=document.getElementById('bereich');if(!s0)return;var run=function(){(window.requestIdleCallback||function(f){return setTimeout(f,200)})(function(){waveInit();},{timeout:2000});};
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){io.disconnect();run();}},{rootMargin:'400px 0px'});io.observe(s0);}else run();})();
+function waveInit(){
+  var sec=$('#bereich'), svg=sec?$('.pick__wave',sec):null; if(!svg||!svg.getElementById) return;
+  var path=svg.getElementById('wv-path'); if(!path||!path.getTotalLength) return;
+  var L=path.getTotalLength(), draw=$$('.wv-draw',svg), dot=$('.wv-dot',svg), rails=$('.wv-rails',svg), main=$('.wv-main',svg), cg=$('.wv-coins',svg);
+  draw.forEach(function(u){u.style.strokeDasharray=L.toFixed(1)+' '+L.toFixed(1);});
+  /* Sichtbarer Abschnitt: die Grafik wird bei schmalen Bildschirmen seitlich beschnitten (slice), Fortschritt und
+     Muenzen beziehen sich deshalb nur auf den Teil der Kurve, der wirklich im Bild ist */
+  var A=0, B=L;
+  /* Low-End (17.10.): Kurvenpunkte einmal als Tabelle (300 Stuetzstellen, Abweichung unter 0,5 px), danach je Bild nur
+     interpolieren statt getPointAtLength; Lage der Grafik gecacht statt Layout-Abfrage bei jedem Scroll-Ereignis */
+  var LN=120, LX=new Float32Array(LN+1), LY=new Float32Array(LN+1);
+  for(var li=0;li<=LN;li++){var lp=path.getPointAtLength(L*li/LN);LX[li]=lp.x;LY[li]=lp.y;}
+  function ptAt(len){var f=Math.max(0,Math.min(LN,len/L*LN)), i=Math.min(LN-1,Math.floor(f)), t=f-i;return {x:LX[i]+(LX[i+1]-LX[i])*t,y:LY[i]+(LY[i+1]-LY[i])*t};}
+  var svgY=0, svgH=0;
+  function lenAtX(x){var lo=0,hi=L;for(var k=0;k<24;k++){var mid=(lo+hi)/2;if(ptAt(mid).x<x) lo=mid; else hi=mid;}return (lo+hi)/2;}
+  function visRange(){
+    var r=svg.getBoundingClientRect(); if(!r.width||!r.height) return;
+    svgY=r.top+window.scrollY; svgH=r.height;
+    var sc=Math.max(r.width/1600,r.height/300), vw=r.width/sc, x0=(1600-vw)/2;
+    A=lenAtX(x0+12); B=lenAtX(x0+vw-12);
+  }
+  var coins=[.12,.27,.42,.57,.72,.87].map(function(f){
+    var c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('r','4.2'); cg.appendChild(c); return {f:f,el:c};
+  });
+  function placeCoins(){coins.forEach(function(c){var pt=ptAt(A+c.f*(B-A));c.el.setAttribute('cx',pt.x.toFixed(1));c.el.setAttribute('cy',pt.y.toFixed(1));});}
+  function setP(q){
+    var len=Math.max(0.5,A+q*(B-A)), pt=ptAt(len);
+    dot.setAttribute('transform','translate('+pt.x.toFixed(1)+' '+pt.y.toFixed(1)+')');
+    draw.forEach(function(u){u.style.strokeDashoffset=(L-len).toFixed(1);});
+    coins.forEach(function(c){c.el.classList.toggle('is-got',q>c.f+0.012);});
+    rails.setAttribute('transform','translate('+(-70*q).toFixed(1)+' 0)');
+    main.setAttribute('transform','translate('+(-26*q).toFixed(1)+' 0)');
+  }
+  if(reduceMotion){ requestAnimationFrame(function(){visRange();placeCoins();setP(0.78);}); return; }
+  function calc(){var vh=window.innerHeight, rt=svgY-window.scrollY; return Math.min(1,Math.max(0,(vh-rt)/(vh*0.62+svgH*0.5)));}
+  var target=0, cur=0, raf=null, last=null;
+  function tick(ts){
+    var dt=(last===null)?16.7:Math.min(100,ts-last); last=ts;
+    cur+=(target-cur)*(1-Math.pow(0.86,dt/16.7)); if(Math.abs(target-cur)<0.0008) cur=target;
+    setP(cur);
+    if(cur===target){raf=null;last=null;} else raf=requestAnimationFrame(tick);
+  }
+  function upd(){target=calc(); if(!raf) raf=requestAnimationFrame(tick);}
+  /* Low-End (17.10.): ausserhalb der Sektion keine Messung je Scroll-Ereignis, beim Verlassen einmal Endzustand */
+  var near=true;
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){near=es[es.length-1].isIntersecting; if(near){visRange();placeCoins();} upd();},{rootMargin:'60% 0px'}).observe(sec);
+  window.addEventListener('scroll',function(){if(near) upd();},{passive:true});
+  window.addEventListener('resize',function(){visRange();placeCoins();upd();},{passive:true});
+  requestAnimationFrame(function(){visRange();placeCoins();target=cur=calc();setP(cur);});
+}
+
+/* Benefit-Explosion nach Skill explosionseffekt: --p ist der Weg der Buehne im Klebefenster, geglaettet (lerp 0.16)
+   mit Ease-in-out. Desktop klebt die Buehne, mobil nur das Display. Keypoints gestaffelt ab 42 Prozent,
+   mobil sobald die Liste im Bild ist. Rueckwaerts scrollen setzt das Display wieder zusammen. */
+(function(){
+  var sec=$('#nutzen'); if(!sec) return;
+  var pin=$('.xh-pin',sec), burst=$('.xh-burst',sec), stick=$('.xh-stick',sec), list=$('.xk-list',sec);
+  var mobile=window.matchMedia('(max-width: 900px)');
+  var top=0, range=1, target=0, cur=0, raf=null;
+  /* Low-End (17.10.): --p nur am Display-Stapel statt an der ganzen Sektion (kleinere Stil-Neuberechnung je Bild),
+     Benefit-Liste gecacht und nur bei Zustandswechsel geschrieben statt bei jedem Scroll-Ereignis */
+  var stack=$('.xh-stack',sec)||sec, ksCache=null, ksState=null, boxY=0, listY=0;
+  function navH(){ if(navEl) sec.style.setProperty('--navh',navEl.offsetHeight+'px'); }
+  function kp(){
+    var ks=ksCache||(ksCache=$$('.xk',sec));
+    if(reduceMotion){ ks.forEach(function(k){k.classList.add('is-on')}); return; }
+    if(mobile.matches){
+      var vis=(listY-window.scrollY)<window.innerHeight*0.9;
+      if(vis===ksState) return; ksState=vis;
+      ks.forEach(function(k,i){k.style.transitionDelay=vis?(i*90)+'ms':'0ms';k.classList.toggle('is-on',vis);});
+    } else {
+      var n=0; ks.forEach(function(k,i){if(cur>0.42+i*0.1) n=i+1;});
+      if(('d'+n)===ksState) return; ksState='d'+n;
+      ks.forEach(function(k,i){k.style.transitionDelay='0ms';k.classList.toggle('is-on',i<n);});
+    }
+  }
+  function measure(){
+    navH();
+    var box=mobile.matches?burst:sec, st=mobile.matches?stick:pin;
+    var off=parseFloat(getComputedStyle(st).top)||0;
+    top=absTop(box)-off;
+    range=Math.max(1,box.offsetHeight-st.offsetHeight);
+    boxY=box.getBoundingClientRect().top+window.scrollY; listY=list?list.getBoundingClientRect().top+window.scrollY:0;
+  }
+  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+  var lastTs=null;
+  function tick(ts){
+    /* zeitbasierte Glaettung: gleiches Verhalten bei 30 und 120 Bildern pro Sekunde */
+    var dt=(lastTs===null)?16.7:Math.min(100,ts-lastTs); lastTs=ts;
+    cur+=(target-cur)*(1-Math.pow(0.84,dt/16.7)); if(Math.abs(target-cur)<0.002) cur=target;
+    stack.style.setProperty('--p',ease(cur).toFixed(4)); kp();
+    if(cur===target){raf=null;lastTs=null;} else raf=requestAnimationFrame(tick);
+  }
+  /* R4d: kein Festkleben mehr. Die Explosion laeuft, waehrend die Buehne frei durch die Bildmitte scrollt:
+     Start, wenn ihre Oberkante bei 75 % (mobil 85 %) der Hoehe steht, fertig bei -5 % (mobil 10 %). */
+  function update(){ var rt=boxY-window.scrollY, vh=window.innerHeight, a=mobile.matches?0.85:0.75, b=mobile.matches?0.10:-0.05;
+    target=Math.min(1,Math.max(0,(a*vh-rt)/((a-b)*vh))); if(!raf) raf=requestAnimationFrame(tick); }
+  /* Schwebe-Animation nur, solange die Sektion im Bild ist (spart Rechenzeit, vor allem mobil) */
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){es.forEach(function(e){sec.classList.toggle('is-vis',e.isIntersecting)})}).observe(sec);
+  window.__xhRefresh=function(){ ksCache=null; ksState=null; if(reduceMotion){kp();return;} measure(); update(); kp(); };
+  if(reduceMotion){ requestAnimationFrame(function(){navH(); sec.style.setProperty('--p','1'); kp();}); return; }
+  /* Perf 12.11.: kein Messen mehr im ersten Frame (erzwang ein volles Layout beim Laden). Der Observer meldet sich
+     nach dem Rendern, dann ist das Messen billig; liegt die Sektion weit weg, wird erst beim Annaehern gemessen. */
+  var near=false;
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){near=es[es.length-1].isIntersecting; if(!near) return; measure(); update(); if(mobile.matches) kp();},{rootMargin:'60% 0px'}).observe(sec);
+  else { near=true; requestAnimationFrame(function(){measure(); update();}); }
+  window.addEventListener('scroll',function(){if(!near) return; update(); if(mobile.matches) kp();},{passive:true});
+  window.addEventListener('resize',function(){measure();update();},{passive:true});
+  window.addEventListener('load',function(){if(near){measure();update();}});
+})();
+
+/* Demo: Trackbars Software als schneller Build unter demo/ (Quelle browser-demo.trackbar.com, siehe build_demo.py).
+   Naehert sich die Sektion, werden die Dateien vorgeladen, damit der Klick sofort startet. */
+(function(){
+  var d=document.getElementById('demo'); if(!d||!('IntersectionObserver' in window)) return;
+  var o=new IntersectionObserver(function(es){ if(!es.some(function(e){return e.isIntersecting})) return; o.disconnect();
+    ['demo/','demo/vendor/react.production.min.js','demo/vendor/react-dom.production.min.js','demo/app.min.js','demo/tokens.css','demo/assets/device-frame.webp'].forEach(function(u){
+      var l=document.createElement('link'); l.rel='prefetch'; l.href=u; document.head.appendChild(l); });
+  },{rootMargin:'900px 0px'});
+  o.observe(d);
+})();
+/* Demo erst nach Klick einbetten */
+var demoBtn=$('[data-demo-load]');
+if(demoBtn) demoBtn.addEventListener('click',function(){
+  var st=$('[data-demo]');
+  var f=document.createElement('iframe');
+  f.src='demo/';
+  f.title='Original-Demo der Trackbar-Software';
+  f.setAttribute('allow','fullscreen');
+  f.setAttribute('allowfullscreen','');
+  var ld=document.createElement('div'); ld.className='demo__loading'; ld.textContent='Demo lädt …';
+  f.addEventListener('load',function(){ld.remove();st.classList.add('is-live')});
+  st.appendChild(f); st.appendChild(ld);
+  $('[data-demo-gate]').remove();
+});
+
+/* Qualifizierungs-Funnel: 3 Fragen + Kontakt + Abschluss. Zielgruppe kommt von oben. */
+var F={step:0,ans:{},contact:{},reach:[],done:false,res:null};
+function funnelReset(){F.step=0;F.ans={};F.contact={};F.reach=[];F.done=false;F.res=null;drawFunnel();}
+function total(){return CONTENT[current].steps.length+1}
+function drawFunnel(){
+  var C=CONTENT[current], body=$('[data-fun-body]'), err=$('[data-fun-err]'), nav=$('[data-fun-nav]');
+  err.textContent='';
+  $('[data-fun-aud]').textContent=C.label;
+  if(F.done){
+    $('[data-fun-step]').textContent='Fertig';
+    $('[data-fun-bar]').style.width='100%';
+    nav.hidden=true;
+    var rows=C.steps.map(function(s){var v=F.ans[s.k];return '<dt>'+esc(s.q.replace(/\?$/,''))+'</dt><dd>'+esc(Array.isArray(v)?v.join(', '):v)+'</dd>'}).join('');
+    var reach=F.reach.join(', ');
+    body.innerHTML='<div class="done"><div class="big"><svg width="26" height="26" viewBox="0 0 20 20"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="#0A0B0A" stroke-width="2.4" fill="none"/></svg></div>'+
+      '<h3>Danke, '+esc(F.contact.name.split(' ')[0])+'.</h3>'+
+      '<p style="color:var(--text);margin-top:0.4rem">Deine Anfrage ist da. '+confirmText(F.res)+'Das Trackbar-Team meldet sich zu deiner Wunschzeit.</p>'+
+      '<dl><dt>Bereich</dt><dd>'+esc(C.label)+'</dd>'+rows+'<dt>Erreichbar</dt><dd>'+esc(reach)+'</dd></dl>'+
+      '<div class="fnav"><button class="linkbtn" data-fun-restart>Neue Anfrage</button><a class="btn btn--ink btn--sm" href="#top">Zurück nach oben</a></div></div>';
+    $('[data-fun-restart]').addEventListener('click',funnelReset);
+    return;
+  }
+  nav.hidden=false;
+  var n=total();
+  $('[data-fun-step]').textContent='Schritt '+(F.step+1)+' von '+n;
+  $('[data-fun-bar]').style.width=Math.round(F.step/n*100)+'%';
+  $('[data-fun-back]').disabled=(F.step===0);
+  var next=$('[data-fun-next]');
+  if(F.step<C.steps.length){
+    var s=C.steps[F.step], cur=F.ans[s.k];
+    next.textContent='Weiter';
+    body.innerHTML='<div class="fstep"><h3>'+esc(s.q)+'</h3><p class="hint">'+(s.multi?'Mehrfachauswahl möglich.':'Bitte eine Antwort wählen.')+'</p><div class="opts" role="'+(s.multi?'group':'radiogroup')+'" aria-label="'+esc(s.q)+'">'+
+      s.o.map(function(o){var on=s.multi?(cur||[]).indexOf(o)>-1:cur===o;return '<button type="button" class="opt'+(s.multi?' multi':'')+'" role="'+(s.multi?'checkbox':'radio')+'" aria-checked="'+(on?'true':'false')+'" data-v="'+esc(o)+'"><span class="bx" aria-hidden="true"></span>'+esc(o)+'</button>'}).join('')+'</div></div>';
+    $$('.opt',body).forEach(function(b){
+      b.addEventListener('click',function(){
+        var v=b.getAttribute('data-v');
+        if(s.multi){var a=F.ans[s.k]||[];var i=a.indexOf(v);if(i>-1)a.splice(i,1);else a.push(v);F.ans[s.k]=a;b.setAttribute('aria-checked',i>-1?'false':'true');}
+        else{F.ans[s.k]=v;$$('.opt',body).forEach(function(o){o.setAttribute('aria-checked',o===b?'true':'false')});setTimeout(goNext,220);}
+        err.textContent='';
+      });
+    });
+  } else {
+    next.textContent=C.submit;
+    var c=F.contact;
+    body.innerHTML='<div class="fstep"><h3>Fast geschafft. Wie erreichen wir dich?</h3><p class="hint">Pflichtfelder sind mit * markiert.</p>'+
+      '<div class="fields">'+
+      field('name','Vorname und Nachname','text','name',c.name,false)+
+      field('org',C.org,'text','organization',c.org,false)+
+      field('email','E-Mail','email','email',c.email,false)+
+      field('tel','Telefon','tel','tel',c.tel,false)+
+      field(C.extra.k,C.extra.l,'text',C.extra.k==='ort'?'address-level2':'organization-title',c[C.extra.k],true)+
+      '<div class="field full"><label id="reach-l">Wann erreichen wir dich am besten?</label><div class="reach" role="group" aria-labelledby="reach-l">'+
+      ['Vormittag','Mittag','Nachmittag','Abend'].map(function(r){return '<button type="button" class="opt multi" role="checkbox" aria-checked="'+(F.reach.indexOf(r)>-1?'true':'false')+'" data-r="'+r+'"><span class="bx" aria-hidden="true"></span>'+r+'</button>'}).join('')+
+      '</div><div class="fe" data-fe="reach"></div></div>'+
+      '<div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" data-hp></label></div>'+
+      '<div class="field full"><label class="consent"><input type="checkbox" data-consent><span>Ich bin einverstanden, dass Trackbar meine Angaben zur Bearbeitung der Anfrage nutzt und mir eine Bestätigung per E-Mail und SMS schickt. Hinweise in der <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a>.</span></label><div class="fe" data-fe="consent"></div></div>'+
+      '</div></div>';
+    $$('[data-r]',body).forEach(function(b){b.addEventListener('click',function(){var r=b.getAttribute('data-r'),i=F.reach.indexOf(r);if(i>-1)F.reach.splice(i,1);else F.reach.push(r);b.setAttribute('aria-checked',i>-1?'false':'true');$('[data-fe="reach"]').textContent='';})});
+    $('[data-consent]',body).addEventListener('change',function(){$('[data-fe="consent"]').textContent='';});
+    $$('input[data-f]',body).forEach(function(inp){inp.addEventListener('input',function(){F.contact[inp.getAttribute('data-f')]=inp.value;inp.parentNode.classList.remove('bad');$('[data-fe="'+inp.getAttribute('data-f')+'"]').textContent='';})});
+  }
+}
+function field(k,l,type,ac,val,opt){
+  return '<div class="field"><label for="f-'+k+'">'+esc(l)+(opt?' <small>optional</small>':' <small>*</small>')+'</label><input id="f-'+k+'" data-f="'+k+'" type="'+type+'" autocomplete="'+ac+'" value="'+esc(val||'')+'"'+(opt?'':' required aria-required="true"')+'><div class="fe" data-fe="'+k+'"></div></div>';
+}
+/* Spamschutz (17.10.2026): dieselben Plausibilitaetsregeln wie im Server (netlify/functions/lead.mjs) */
+var JUNK=/^(test|tester|testing|asdf\w*|qwer\w*|yxcv\w*|abc|abcd|xxx+|aaa+|foo|bar|admin|name|vorname|nachname|max mustermann|mustermann|keine|none|null|nix|spam|fake|hallo|hi)$/i;
+var DISPOSABLE=/@(.*\.)?(mailinator|guerrillamail|sharklasers|grr|10minutemail|10minmail|tempmail|temp-mail|tempmailo|tmpmail|trashmail|trash-mail|yopmail|wegwerfmail|wegwerfemail|einrot|spamgourmet|getnada|nada|dispostable|maildrop|throwawaymail|fakeinbox|fakemail|mohmal|emailondeck|mintemail|spam4|byom|moakt|tempr|discard|mailnesia|mytemp|minuteinbox|burnermail|33mail)\./i;
+var SEQ='0123456789012345678909876543210987654321';
+var ERR={
+  name:'Bitte gib deinen echten Vor- und Nachnamen an.',
+  email:'Bitte gib eine gültige E-Mail-Adresse an.',
+  'email-wegwerf':'Bitte nutze keine Wegwerf-Adresse, sondern deine echte E-Mail-Adresse.',
+  'email-domain':'Diese E-Mail-Adresse kann keine Nachrichten empfangen. Bitte prüfe die Schreibweise.',
+  tel:'Bitte gib eine echte Telefonnummer an, unter der wir dich erreichen.'
+};
+/* Buchstaben aller Schriften wie im Server; aeltere Browser ohne \p{L} fallen auf lateinische Buchstaben zurueck */
+var RE_NAME=(function(){try{return new RegExp("^\\p{L}[\\p{L}\\s.'’-]{1,79}$","u");}catch(e){return /^[A-Za-zÀ-ÖØ-öø-ž][A-Za-zÀ-ÖØ-öø-ž\s.'’-]{1,79}$/;}})();
+function nameOk(s){s=String(s||'').trim(); if(!RE_NAME.test(s)) return false; if(JUNK.test(s)||/^(.)\1+$/i.test(s.replace(/\s/g,''))) return false; return /[aeiouyäöüàáâèéêìíîòóôùúû]/i.test(s);}
+function orgOk(s){s=String(s||'').trim(); return s.length>=2&&!/https?:|www\./i.test(s)&&!JUNK.test(s)&&!/^(.)\1+$/i.test(s.replace(/\s/g,''))&&/[A-Za-zÀ-ÖØ-öø-ž]/.test(s);}
+function phoneOk(s){s=String(s||'').trim(); if(!s||/[^\d\s+()\/.-]/.test(s)) return false; var dg=s.replace(/\D/g,''); if(dg.length<8||dg.length>15) return false;
+  var nat=(s.charAt(0)==='+'||dg.indexOf('00')===0)?dg.replace(/^00/,'').replace(/^(49|43|41|31|32|352|39|33|34|44|45|46|47|48|420|421|36|386|385|40|359|30|351|353|358|370|371|372|1)/,''):dg.replace(/^0+/,'');
+  var u={}; nat.split('').forEach(function(x){u[x]=1}); if(nat.length<6||Object.keys(u).length<3||/(\d)\1{5,}/.test(dg)) return false;
+  for(var i=0;i+7<=nat.length;i++) if(SEQ.indexOf(nat.slice(i,i+7))>-1) return false;
+  return !(nat.length<=9&&SEQ.indexOf(nat)>-1);}
+function markField(k,msg){var inp=$('#f-'+k);if(inp)inp.parentNode.classList.add('bad');var fe=$('[data-fe="'+k+'"]');if(fe)fe.textContent=msg;return inp;}
+function validContact(){
+  var C=CONTENT[current], ok=true, first=null;
+  function bad(k,msg){var inp=markField(k,msg);if(inp&&!first)first=inp;ok=false;}
+  $$('input[data-f]').forEach(function(inp){F.contact[inp.getAttribute('data-f')]=inp.value.trim();});
+  var c=F.contact;
+  if(!nameOk(c.name)) bad('name',ERR.name);
+  if(!orgOk(c.org)) bad('org','Bitte gib '+(current==='partner'?'dein Unternehmen':'den Namen deiner Einrichtung')+' an.');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.email||'')||JUNK.test((c.email||'').split('@')[0])) bad('email',ERR.email);
+  else if(DISPOSABLE.test(c.email)) bad('email',ERR['email-wegwerf']);
+  if(!phoneOk(c.tel)) bad('tel',ERR.tel);
+  if(F.reach.length===0){$('[data-fe="reach"]').textContent='Bitte wähle mindestens eine Zeit.';ok=false;}
+  if(!$('[data-consent]').checked){$('[data-fe="consent"]').textContent='Bitte bestätige die Einwilligung.';ok=false;}
+  if(first) first.focus();
+  return ok;
+}
+function confirmText(r){ r=r||{}; var m=r.mail==='sent', s=r.sms==='sent';
+  return m&&s?'Du bekommst gleich eine Bestätigung per E-Mail und SMS. ':m?'Du bekommst gleich eine Bestätigung per E-Mail. ':s?'Du bekommst gleich eine Bestätigung per SMS. ':''; }
+function sendLead(){
+  var C=CONTENT[current];
+  if(!FORM_ENDPOINT||!window.fetch) return Promise.resolve({ok:true});
+  var labels={}; C.steps.forEach(function(s){labels[s.k]=s.q;});
+  return fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bereich:current,antworten:F.ans,fragen:labels,kontakt:F.contact,erreichbar:F.reach,website:($('[data-hp]')||{}).value||'',t:Math.round(window.performance&&performance.now?performance.now():9999)})})
+    .then(function(r){if(r.ok) return r.json().catch(function(){return {ok:true};}); if(r.status===422) return r.json().then(function(j){return {ok:false,fields:j.fields||[]};}).catch(function(){return {ok:false};}); return {ok:false,status:r.status};}).catch(function(){return {ok:false};});
+}
+function goNext(){
+  var C=CONTENT[current], err=$('[data-fun-err]');
+  if(F.step<C.steps.length){
+    var s=C.steps[F.step], v=F.ans[s.k];
+    if(!v||(Array.isArray(v)&&!v.length)){err.textContent=s.multi?'Bitte wähle mindestens eine Antwort.':'Bitte wähle eine Antwort.';return;}
+    F.step++; drawFunnel();
+  } else {
+    if(!validContact()){err.textContent='Bitte prüfe die markierten Angaben.';return;}
+    var nx=$('[data-fun-next]'), lbl=nx.textContent; nx.disabled=true; nx.textContent='Wird gesendet …';
+    sendLead().then(function(res){ nx.disabled=false; nx.textContent=lbl; F.res=res;
+      if(res&&res.fields&&res.fields.length){ var f0=null; res.fields.forEach(function(k){var key=k.indexOf('email')===0?'email':k; var inp=markField(key,ERR[k]||(key==='org'?'Bitte gib '+(current==='partner'?'dein Unternehmen':'den Namen deiner Einrichtung')+' an.':ERR.email)); if(inp&&!f0)f0=inp;}); if(f0)f0.focus(); err.textContent='Bitte prüfe die markierten Angaben.'; return; }
+      if(res&&res.status===429){ err.textContent='Es sind gerade zu viele Anfragen eingegangen. Bitte versuch es später noch einmal.'; return; }
+      if(!res||!res.ok){ err.textContent='Das hat gerade nicht geklappt. Bitte versuch es gleich noch einmal.'; return; }
+      F.done=true; drawFunnel(); });
+    return;
+  }
+  var box=$('[data-funnel]'); var r=box.getBoundingClientRect(); if(r.top<70) box.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});
+}
+$('[data-fun-next]').addEventListener('click',goNext);
+$('[data-fun-back]').addEventListener('click',function(){if(F.step>0){F.step--;drawFunnel();}});
+
+/* v9 Schrittbuehne "So funktioniert es": Reiter springen zum Schritt, mobil folgt die Leiste dem Wischen.
+   Am Desktop (Maus, breites Fenster) laeuft die Buehne im Bild von selbst weiter, bis jemand klickt oder tippt. */
+(function(){
+  var f=$('[data-flow]'); if(!f) return;
+  var tabs=$$('.flow__tab',f), track=$('.flow__track',f), panels=$$('.flow__panel',f); if(!track||!panels.length) return;
+  var cur=0, lock=null, st=null;
+  function mark(i){cur=i;tabs.forEach(function(t,k){t.setAttribute('aria-current',k===i?'true':'false');t.classList.toggle('is-done',k<i);});}
+  function go(i,smooth){
+    i=(i+panels.length)%panels.length; mark(i);
+    clearTimeout(lock); lock=setTimeout(function(){lock=null;},1400);
+    track.scrollTo({left:panels[i].offsetLeft,behavior:(smooth&&!reduceMotion)?'smooth':'auto'});
+  }
+  function stopAuto(){f.classList.remove('is-auto');f.setAttribute('data-auto','off');}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){stopAuto();go(i,true);});});
+  track.addEventListener('scroll',function(){
+    if(lock||st) return;
+    st=setTimeout(function(){st=null; if(lock) return;
+      var x=track.scrollLeft, best=0, bd=1e9;
+      panels.forEach(function(p,k){var d=Math.abs(p.offsetLeft-x); if(d<bd){bd=d;best=k;}});
+      if(best!==cur) mark(best);
+    },110);
+  },{passive:true});
+  ['pointerdown','keydown','touchstart'].forEach(function(ev){track.addEventListener(ev,stopAuto,{passive:true});});
+  var canAuto=!reduceMotion&&('IntersectionObserver' in window)&&window.matchMedia('(hover:hover) and (min-width:900px)').matches;
+  if(!canAuto) return;
+  /* ein Durchlauf, nach dem vierten Schritt bleibt die Buehne stehen */
+  f.addEventListener('animationend',function(e){
+    if(e.animationName!=='flow-fill'||!f.classList.contains('is-auto')) return;
+    if(cur<panels.length-1) go(cur+1,true); else stopAuto();
+  });
+  new IntersectionObserver(function(es){
+    if(f.getAttribute('data-auto')==='off') return;
+    f.classList.toggle('is-auto',es[es.length-1].isIntersecting);
+  },{threshold:.55}).observe(f);
+})();
+
+/* Einblenden beim Scrollen, mit Failsafes fuer Screenshots und Druck */
+var els=$$('.reveal');
+if('IntersectionObserver' in window){
+  /* Perf 12.11.: kein eigenes Ausmessen im ersten Frame mehr (erzwang ein Layout), der Observer meldet die
+     sichtbaren Elemente ohnehin direkt nach dem ersten Rendern */
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -5% 0px',threshold:0.06});
+  els.forEach(function(e){io.observe(e)});
+} else els.forEach(function(e){e.classList.add('in')});
+/* Failsafe nur fuer automatisierte Screenshots (Playwright & Co.), echte Besucher bekommen es per Observer */
+if(navigator.webdriver) setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},3000);
+window.addEventListener('beforeprint',function(){els.forEach(function(e){e.classList.add('in')})});
+
+/* Test-Hook fuer die QA: Video per GUID einsetzen und wieder entfernen */
+window.__tbSetVideo=function(k,g){if(k==='fragen'){VIDEOS.fragen=g||'';}render(current,false);};
+window.__tbSetInterview=function(i,g){CONTENT[current].interviews[i].guid=g||'';render(current,false);};
+
+/* Julian 16.10.: alle drei Ansichten zeigen die vier Studio-Stimmen */
+CONTENT.partner.interviews=CONTENT.fitness.interviews; CONTENT.partner.ivTitle=CONTENT.fitness.ivTitle;
+/* Start: Zielgruppe aus der Adresse (#zg-physio) oder Fitness */
+var m=/zg-(fitness|physio|partner)/.exec(location.hash||'');
+render(m?m[1]:'fitness',false);
+})();
+</script>
+</body>
+</html>
