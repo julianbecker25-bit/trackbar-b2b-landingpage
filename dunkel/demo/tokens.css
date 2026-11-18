@@ -1,0 +1,196 @@
+@font-face{font-family:'Manrope';font-weight:200 800;font-display:swap;src:url('../assets/fonts/manrope.woff2') format('woff2')}
+/* =========================================================================
+   Trackbar Design System - Colors & Type
+   =========================================================================
+   Token reference for the Trackbar brand & in-product display.
+   Source of truth: ui_sdk-1/lib/constants/theme2/t_colors.dart +
+   Figma /Styleguide (Color System, Typography).
+   ========================================================================= */
+
+/* Manrope - vendored from the Flutter app's bundled TTFs
+   (projects/curve-app/assets/fonts/manrope/) so the prototype renders
+   with EXACTLY the same glyphs as the tablet build, offline. Inter is
+   unused in the V3 screens; --tb-font-secondary falls back to system. */
+
+:root {
+  /* ─── BRAND PRIMARY (per Trackbar CI v1.0) ───────────────────────────────
+     The green tokens derive from --tb-accent (the customer-picked primary
+     colour, default Trackbar green) so re-branding recolours every element
+     that uses them. Shades/alphas are mixed off the accent via color-mix. */
+  --tb-green:           var(--tb-accent, #97D700);   /* signature Trackbar Green · PMS 375 C */
+  --tb-green-dark:      color-mix(in srgb, var(--tb-accent, #97D700) 82%, #000);   /* primary pressed / deep */
+  --tb-green-60:        color-mix(in srgb, var(--tb-accent, #97D700) 60%, transparent);
+  --tb-green-15:        color-mix(in srgb, var(--tb-accent, #97D700) 15%, transparent);
+  --tb-brand-black:     #000000;   /* CI primary black (PMS Black 6 C) */
+  --tb-brand-white:     #FFFFFF;
+
+  /* ─── BRAND SECONDARY (per CI · use ONE at a time, never combine) ─────
+     Rule from the brand book: "Never mix secondary colours: use them one
+     at a time as dividers and backgrounds. Don't lead with secondary
+     colours or combine them with each other or our Green." */
+  --tb-tekhlet:         #483199;   /* PMS 7672 C - deep purple */
+  --tb-marian-blue:     #1D4F91;   /* PMS 7686 C - strong blue */
+  --tb-cool-gray:       #7D869C;   /* PMS 7674 C - slate */
+  --tb-platinum:        #D8D9DB;   /* light platinum (same as --tb-grey) */
+  --tb-white-smoke:     #F3F4F4;   /* off-white surface for stationery */
+  --tb-imperial-red:    #FB3640;   /* PMS Red 032 C - destructive */
+
+  /* ─── NEUTRALS (light) - in-product greyscale ────────────────────────── */
+  --tb-white:           #FFFFFF;
+  --tb-paper:           #FAFAFA;   /* off-white surfaces */
+  --tb-ink:             #0A0B0A;   /* primary text - slightly softened from pure #000 */
+  --tb-ink-2:           #1E1F21;   /* secondary text, button fg */
+  --tb-ink-3:           #232426;   /* tertiary text */
+  --tb-grey-lightest:   #F5F5F5;   /* secondary button bg */
+  --tb-grey-light:      #E8EBED;   /* dividers, hairlines */
+  --tb-grey:            #D8D9DB;   /* borders, secondary fg (= Platinum) */
+  --tb-grey-dim:        #D9D9D9;   /* legacy alias */
+  --tb-grey-text:       #4A5565;   /* muted body copy */
+  --tb-grey-text-2:     #6A7282;   /* even more muted */
+
+  /* ─── KIOSK / DISPLAY (dark) ─────────────────────────────────────────── */
+  --tb-black:           #101010;   /* gameBackground */
+  --tb-display-bg:      #121512;   /* dark scaffold */
+  --tb-pause-bg:        #2C2C2C;   /* dialog scrim */
+  --tb-curve:           #4A4A4A;   /* idle waveform stroke */
+  --tb-loading:         #C9C9C9;
+
+  /* ─── SEMANTIC ───────────────────────────────────────────────────────── */
+  --tb-danger:          #FB3640;   /* Imperial Red, per CI · PMS Red 032 C */
+  --tb-danger-alt:      #FB3741;   /* shipped in-product hex (1 digit drift) */
+  --tb-danger-soft:     #FFEAEB;
+  --tb-danger-50:       #FECDCF;
+  --tb-violet-dashed:   #9747FF;   /* Figma frame outline marker only */
+
+  /* ─── ELEVATION / SHADOWS ────────────────────────────────────────────── */
+  --tb-shadow-sm:       0 4px 4px rgba(0,0,0,0.10);
+  --tb-shadow-md:       0 8px 20px rgba(0,0,0,0.25);
+  --tb-shadow-lg:       0 3px 20px rgba(0,0,0,0.406);
+  --tb-glow-green:      0 0 56px color-mix(in srgb, var(--tb-accent, #97D700) 60%, transparent);
+
+  /* ─── RADII ──────────────────────────────────────────────────────────── */
+  --tb-r-xs:  4px;
+  --tb-r-sm:  8px;
+  --tb-r-md:  12px;
+  --tb-r-lg:  20px;
+  --tb-r-xl:  24px;
+  --tb-r-2xl: 32px;
+  --tb-r-pill: 9999px;
+
+  /* ─── SPACING (8-pt grid, with 4-pt half-steps) ──────────────────────── */
+  --tb-s-0_5: 2px;
+  --tb-s-1:   4px;
+  --tb-s-2:   8px;
+  --tb-s-3:   12px;
+  --tb-s-4:   16px;
+  --tb-s-5:   20px;
+  --tb-s-6:   24px;
+  --tb-s-8:   32px;
+  --tb-s-10:  40px;
+  --tb-s-12:  48px;
+  --tb-s-16:  64px;
+
+  /* ─── TYPE - FAMILIES ────────────────────────────────────────────────── */
+  --tb-font-primary:    'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --tb-font-secondary:  'Inter',   system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* ─── TYPE - SCALE (mirrors Flutter TextTheme2) ──────────────────────── */
+  --tb-display-lg-size: 94px; --tb-display-lg-weight: 700; --tb-display-lg-lh: 1.2;
+  --tb-display-md-size: 72px; --tb-display-md-weight: 800; --tb-display-md-lh: 1.0;
+  --tb-display-sm-size: 47px; --tb-display-sm-weight: 700; --tb-display-sm-lh: 1.0;
+
+  --tb-headline-lg-size: 32px; --tb-headline-lg-weight: 700; --tb-headline-lg-lh: 1.2;
+  --tb-headline-md-size: 32px; --tb-headline-md-weight: 600; --tb-headline-md-lh: 1.2;
+  --tb-headline-sm-size: 28px; --tb-headline-sm-weight: 600; --tb-headline-sm-lh: 1.2;
+
+  --tb-body-lg-size: 24px; --tb-body-lg-weight: 600; --tb-body-lg-lh: 1.3;
+  --tb-body-md-size: 22px; --tb-body-md-weight: 400; --tb-body-md-lh: 1.4;
+  --tb-body-sm-size: 18px; --tb-body-sm-weight: 500; --tb-body-sm-lh: 1.4;
+
+  --tb-label-lg-size: 22px; --tb-label-lg-weight: 600; --tb-label-lg-lh: 1.2;
+  --tb-label-md-size: 20px; --tb-label-md-weight: 500; --tb-label-md-lh: 1.2;
+  --tb-label-sm-size: 14px; --tb-label-sm-weight: 500; --tb-label-sm-lh: 1.3;
+
+  /* ─── SEMANTIC TYPE ROLES (web defaults) ─────────────────────────────── */
+  --tb-h1: 700 56px/1.0  var(--tb-font-primary);
+  --tb-h2: 700 40px/1.1  var(--tb-font-primary);
+  --tb-h3: 700 32px/1.2  var(--tb-font-primary);
+  --tb-h4: 600 24px/1.3  var(--tb-font-primary);
+  --tb-p:  400 18px/1.5  var(--tb-font-primary);
+  --tb-small: 500 14px/1.4 var(--tb-font-primary);
+  --tb-code: 500 14px/1.4 ui-monospace, 'JetBrains Mono', Menlo, monospace;
+
+  /* ─── MARKETING TYPE SCALE (per CI book §3.3–3.4) ─────────────────────
+     Used on slides, ads, marketing pages - distinct from the in-product
+     UI scale above. Trackbar's brand voice here is BIG, BOLD, ALL CAPS,
+     LEFT-ALIGNED Manrope. Always pair a Mega Title with smaller copy. */
+  --tb-mega-title-xl:   800 202px/195px var(--tb-font-primary); /* hero, max 30 chars */
+  --tb-mega-title-lg:   800 152px/150px var(--tb-font-primary);
+  --tb-mega-title-md:   800 114px/95px  var(--tb-font-primary);
+  --tb-mega-section:    500 114px/120px var(--tb-font-primary); /* less prominent variant */
+  --tb-title-xl:        700  48px/50px  var(--tb-font-primary);
+  --tb-title-lg:        700  36px/40px  var(--tb-font-primary);
+  --tb-title-md:        700  27px/30px  var(--tb-font-primary);
+  --tb-title-sm:        700  19px/25px  var(--tb-font-primary);
+  --tb-subheader:       400  36px/50px  var(--tb-font-primary); /* Manrope Regular */
+  --tb-mega-paragraph:  500  64px/75px  var(--tb-font-primary); /* large quotes */
+  --tb-paragraph-lg:    400  19px/30px  var(--tb-font-primary);
+  --tb-paragraph-md:    400  16px/25px  var(--tb-font-primary);
+  --tb-paragraph-sm:    400  12px/20px  var(--tb-font-primary);
+}
+
+/* ─── BASE ELEMENT STYLES ──────────────────────────────────────────────── */
+html, body { font-family: var(--tb-font-primary); color: var(--tb-ink); }
+
+h1 { font: var(--tb-h1); letter-spacing: -0.01em; margin: 0; }
+h2 { font: var(--tb-h2); letter-spacing: -0.01em; margin: 0; }
+h3 { font: var(--tb-h3); margin: 0; }
+h4 { font: var(--tb-h4); margin: 0; }
+p  { font: var(--tb-p);  margin: 0; }
+small { font: var(--tb-small); color: var(--tb-grey-text); }
+code  { font: var(--tb-code); }
+
+/* ─── UTILITY CLASSES ──────────────────────────────────────────────────── */
+.tb-display-lg  { font: var(--tb-display-lg-weight) var(--tb-display-lg-size)/var(--tb-display-lg-lh)  var(--tb-font-primary); }
+.tb-display-md  { font: var(--tb-display-md-weight) var(--tb-display-md-size)/var(--tb-display-md-lh)  var(--tb-font-primary); }
+.tb-display-sm  { font: var(--tb-display-sm-weight) var(--tb-display-sm-size)/var(--tb-display-sm-lh)  var(--tb-font-primary); }
+.tb-headline-lg { font: var(--tb-headline-lg-weight) var(--tb-headline-lg-size)/var(--tb-headline-lg-lh) var(--tb-font-primary); }
+.tb-headline-md { font: var(--tb-headline-md-weight) var(--tb-headline-md-size)/var(--tb-headline-md-lh) var(--tb-font-primary); }
+.tb-headline-sm { font: var(--tb-headline-sm-weight) var(--tb-headline-sm-size)/var(--tb-headline-sm-lh) var(--tb-font-primary); }
+.tb-body-lg     { font: var(--tb-body-lg-weight) var(--tb-body-lg-size)/var(--tb-body-lg-lh) var(--tb-font-primary); }
+.tb-body-md     { font: var(--tb-body-md-weight) var(--tb-body-md-size)/var(--tb-body-md-lh) var(--tb-font-primary); }
+.tb-body-sm     { font: var(--tb-body-sm-weight) var(--tb-body-sm-size)/var(--tb-body-sm-lh) var(--tb-font-primary); }
+.tb-label-lg    { font: var(--tb-label-lg-weight) var(--tb-label-lg-size)/var(--tb-label-lg-lh) var(--tb-font-primary); }
+.tb-label-md    { font: var(--tb-label-md-weight) var(--tb-label-md-size)/var(--tb-label-md-lh) var(--tb-font-primary); }
+.tb-label-sm    { font: var(--tb-label-sm-weight) var(--tb-label-sm-size)/var(--tb-label-sm-lh) var(--tb-font-primary); }
+
+/* ─── KIOSK A11Y FLOOR (wall-mounted tablet) ─────────────────────────
+   Min text 18px · min tap target 72px · secondary text ≥ rgba(255,255,255,0.72)
+   Rationale: arm's-length tapping, vision-impaired members. */
+
+/* ─── V3 SURFACE SYSTEM (4 levels, kiosk dark theme) ─────────────────
+   The prototype styles are inline in the JSX, so these variables are
+   the CANONICAL REFERENCE for the Flutter port - keep them in sync
+   with overlay.jsx / screens-setup.jsx when iterating.
+
+   Level 0 - game / vignette background. Untouched: #101010 playfield
+             plus the per-background vignette. Everything floats on it.
+   Level 1 - overlay glass panel. Two-stop dark glaze at 0.78 alpha
+             over blur(60px) saturate(180%), border 0.22, plus the
+             specular top highlight. Separates the panel from Level 0.
+   Level 2 - cards / tiles ON the panel (Set Details, Parameters,
+             Exercise Style, Game Type, choice & day rows). Radius
+             20–22. The inset top highlight is what makes them read
+             as distinct tiles at a glance - gentle, not loud.
+   Level 3 - interactive elements INSIDE cards (set toggles, edit
+             pills, BAR/CURVE segments, steppers, back chips).
+             Selected state is always accent-filled (--tb-green). */
+:root {
+  --tb-surface-1:        linear-gradient(180deg, rgba(28,32,28,0.78) 0%, rgba(10,14,10,0.78) 100%);
+  --tb-surface-1-border: rgba(255,255,255,0.22);
+  --tb-surface-2:        rgba(255,255,255,0.055);
+  --tb-surface-2-border: rgba(255,255,255,0.14);
+  --tb-surface-2-inset:  inset 0 1px 0 rgba(255,255,255,0.06);
+  --tb-surface-3:        rgba(255,255,255,0.09);
+  --tb-surface-3-border: rgba(255,255,255,0.20);
+}
